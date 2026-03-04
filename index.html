@@ -1,0 +1,3618 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+
+<!-- Perplexity Computer Attribution — SEO Meta Tags -->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta property="og:see_also" content="https://www.perplexity.ai/computer">
+<link rel="author" href="https://www.perplexity.ai/computer">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI提示工程教材 — 本可靠脸的我，非要选择AI替我动脑指南</title>
+<meta name="description" content="一个月成为全球顶尖AI提示专家 — AI Prompt Engineering 中文教材">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=general-sans@400,500,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ═══════════════════════════════════════════════════════════════
+   AI TEXTBOOK — PLAYFUL & VIBRANT DESIGN
+   ═══════════════════════════════════════════════════════════════ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --violet: #7C3AED;
+  --pink: #EC4899;
+  --cyan: #06B6D4;
+  --orange: #F97316;
+  --lime: #84CC16;
+  --bg: #FAFAFA;
+  --bg-cream: #FFF8F0;
+  --card-bg: #FFFFFF;
+  --text-primary: #1A1A2E;
+  --text-secondary: #6B7280;
+  --text-tertiary: #9CA3AF;
+  --dark-surface: #1E1B2E;
+  --dark-card: #2D2A3E;
+  --shadow: 0 2px 12px rgba(0,0,0,0.06);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.1);
+  --radius: 16px;
+  --sidebar-w: 280px;
+  --font-display: 'Clash Display', 'Noto Sans SC', system-ui, sans-serif;
+  --font-body: 'General Sans', 'Noto Sans SC', system-ui, sans-serif;
+  --font-code: 'JetBrains Mono', monospace;
+}
+
+/* ─── Dark Mode ─────────────────────────────────────────────── */
+body.dark {
+  --bg: #121020;
+  --bg-cream: #1a1830;
+  --card-bg: #2D2A3E;
+  --text-primary: #E8E6F0;
+  --text-secondary: #9CA3AF;
+  --text-tertiary: #6B7280;
+  --shadow: 0 2px 12px rgba(0,0,0,0.3);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+body.dark .hero-bg { opacity: 0.3; }
+body.dark .module-header { background: var(--dark-card) !important; }
+body.dark .sidebar { background: #1a1830; border-color: #2D2A3E; }
+body.dark .toc-card { background: var(--dark-card); }
+body.dark pre, body.dark code { background: #1a1535; }
+body.dark .case-bad { background: #2a1520; }
+body.dark .case-good { background: #152a20; }
+body.dark .appendix-chapter { background: var(--dark-card); }
+body.dark .method-card { background: var(--dark-card); }
+body.dark .quiz-option { background: var(--dark-card); border-color: #3D3A4E; }
+body.dark .quiz-option:hover { border-color: var(--violet); }
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text-primary);
+  line-height: 1.7;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ─── Sidebar ───────────────────────────────────────────────── */
+.sidebar {
+  position: fixed; top: 0; left: 0; z-index: 100;
+  width: var(--sidebar-w); height: 100vh;
+  background: #fff; border-right: 1px solid #E5E7EB;
+  overflow-y: auto; overflow-x: hidden;
+  transform: translateX(-100%);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.sidebar.open { transform: translateX(0); }
+@media (min-width: 1024px) {
+  .sidebar { transform: translateX(0); }
+  .main-content { margin-left: var(--sidebar-w); overflow-x: hidden; }
+  .mobile-menu-btn { display: none; }
+}
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-thumb { background: #ccc; border-radius: 2px; }
+.sidebar-overlay {
+  display: none; position: fixed; inset: 0; z-index: 99;
+  background: rgba(0,0,0,0.4);
+}
+.sidebar-overlay.active { display: block; }
+.sidebar-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 16px 20px 20px; border-bottom: 1px solid #E5E7EB;
+}
+.sidebar-logo {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 18px; background: linear-gradient(135deg, var(--violet), var(--pink));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.sidebar-close {
+  display: block; background: none; border: none; font-size: 24px;
+  cursor: pointer; color: var(--text-secondary); padding: 4px;
+}
+@media (min-width: 1024px) { .sidebar-close { display: none; } }
+.sidebar-content { padding: 12px 0; }
+.sidebar-link {
+  display: block; padding: 8px 20px; text-decoration: none;
+  color: var(--text-secondary); font-size: 13px; transition: all 0.18s;
+  border-left: 3px solid transparent;
+}
+.sidebar-link:hover { color: var(--text-primary); background: rgba(124,58,237,0.05); }
+.sidebar-link.active {
+  color: var(--module-color, var(--violet));
+  border-left-color: var(--module-color, var(--violet));
+  background: rgba(124,58,237,0.08); font-weight: 600;
+}
+.sidebar-top { font-weight: 500; padding: 10px 20px; font-size: 14px; }
+.module-link { font-weight: 600; color: var(--text-primary); padding: 12px 20px; font-size: 14px; }
+.sidebar-chapters { padding-left: 12px; }
+.chapter-link { font-size: 12px; padding: 5px 20px; }
+
+/* ─── Buttons ───────────────────────────────────────────────── */
+.mobile-menu-btn {
+  position: fixed; top: 16px; left: 16px; z-index: 98;
+  width: 44px; height: 44px; border-radius: 12px;
+  background: var(--card-bg); border: 1px solid #E5E7EB;
+  font-size: 20px; cursor: pointer; box-shadow: var(--shadow);
+  display: flex; align-items: center; justify-content: center;
+}
+.dark-mode-toggle {
+  position: fixed; top: 16px; right: 16px; z-index: 101;
+  width: 44px; height: 44px; border-radius: 12px;
+  background: var(--card-bg); border: 1px solid #E5E7EB;
+  font-size: 20px; cursor: pointer; box-shadow: var(--shadow);
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* ─── Hero ──────────────────────────────────────────────────── */
+.hero {
+  position: relative; min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; padding: 40px 24px;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, #7C3AED 0%, #EC4899 40%, #06B6D4 70%, #F97316 100%);
+  opacity: 0.12;
+}
+.hero-content {
+  position: relative; text-align: center; max-width: 720px;
+}
+.hero-img {
+  width: 92%; max-width: 720px; height: auto;
+  border-radius: 24px; margin-bottom: 32px;
+  box-shadow: 0 20px 60px rgba(124,58,237,0.2);
+}
+.hero-title {
+  font-family: var(--font-display); font-size: clamp(28px, 5vw, 48px);
+  font-weight: 700; line-height: 1.2; margin-bottom: 16px;
+  background: linear-gradient(135deg, var(--violet), var(--pink), var(--cyan));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-subtitle {
+  font-size: clamp(14px, 2.5vw, 18px); color: var(--text-secondary);
+  margin-bottom: 12px; font-weight: 500;
+}
+.hero-author {
+  font-size: 16px; color: var(--text-tertiary); margin-bottom: 32px;
+}
+.hero-cta {
+  display: inline-block; padding: 14px 40px; border-radius: 50px;
+  background: linear-gradient(135deg, var(--violet), var(--pink));
+  color: #fff; text-decoration: none; font-weight: 600; font-size: 16px;
+  box-shadow: 0 8px 24px rgba(124,58,237,0.3);
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+.hero-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(124,58,237,0.4); }
+
+/* ─── Sections ──────────────────────────────────────────────── */
+.card-section, .toc-section, .module-section, .exam-section, .appendix-section {
+  padding: 48px 24px; max-width: 960px; margin: 0 auto;
+}
+.section-title {
+  font-family: var(--font-display); font-size: clamp(24px, 4vw, 36px);
+  font-weight: 700; text-align: center; margin-bottom: 8px;
+}
+.title-en {
+  display: block; font-size: 14px; color: var(--text-tertiary);
+  font-weight: 400; margin-top: 4px; font-family: var(--font-body);
+}
+
+/* ─── Preface ───────────────────────────────────────────────── */
+.preface-card { padding: 40px 32px; }
+.preface-card h2 {
+  font-family: var(--font-display); font-size: clamp(20px, 3vw, 28px);
+  margin-bottom: 20px;
+}
+.methodology-cards {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px; margin-top: 24px;
+}
+.method-card {
+  background: var(--bg); border-radius: 12px; padding: 20px; text-align: center;
+}
+.method-icon { font-size: 32px; margin-bottom: 8px; }
+.method-card h4 { font-size: 15px; margin-bottom: 4px; }
+.method-en { font-size: 12px; color: var(--text-tertiary); margin-bottom: 8px; font-style: italic; }
+.method-card p:last-child { font-size: 13px; color: var(--text-secondary); }
+
+/* ─── TOC Grid ──────────────────────────────────────────────── */
+.toc-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px; margin-top: 32px;
+}
+.toc-card {
+  background: var(--card-bg); border-radius: var(--radius); padding: 24px;
+  box-shadow: var(--shadow); text-decoration: none; color: inherit;
+  border-top: 4px solid var(--module-color);
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+.toc-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.toc-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.toc-module-num {
+  font-family: var(--font-display); font-weight: 700; font-size: 14px;
+  color: var(--module-color); text-transform: uppercase;
+}
+.toc-week { font-size: 12px; color: var(--text-tertiary); }
+.toc-module-title { font-family: var(--font-display); font-size: 18px; margin-bottom: 4px; }
+.toc-module-en { font-size: 12px; color: var(--text-tertiary); margin-bottom: 16px; }
+.toc-chapters { display: flex; flex-direction: column; gap: 4px; }
+.toc-ch { font-size: 13px; color: var(--text-secondary); }
+
+/* ─── Module Section ────────────────────────────────────────── */
+.module-section { padding-top: 32px; padding-bottom: 32px; }
+.module-header {
+  border-radius: var(--radius); overflow: hidden;
+  background: var(--module-bg); margin-bottom: 32px;
+  box-shadow: var(--shadow);
+}
+.module-hero-img { width: 100%; height: 220px; object-fit: cover; }
+.module-header-content { padding: 24px 32px; }
+.module-label {
+  font-family: var(--font-display); font-size: 14px; font-weight: 600;
+  color: var(--module-color); text-transform: uppercase;
+}
+.module-title {
+  font-family: var(--font-display); font-size: clamp(22px, 3.5vw, 32px);
+  font-weight: 700; margin: 8px 0 4px;
+}
+.module-title-en { font-size: 14px; color: var(--text-tertiary); margin-bottom: 16px; }
+.module-goal {
+  background: rgba(124,58,237,0.06); border-radius: 10px; padding: 12px 16px;
+  font-size: 14px; display: flex; align-items: flex-start; gap: 8px;
+}
+.goal-icon { flex-shrink: 0; }
+
+/* ─── Content Cards ─────────────────────────────────────────── */
+.content-card {
+  position: relative; background: var(--card-bg); border-radius: var(--radius);
+  padding: 28px 28px 28px 36px; margin-bottom: 20px;
+  box-shadow: var(--shadow); overflow: hidden; max-width: 100%; box-sizing: border-box;
+}
+/* Global overflow prevention */
+.content-card pre, .content-card table, .content-card blockquote,
+.content-card .case-comparison, .content-card img,
+.exam-card pre, .appendix-chapter pre {
+  max-width: 100%; box-sizing: border-box;
+}
+.content-card .case-bad pre, .content-card .case-good pre {
+  white-space: pre-wrap; word-wrap: break-word; word-break: break-all;
+  max-width: 100%; box-sizing: border-box;
+}
+
+.card-accent {
+  position: absolute; left: 0; top: 0; bottom: 0; width: 5px;
+}
+.card-heading {
+  font-family: var(--font-display); font-size: 18px; font-weight: 600;
+  margin-bottom: 16px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.heading-icon { font-size: 20px; }
+.heading-en { font-size: 12px; color: var(--text-tertiary); font-weight: 400; font-family: var(--font-body); }
+
+/* Chapter title card */
+.chapter-title-card {
+  position: relative; background: var(--card-bg); border-radius: var(--radius);
+  padding: 24px 28px 24px 36px; margin-bottom: 20px; margin-top: 40px;
+  box-shadow: var(--shadow); overflow: hidden;
+}
+.chapter-num {
+  font-family: var(--font-display); font-size: 13px; font-weight: 600;
+  color: var(--module-color); text-transform: uppercase;
+}
+.chapter-title {
+  font-family: var(--font-display); font-size: clamp(18px, 3vw, 24px);
+  font-weight: 700; margin: 6px 0 4px;
+}
+.chapter-title-en { font-size: 13px; color: var(--text-tertiary); }
+
+/* Objectives */
+.objectives-list { list-style: none; padding: 0; }
+.objectives-list li {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 8px 0; font-size: 14px; line-height: 1.6;
+}
+.check-icon {
+  flex-shrink: 0; width: 22px; height: 22px;
+  background: var(--lime); color: #fff; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; margin-top: 2px;
+}
+
+/* ─── Typography inside cards ───────────────────────────────── */
+.content-card h4 { margin-top: 20px; margin-bottom: 10px; font-size: 16px; }
+.content-card h4:first-child { margin-top: 0; }
+.content-card p { margin-bottom: 12px; font-size: 15px; line-height: 1.8; }
+.content-card ul { padding-left: 20px; margin-bottom: 12px; }
+.content-card ul li { margin-bottom: 6px; font-size: 14px; line-height: 1.7; }
+.content-card ul.numbered { list-style: decimal; }
+.content-card blockquote {
+  position: relative; margin: 16px 0; padding: 14px 20px;
+  background: linear-gradient(135deg, rgba(124,58,237,0.05), rgba(236,72,153,0.05));
+  border-radius: 12px; border-left: 4px solid var(--violet);
+  font-size: 14px; font-style: italic; color: var(--text-secondary);
+}
+
+/* Tables */
+.table-wrapper { overflow-x: auto; margin: 16px 0; }
+table {
+  width: 100%; border-collapse: collapse; font-size: 13px;
+  border-radius: 10px; overflow: hidden;
+}
+th {
+  background: linear-gradient(135deg, var(--violet), var(--pink));
+  color: #fff; padding: 10px 14px; text-align: left; font-weight: 600;
+}
+td {
+  padding: 10px 14px; border-bottom: 1px solid #E5E7EB;
+}
+tr:nth-child(even) td { background: rgba(124,58,237,0.03); }
+body.dark td { border-color: #3D3A4E; }
+body.dark tr:nth-child(even) td { background: rgba(124,58,237,0.06); }
+
+/* Code */
+pre {
+  background: #1E1B2E; color: #E8E6F0; padding: 16px 20px;
+  border-radius: 10px; overflow-x: auto; margin: 12px 0;
+  font-family: var(--font-code); font-size: 13px; line-height: 1.6;
+  white-space: pre-wrap; word-wrap: break-word; word-break: break-all;
+  max-width: 100%; box-sizing: border-box;
+}
+code {
+  font-family: var(--font-code); font-size: 0.9em;
+}
+p code, li code {
+  background: rgba(124,58,237,0.1); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.85em;
+}
+
+/* ─── Case Study ────────────────────────────────────────────── */
+.case-comparison {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0;
+  overflow: hidden;
+}
+.case-comparison > * { min-width: 0; overflow: hidden; }
+@media (max-width: 700px) {
+  .case-comparison { grid-template-columns: 1fr; }
+}
+.case-bad, .case-good { border-radius: 12px; padding: 16px; overflow: hidden; min-width: 0; }
+.case-bad { background: #FEF2F2; }
+.case-good { background: #F0FDF4; }
+.case-label {
+  font-size: 14px; font-weight: 600; margin-bottom: 10px;
+}
+.case-label-bad { color: #DC2626; }
+.case-label-good { color: #16A34A; }
+.case-bad pre, .case-good pre { font-size: 12px; white-space: pre-wrap; word-wrap: break-word; word-break: break-all; }
+.case-analysis { margin-top: 16px; }
+.case-analysis h4 { color: var(--orange); }
+
+/* ─── Quiz ──────────────────────────────────────────────────── */
+.quiz-question { margin-bottom: 24px; }
+.quiz-q-text { font-size: 15px; font-weight: 500; margin-bottom: 12px; }
+.quiz-options { display: flex; flex-direction: column; gap: 8px; }
+.quiz-option {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 12px 16px; border: 2px solid #E5E7EB; border-radius: 10px;
+  cursor: pointer; transition: all 0.18s; background: var(--bg);
+  font-size: 14px; line-height: 1.6;
+}
+.quiz-option:hover { border-color: var(--violet); background: rgba(124,58,237,0.04); }
+.quiz-option.selected { border-color: var(--violet); background: rgba(124,58,237,0.08); }
+.quiz-option.correct { border-color: var(--lime); background: rgba(132,204,22,0.1); }
+.quiz-option.incorrect { border-color: #DC2626; background: rgba(220,38,38,0.06); }
+.quiz-letter {
+  flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+  background: var(--violet); color: #fff; display: flex;
+  align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700;
+}
+.quiz-option.correct .quiz-letter { background: var(--lime); }
+.quiz-option.incorrect .quiz-letter { background: #DC2626; }
+.quiz-text { padding-top: 3px; }
+.quiz-feedback {
+  margin-top: 10px; padding: 12px 16px; border-radius: 10px;
+  font-size: 13px; line-height: 1.6; display: none;
+}
+.quiz-feedback.show { display: block; }
+.quiz-feedback.correct-feedback { background: rgba(132,204,22,0.1); color: #166534; }
+.quiz-feedback.incorrect-feedback { background: rgba(220,38,38,0.06); color: #991B1B; }
+body.dark .quiz-feedback.correct-feedback { color: #86efac; }
+body.dark .quiz-feedback.incorrect-feedback { color: #fca5a5; }
+
+/* ─── Exam ──────────────────────────────────────────────────── */
+.exam-header { text-align: center; margin-bottom: 32px; }
+.exam-desc { color: var(--text-secondary); font-size: 15px; margin-top: 12px; }
+.exam-card { margin-bottom: 24px; padding: 28px 28px 28px 36px; }
+.exam-q-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+.exam-q-num {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 16px; color: var(--violet);
+}
+.exam-q-topic { font-size: 13px; color: var(--text-tertiary); }
+.exam-card p { font-size: 14px; margin-bottom: 8px; }
+.exam-card pre { font-size: 12px; white-space: pre-wrap; word-wrap: break-word; word-break: break-all; }
+
+/* ─── Appendix ──────────────────────────────────────────────── */
+.appendix-desc { text-align: center; color: var(--text-secondary); font-size: 14px; margin-bottom: 24px; }
+.appendix-chapter {
+  background: var(--card-bg); border-radius: var(--radius);
+  margin-bottom: 12px; box-shadow: var(--shadow); overflow: hidden;
+}
+.appendix-chapter summary {
+  padding: 16px 24px; cursor: pointer; font-weight: 600;
+  font-size: 15px; list-style: none; display: flex; align-items: center;
+}
+.appendix-chapter summary::before {
+  content: '▶'; margin-right: 12px; font-size: 10px;
+  transition: transform 0.2s;
+}
+.appendix-chapter[open] summary::before { transform: rotate(90deg); }
+.appendix-content { padding: 0 24px 20px; }
+.appendix-answer { margin-bottom: 16px; padding: 12px 16px; background: var(--bg); border-radius: 10px; }
+.answer-label { font-size: 14px; color: var(--violet); }
+.answer-explanation { font-size: 13px; color: var(--text-secondary); margin-top: 8px; line-height: 1.7; }
+
+/* ─── Footer ────────────────────────────────────────────────── */
+.site-footer {
+  background: var(--dark-surface); color: #9CA3AF; padding: 40px 24px;
+  text-align: center;
+}
+.footer-book { font-family: var(--font-display); font-size: 16px; color: #E8E6F0; margin-bottom: 4px; }
+.footer-author { font-size: 13px; margin-bottom: 12px; }
+.footer-attribution a { color: var(--violet); text-decoration: none; font-size: 12px; }
+.footer-attribution a:hover { text-decoration: underline; }
+
+/* ─── Scroll Animations ─────────────────────────────────────── */
+.content-card, .toc-card, .module-header, .chapter-title-card {
+  opacity: 0; transform: translateY(12px);
+  animation: fadeInUp 0.5s ease forwards;
+  animation-play-state: paused;
+}
+.content-card.visible, .toc-card.visible, .module-header.visible, .chapter-title-card.visible {
+  animation-play-state: running;
+}
+@keyframes fadeInUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Responsive ────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* Layout adjustments */
+  .content-card, .exam-card { padding: 20px 16px 20px 24px; }
+  .module-header-content { padding: 16px 20px; }
+  .module-hero-img { height: 160px; }
+  .hero-img { width: 92%; max-width: 720px; }
+  .card-section, .toc-section, .module-section, .exam-section, .appendix-section {
+    padding: 32px 16px;
+  }
+  .toc-grid { grid-template-columns: 1fr; }
+
+  /* ─── Mobile Font Scaling (~18% larger) ─── */
+  body { font-size: 18px; }
+  .hero-title { font-size: clamp(32px, 7vw, 48px); }
+  .hero-subtitle { font-size: clamp(16px, 3.5vw, 20px); }
+  .hero-author { font-size: 17px; }
+  .hero-cta { font-size: 18px; padding: 14px 40px; }
+  .section-title { font-size: clamp(26px, 6vw, 36px); }
+  .title-en { font-size: 15px; }
+  .preface-card h2 { font-size: clamp(22px, 5vw, 28px); }
+  .method-card h4 { font-size: 17px; }
+  .method-en { font-size: 13px; }
+  .method-card p:last-child { font-size: 15px; }
+  .toc-module-num { font-size: 15px; }
+  .toc-week { font-size: 13px; }
+  .toc-module-title { font-size: 20px; }
+  .toc-module-en { font-size: 13px; }
+  .toc-ch { font-size: 15px; }
+  .module-label { font-size: 15px; }
+  .module-title { font-size: clamp(24px, 5vw, 32px); }
+  .module-title-en { font-size: 15px; }
+  .module-goal { font-size: 16px; }
+  .card-heading { font-size: 20px; }
+  .heading-en { font-size: 13px; }
+  .chapter-num { font-size: 14px; }
+  .chapter-title { font-size: clamp(20px, 4.5vw, 26px); }
+  .chapter-title-en { font-size: 14px; }
+  .objectives-list li { font-size: 16px; }
+  .content-card h4 { font-size: 18px; }
+  .content-card p { font-size: 17px; }
+  .content-card ul li { font-size: 16px; }
+  .content-card blockquote { font-size: 16px; }
+  table { font-size: 14px; }
+  pre { font-size: 14px; }
+  .case-label { font-size: 15px; }
+  .case-bad pre, .case-good pre { font-size: 13px; }
+  .quiz-q-text { font-size: 17px; }
+  .quiz-option { font-size: 16px; }
+  .quiz-letter { font-size: 14px; }
+  .quiz-feedback { font-size: 15px; }
+  .exam-desc { font-size: 17px; }
+  .exam-q-num { font-size: 18px; }
+  .exam-q-topic { font-size: 14px; }
+  .exam-card p { font-size: 16px; }
+  .exam-card pre { font-size: 13px; }
+  .appendix-desc { font-size: 16px; }
+  .appendix-chapter summary { font-size: 17px; }
+  .answer-label { font-size: 16px; }
+  .answer-explanation { font-size: 15px; }
+  .footer-book { font-size: 18px; }
+  .footer-author { font-size: 14px; }
+  .footer-attribution a { font-size: 13px; }
+}
+
+@media (min-width: 2000px) {
+  .card-section, .toc-section, .module-section, .exam-section, .appendix-section {
+    max-width: 1100px;
+  }
+}
+
+</style>
+</head>
+<body>
+<button class="mobile-menu-btn" id="menuBtn" aria-label="打开导航">☰</button>
+<button class="dark-mode-toggle" id="darkToggle" aria-label="切换深色模式">🌙</button>
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header">
+<div class="sidebar-logo">AI提示工程</div>
+<button class="sidebar-close" id="sidebarClose" aria-label="关闭导航">&times;</button>
+</div>
+<div class="sidebar-content">
+<a href="#hero" class="sidebar-link sidebar-top">首页</a>
+<a href="#toc" class="sidebar-link sidebar-top">目录总览</a>
+<div class="sidebar-module">
+<a href="#module-1" class="sidebar-link module-link" style="--module-color:#7C3AED">Module 1</a>
+<div class="sidebar-chapters">
+<a href="#chapter-1" class="sidebar-link chapter-link" style="--module-color:#7C3AED">第1章 AI不是人</a>
+<a href="#chapter-2" class="sidebar-link chapter-link" style="--module-color:#7C3AED">第2章 你说的每句话，AI听到的是什么？</a>
+<a href="#chapter-3" class="sidebar-link chapter-link" style="--module-color:#7C3AED">第3章 第一次提问就上手</a>
+<a href="#chapter-4" class="sidebar-link chapter-link" style="--module-color:#7C3AED">第4章 角色扮演入门</a>
+</div>
+</div>
+<div class="sidebar-module">
+<a href="#module-2" class="sidebar-link module-link" style="--module-color:#EC4899">Module 2</a>
+<div class="sidebar-chapters">
+<a href="#chapter-5" class="sidebar-link chapter-link" style="--module-color:#EC4899">第5章 BROKE框架</a>
+<a href="#chapter-6" class="sidebar-link chapter-link" style="--module-color:#EC4899">第6章 语境是王</a>
+<a href="#chapter-7" class="sidebar-link chapter-link" style="--module-color:#EC4899">第7章 约束的艺术</a>
+<a href="#chapter-8" class="sidebar-link chapter-link" style="--module-color:#EC4899">第8章 Few-shot魔法</a>
+</div>
+</div>
+<div class="sidebar-module">
+<a href="#module-3" class="sidebar-link module-link" style="--module-color:#06B6D4">Module 3</a>
+<div class="sidebar-chapters">
+<a href="#chapter-9" class="sidebar-link chapter-link" style="--module-color:#06B6D4">第9章 思维链（Chain-of-Thought）</a>
+<a href="#chapter-10" class="sidebar-link chapter-link" style="--module-color:#06B6D4">第10章 多步任务拆解</a>
+<a href="#chapter-11" class="sidebar-link chapter-link" style="--module-color:#06B6D4">第11章 自我纠错与迭代</a>
+<a href="#chapter-12" class="sidebar-link chapter-link" style="--module-color:#06B6D4">第12章 多角色协作</a>
+</div>
+</div>
+<div class="sidebar-module">
+<a href="#module-4" class="sidebar-link module-link" style="--module-color:#F97316">Module 4</a>
+<div class="sidebar-chapters">
+<a href="#chapter-13" class="sidebar-link chapter-link" style="--module-color:#F97316">第13章 AI幻觉</a>
+<a href="#chapter-14" class="sidebar-link chapter-link" style="--module-color:#F97316">第14章 事实校验与锚定</a>
+<a href="#chapter-15" class="sidebar-link chapter-link" style="--module-color:#F97316">第15章 自动化Prompt链</a>
+<a href="#chapter-16" class="sidebar-link chapter-link" style="--module-color:#F97316">第16章 融会贯通</a>
+</div>
+</div>
+<a href="#exam" class="sidebar-link sidebar-top">期末大考</a>
+<a href="#appendix" class="sidebar-link sidebar-top">附录答案</a>
+</div>
+</nav>
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="main-content" id="mainContent">
+
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <img src="assets/book-hero.jpg" alt="AI Textbook Hero" class="hero-img" loading="lazy">
+    <h1 class="hero-title">本可靠脸的我，<br>非要选择AI替我动脑指南</h1>
+    <p class="hero-subtitle">人类最后的倔强：一个月成为全球顶尖AI提示专家</p>
+    <p class="hero-author">作者：陈金理</p>
+    <a href="#toc" class="hero-cta">开始阅读 ↓</a>
+  </div>
+</section>
+
+
+<section class="preface-section card-section" id="preface">
+  <div class="content-card preface-card">
+    <div class="card-accent" style="background: linear-gradient(135deg, #7C3AED, #EC4899)"></div>
+    <h2>前言：致每一位即将驯服AI的你</h2>
+    <p>你好，未来的AI面试官。</p>
+    <p>是的，你没看错——不是AI来面试你，而是你去面试AI。</p>
+    <p>在这个人工智能（Artificial Intelligence, AI）以光速渗透日常生活的时代，绝大多数人还停留在"对AI说句话、看看它回什么"的阶段。这就好比你面前摆着一架钢琴，你只会用一根手指头戳键盘——它确实会响，但那不叫弹琴。</p>
+    <p>这本书要做的事情很简单：<strong>用一个月时间，把你从"用一根手指戳AI"的新手，训练成能让AI乖乖听话、精准输出的顶尖指挥家。</strong></p>
+    <p>你不需要会编程，不需要懂数学，甚至不需要知道什么叫"算法"。你需要的，只是会说人话——然后学会一种特殊的"人话"，叫作<strong>提示词（Prompt）</strong>。</p>
+    <div class="methodology-cards">
+      <div class="method-card">
+        <div class="method-icon">🎯</div>
+        <h4>布鲁姆教育目标分类学</h4>
+        <p class="method-en">Bloom's Taxonomy</p>
+        <p>从"记住"到"创造"，一步步拾级而上</p>
+      </div>
+      <div class="method-card">
+        <div class="method-icon">🏗️</div>
+        <h4>脚手架教学法</h4>
+        <p class="method-en">Scaffolding</p>
+        <p>每一章都为下一章搭好台阶</p>
+      </div>
+      <div class="method-card">
+        <div class="method-icon">💡</div>
+        <h4>费曼学习法</h4>
+        <p class="method-en">Feynman Technique</p>
+        <p>用大白话解释每个概念</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="toc-section" id="toc">
+<h2 class="section-title">全书目录<span class="title-en">Table of Contents</span></h2>
+<div class="toc-grid">
+<a href="#module-1" class="toc-card" style="--module-color:#7C3AED;--module-gradient:linear-gradient(135deg, #7C3AED, #9F5AFF, #C084FC)">
+<div class="toc-card-header"><span class="toc-module-num">Module 1</span><span class="toc-week">第1周</span></div>
+<h3 class="toc-module-title">基础认知——底层逻辑与对话本质</h3>
+<p class="toc-module-en">Foundation — Core Logic & Dialogue Essence</p>
+<div class="toc-chapters">
+<span class="toc-ch">第1章 AI不是人</span>
+<span class="toc-ch">第2章 你说的每句话，AI听到的是什么？</span>
+<span class="toc-ch">第3章 第一次提问就上手</span>
+<span class="toc-ch">第4章 角色扮演入门</span>
+</div>
+</a>
+<a href="#module-2" class="toc-card" style="--module-color:#EC4899;--module-gradient:linear-gradient(135deg, #EC4899, #F472B6, #F9A8D4)">
+<div class="toc-card-header"><span class="toc-module-num">Module 2</span><span class="toc-week">第2周</span></div>
+<h3 class="toc-module-title">进阶框架——结构化指令与语境构建</h3>
+<p class="toc-module-en">Advanced Frameworks — Structured Instructions & Context</p>
+<div class="toc-chapters">
+<span class="toc-ch">第5章 BROKE框架</span>
+<span class="toc-ch">第6章 语境是王</span>
+<span class="toc-ch">第7章 约束的艺术</span>
+<span class="toc-ch">第8章 Few-shot魔法</span>
+</div>
+</a>
+<a href="#module-3" class="toc-card" style="--module-color:#06B6D4;--module-gradient:linear-gradient(135deg, #06B6D4, #22D3EE, #67E8F9)">
+<div class="toc-card-header"><span class="toc-module-num">Module 3</span><span class="toc-week">第3周</span></div>
+<h3 class="toc-module-title">复杂系统——逻辑链条与多步推理</h3>
+<p class="toc-module-en">Complex Systems — Logic Chains & Multi-step Reasoning</p>
+<div class="toc-chapters">
+<span class="toc-ch">第9章 思维链（Chain-of-Thought）</span>
+<span class="toc-ch">第10章 多步任务拆解</span>
+<span class="toc-ch">第11章 自我纠错与迭代</span>
+<span class="toc-ch">第12章 多角色协作</span>
+</div>
+</a>
+<a href="#module-4" class="toc-card" style="--module-color:#F97316;--module-gradient:linear-gradient(135deg, #F97316, #FB923C, #FDBA74)">
+<div class="toc-card-header"><span class="toc-module-num">Module 4</span><span class="toc-week">第4周</span></div>
+<h3 class="toc-module-title">前沿极限——幻觉规避与自动化工作流</h3>
+<p class="toc-module-en">Frontier — Hallucination Prevention & Automation</p>
+<div class="toc-chapters">
+<span class="toc-ch">第13章 AI幻觉</span>
+<span class="toc-ch">第14章 事实校验与锚定</span>
+<span class="toc-ch">第15章 自动化Prompt链</span>
+<span class="toc-ch">第16章 融会贯通</span>
+</div>
+</a>
+</div>
+</section>
+
+<section class="module-section" id="module-1" style="--module-color:#7C3AED;--module-bg:#F5F3FF;--module-gradient:linear-gradient(135deg, #7C3AED, #9F5AFF, #C084FC)">
+<div class="module-header">
+<img src="assets/module1-hero.jpg" alt="Module 1" class="module-hero-img" loading="lazy">
+<div class="module-header-content">
+<span class="module-label">Module 1 · 第1周</span>
+<h2 class="module-title">基础认知——底层逻辑与对话本质</h2>
+<p class="module-title-en">Foundation — Core Logic & Dialogue Essence</p>
+<div class="module-goal"><span class="goal-icon">🎯</span> 理解AI的本质、学会基础提问方法、建立正确的心智模型。</div>
+</div>
+</div>
+<article class="chapter" id="chapter-1">
+<div class="chapter-title-card">
+<div class="card-accent" style="background: var(--module-gradient)"></div>
+<span class="chapter-num">第1章</span>
+<h3 class="chapter-title">AI不是人——揭开大语言模型的真面目</h3>
+<p class="chapter-title-en">Chapter 1: AI Is Not Human — Unveiling the LLM</p>
+</div>
+<div class="content-card objectives-card">
+<div class="card-accent" style="background: var(--module-color)"></div>
+<h4 class="card-heading"><span class="heading-icon">📌</span> 学习目标 <span class="heading-en">Learning Objectives</span></h4>
+<ul class="objectives-list">
+<li><span class="check-icon">✓</span> 识别（Identify） 大语言模型（Large Language Model, LLM）与人类思维的根本区别。</li>
+<li><span class="check-icon">✓</span> 解释（Explain） AI生成文字的基本原理——"概率预测下一个字"。</li>
+<li><span class="check-icon">✓</span> 区分（Distinguish） "AI理解了你"与"AI在做统计预测"之间的本质差异。</li>
+</ul>
+</div>
+<div class="content-card core-card">
+<div class="card-accent" style="background: var(--module-color)"></div>
+<h4 class="card-heading"><span class="heading-icon">📖</span> 核心内容 <span class="heading-en">Core Content</span></h4>
+<h4>引言：你面前坐着的不是一个人</h4>
+<p>想象你走进一家餐厅，服务员热情地跟你打招呼："您好，请问几位？"你会自然地觉得——这个人在跟你对话。</p>
+<p>现在，换个场景：你打开手机，对ChatGPT说："今天天气怎么样？"它流利地回答你了。你也觉得——它在跟你对话。</p>
+<p>但这两件事的本质，天差地别。</p>
+<p>服务员知道自己是个人，知道你是个客人，知道"吃饭"是什么意思，甚至可能在心里嘀咕"这人穿得还挺讲究"。而AI呢？<strong>它什么都不知道。</strong>它不知道自己是谁，不知道你是谁，甚至不知道"天气"是一种物理现象。</p>
+<p>它唯一在做的一件事，就是：<strong>根据你输入的文字，计算接下来最可能出现的文字是什么。</strong></p>
+<h4>费曼类比：超级无敌补全大师</h4>
+<p>让我们用一个你一定经历过的事情来解释。</p>
+<p>你用手机打字的时候，有没有注意到键盘上方会出现三个预测词？比如你打了"今天天气"，手机可能会建议"不错""很好""真好"。你点一个，它又继续预测下一个词。</p>
+<p><strong>大语言模型的本质，就是这个手机预测键盘的超级豪华升级版。</strong></p>
+<p>区别在哪里？你手机的预测键盘可能只看了前面3-5个字。而像GPT-4、Claude这样的大语言模型，它能看你前面写的<strong>几万个字</strong>，然后综合所有这些信息，预测下一个最合适的字。</p>
+<p>而且它"读"过的"书"不是几本，而是<strong>整个互联网中数以万亿计的文字</strong>——新闻、小说、教科书、论坛帖子、代码……这让它的"预测"看起来异常聪明。</p>
+<p>但请永远记住：<strong>它在预测，不在思考。</strong></p>
+<h4>关键概念拆解</h4>
+<p><strong>什么是大语言模型（Large Language Model, LLM）？</strong></p>
+<p>把这三个词拆开看：</p>
+<div class="table-wrapper"><table>
+<tr>
+<th>词</th>
+<th>含义</th>
+</tr>
+<tr>
+<td><strong>Large（大）</strong></td>
+<td>模型参数多达数千亿个，训练数据覆盖海量文本</td>
+</tr>
+<tr>
+<td><strong>Language（语言）</strong></td>
+<td>它专门处理文字，不是图片、不是声音（虽然现在多模态模型也能处理这些，但核心能力是语言）</td>
+</tr>
+<tr>
+<td><strong>Model（模型）</strong></td>
+<td>它是一个数学模型——由数字和公式构成的"黑箱"，输入文字，输出文字</td>
+</tr>
+</table></div>
+<p><strong>三条铁律：</strong></p>
+<ul>
+<li>✅ AI擅长的：模式识别、语言组织、格式转换、信息综合</li>
+<li>❌ AI不擅长的：真正"理解"含义、拥有常识判断、保证事实准确</li>
+<li>⚠️ 最危险的误区：把AI当成"什么都懂的聪明人"——它不是人，也不"懂"</li>
+</ul>
+</div>
+<div class="content-card case-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #F97316, #EC4899)"></div>
+<h4 class="card-heading"><span class="heading-icon">🔍</span> 案例分析：你想让AI帮你解释一个概念 <span class="heading-en">Case Study</span></h4>
+<div class="case-comparison">
+<div class="case-bad">
+<div class="case-label case-label-bad">❌ 平庸Prompt</div>
+<pre><code>什么是量子计算？</code></pre>
+</div>
+<div class="case-good">
+<div class="case-label case-label-good">✅ 顶尖Prompt</div>
+<pre><code>请用一个10岁小孩能理解的方式，用日常生活中的比喻，解释什么是量子计算。
+不要使用任何专业术语。控制在200字以内。</code></pre>
+</div>
+</div>
+<div class="case-analysis">
+<h4>深度拆解</h4>
+<div class="table-wrapper"><table>
+<tr>
+<th>维度</th>
+<th>平庸Prompt</th>
+<th>顶尖Prompt</th>
+</tr>
+<tr>
+<td><strong>受众定义</strong></td>
+<td>没有（AI猜不准你是博士还是小学生）</td>
+<td>明确"10岁小孩"</td>
+</tr>
+<tr>
+<td><strong>输出方式</strong></td>
+<td>没有（AI默认输出教科书风格）</td>
+<td>要求"日常比喻"</td>
+</tr>
+<tr>
+<td><strong>约束条件</strong></td>
+<td>没有（AI可能写2000字）</td>
+<td>"不要专业术语""200字以内"</td>
+</tr>
+<tr>
+<td><strong>本质差异</strong></td>
+<td>把AI当搜索引擎</td>
+<td>把AI当一个需要被精确指挥的员工</td>
+</tr>
+</table></div>
+<p><strong>底层逻辑：</strong> 还记得吗？AI是概率预测机器。当你说"什么是量子计算"时，它最高概率的下一段文字就是维基百科式的定义。而当你说"10岁小孩能理解"时，你改变了它的概率分布——它开始倾向于选择简单词汇和比喻句式，因为它"读过"的那些面向儿童的科普文章就是这个风格。</p>
+<p><strong>你不是在"请求"AI，你是在"调参"。</strong></p></div>
+</div>
+<div class="content-card quiz-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #06B6D4, #7C3AED)"></div>
+<h4 class="card-heading"><span class="heading-icon">📝</span> 章节测验 <span class="heading-en">Chapter Quiz</span></h4>
+<div class="quiz-question" id="ch1_q1">
+<p class="quiz-q-text"><strong>第1题【基础概念】</strong> 大语言模型（LLM）生成文字的核心机制是什么？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch1_q1" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">像人一样思考，然后用语言表达想法</span></label>
+<label class="quiz-option" data-quiz="ch1_q1" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">在数据库中搜索最匹配的现成答案</span></label>
+<label class="quiz-option" data-quiz="ch1_q1" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">根据输入的文字，预测接下来最可能出现的文字</span></label>
+<label class="quiz-option" data-quiz="ch1_q1" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">随机生成文字，然后筛选出最通顺的一句</span></label>
+</div>
+<div class="quiz-feedback" id="ch1_q1_feedback"></div>
+</div>
+<div class="quiz-question" id="ch1_q2">
+<p class="quiz-q-text"><strong>第2题【逻辑理解】</strong> 为什么在Prompt中加入&quot;用10岁小孩能理解的方式&quot;这样的要求，会让AI输出更简单的回答？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch1_q2" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">AI读到这句话后会&quot;降低智商&quot;来匹配小孩水平</span></label>
+<label class="quiz-option" data-quiz="ch1_q2" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">这个要求改变了AI内部的概率分布，使它更倾向于选择简单的词汇和句式</span></label>
+<label class="quiz-option" data-quiz="ch1_q2" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">AI会自动切换到一个专门给小孩用的子模型</span></label>
+<label class="quiz-option" data-quiz="ch1_q2" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">这只是心理暗示，实际输出不会有什么变化</span></label>
+</div>
+<div class="quiz-feedback" id="ch1_q2_feedback"></div>
+</div>
+<div class="quiz-question" id="ch1_q3">
+<p class="quiz-q-text"><strong>第3题【陷阱辨析】</strong> 以下哪种说法是对AI的<strong>错误</strong>理解？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch1_q3" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">AI能写出像人一样流利的文章，但它并不&quot;理解&quot;文章在说什么</span></label>
+<label class="quiz-option" data-quiz="ch1_q3" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">AI的回答质量高度依赖于你提问的方式</span></label>
+<label class="quiz-option" data-quiz="ch1_q3" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">AI的知识来自训练数据中的统计规律，而非真正的&quot;学习&quot;</span></label>
+<label class="quiz-option" data-quiz="ch1_q3" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">如果AI的回答非常自信且详细，那么这个回答一定是正确的</span></label>
+</div>
+<div class="quiz-feedback" id="ch1_q3_feedback"></div>
+</div>
+</div>
+<div class="content-card lab-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #84CC16, #06B6D4)"></div>
+<h4 class="card-heading"><span class="heading-icon">🔬</span> 实操演练 <span class="heading-en">Mini-Lab</span></h4>
+<p>以下是一个糟糕的Prompt，请你运用本章所学知识，对它进行重构：</p>
+<pre><code>帮我写个东西介绍我们公司</code></pre>
+<p>提示：想想看，这个Prompt缺少了哪些关键信息？AI会怎么"猜"？重构时，考虑加入受众、长度、风格、核心信息等约束。</p>
+</div>
+</article>
+<article class="chapter" id="chapter-2">
+<div class="chapter-title-card">
+<div class="card-accent" style="background: var(--module-gradient)"></div>
+<span class="chapter-num">第2章</span>
+<h3 class="chapter-title">你说的每句话，AI听到的是什么？——分词与向量的秘密</h3>
+<p class="chapter-title-en">Chapter 2: What Does AI Hear? — Tokenization & Vectors</p>
+</div>
+<div class="content-card objectives-card">
+<div class="card-accent" style="background: var(--module-color)"></div>
+<h4 class="card-heading"><span class="heading-icon">📌</span> 学习目标 <span class="heading-en">Learning Objectives</span></h4>
+<ul class="objectives-list">
+<li><span class="check-icon">✓</span> 解释（Explain） 分词（Tokenization）的基本原理及其对Prompt设计的影响。</li>
+<li><span class="check-icon">✓</span> 描述（Describe） 向量空间（Vector Space）是如何让AI"理解"词语间的关系的。</li>
+<li><span class="check-icon">✓</span> 应用（Apply） 对分词的理解来优化自己的Prompt措辞。</li>
+</ul>
+</div>
+<div class="content-card core-card">
+<div class="card-accent" style="background: var(--module-color)"></div>
+<h4 class="card-heading"><span class="heading-icon">📖</span> 核心内容 <span class="heading-en">Core Content</span></h4>
+<h4>引言：AI的"耳朵"和你想的不一样</h4>
+<p>当你对朋友说"我今天特别开心"，你的朋友听到的是一个完整的句子，带着情绪、带着语气。</p>
+<p>但AI听到的完全不同。它不是"听"到你的话——它是把你的话切碎，然后一块一块地"吃"进去。</p>
+<h4>费曼类比一：积木拼字游戏</h4>
+<p><strong>分词（Tokenization）</strong>——这个看起来很吓人的英文词，其实就是"把一句话切成小块"。</p>
+<p>想象你有一盒拼字积木。每个积木上写着一个字或者半个词。比如"我今天特别开心"这句话，AI可能会把它切成：</p>
+<pre><code>[&quot;我&quot;, &quot;今天&quot;, &quot;特别&quot;, &quot;开心&quot;]</code></pre>
+<p>但如果你写的是英文"I am especially happy"，它可能切成：</p>
+<pre><code>[&quot;I&quot;, &quot; am&quot;, &quot; especially&quot;, &quot; happy&quot;]</code></pre>
+<p>有时候更复杂的词会被切得更碎。比如"Tokenization"这个词本身，可能被切成：</p>
+<pre><code>[&quot;Token&quot;, &quot;ization&quot;]</code></pre>
+<p><strong>为什么你需要知道这个？</strong></p>
+<p>因为AI有"肚量限制"。每个AI模型一次能处理的积木块（Token）数量是有上限的，这叫作<strong>上下文窗口（Context Window）</strong>。比如：</p>
+<div class="table-wrapper"><table>
+<tr>
+<th>模型</th>
+<th>大约能处理的Token数</th>
+<th>换算成中文大约多少字</th>
+</tr>
+<tr>
+<td>GPT-3.5</td>
+<td>4,096 tokens</td>
+<td>约 2,000-3,000字</td>
+</tr>
+<tr>
+<td>GPT-4</td>
+<td>128,000 tokens</td>
+<td>约 64,000-96,000字</td>
+</tr>
+<tr>
+<td>Claude 3</td>
+<td>200,000 tokens</td>
+<td>约 100,000-150,000字</td>
+</tr>
+</table></div>
+<p><strong>实用建议：</strong> 中文通常一个字就是一个Token，英文则一个词大约是1-1.5个Token。当你写一个很长的Prompt时，记得你在"消耗"AI的肚量——留给AI回答你的空间就变少了。</p>
+<h4>费曼类比二：超市货架地图</h4>
+<p>现在来说说<strong>向量空间（Vector Space）</strong>——别被这个名字吓到。</p>
+<p>想象你走进一家巨大的超市。这个超市有一个很特别的规矩：<strong>意思相近的东西，摆在相近的货架上。</strong></p>
+<p>"苹果"和"橙子"在同一排货架上，因为它们都是水果。</p>
+<p>"猫"和"狗"在隔壁排，因为它们都是宠物。</p>
+<p>而"苹果"和"汽车"则在超市的两头——它们八竿子打不着。</p>
+<p><strong>AI的脑子里就有这么一个"超市"。</strong> 在训练过程中，AI把每个词变成了一串数字（这就叫"向量"），然后把意思相近的词放在数字空间中相近的位置。</p>
+<p>这就是为什么当你对AI说"开心"的时候，它能联想到"快乐""高兴""愉悦"——因为在它的"超市地图"里，这些词就摆在一起。</p>
+<h4>关键要点</h4>
+<ul>
+<li><strong>Token不是字数。</strong> Prompt的"长度"在AI眼中是按Token算的，不是按字数。</li>
+<li><strong>措辞选择影响AI"联想"。</strong> 不同的词在向量空间中位置不同，导致AI联想的方向不同。比如"专业"和"学术"虽然意思相近，但"学术"可能让AI联想到论文风格，而"专业"可能联想到职场风格。</li>
+<li><strong>同义词不完全等价。</strong> "请帮我"和"请替我"在人看来差不多，但在AI的向量空间里，它们的"邻居"可能略有不同，进而影响输出。</li>
+</ul>
+</div>
+<div class="content-card case-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #F97316, #EC4899)"></div>
+<h4 class="card-heading"><span class="heading-icon">🔍</span> 案例分析：让AI写一封商业邮件 <span class="heading-en">Case Study</span></h4>
+<div class="case-comparison">
+<div class="case-bad">
+<div class="case-label case-label-bad">❌ 平庸Prompt</div>
+<pre><code>帮我写一封邮件给客户，说说我们的新产品。</code></pre>
+</div>
+<div class="case-good">
+<div class="case-label case-label-good">✅ 顶尖Prompt</div>
+<pre><code>你是一位资深的B2B销售经理。请帮我写一封200字以内的商业邮件，发送对象是一位科技公司的采购总监。
+
+邮件目的：介绍我们的新产品&quot;SmartFlow自动化平台&quot;，重点强调：
+1. 能为客户节省30%的运营成本
+2. 部署周期只需2周
+3. 已有50家Fortune 500企业在使用
+
+语气：专业但不冷淡，有一句打动人的开场白。
+格式：标准商业邮件格式（问候语、正文、行动号召、落款）。</code></pre>
+</div>
+</div>
+<div class="case-analysis">
+<h4>深度拆解</h4>
+<div class="table-wrapper"><table>
+<tr>
+<th>维度</th>
+<th>平庸Prompt</th>
+<th>顶尖Prompt</th>
+</tr>
+<tr>
+<td><strong>Token利用效率</strong></td>
+<td>消耗很少Token，但产出质量极差</td>
+<td>投入更多Token在指令上，但回报远超投入</td>
+</tr>
+<tr>
+<td><strong>向量定向</strong></td>
+<td>"邮件""客户""新产品"——非常模糊的向量区域，AI可能输出任何风格</td>
+<td>"B2B""采购总监""Fortune 500"——精确定位向量空间中的商务区域</td>
+</tr>
+<tr>
+<td><strong>输出可控性</strong></td>
+<td>AI要自己"猜"格式、长度、语气、重点</td>
+<td>每一个维度都被约束了，AI的"预测路径"被大大收窄</td>
+</tr>
+</table></div>
+<p><strong>本质洞察：</strong> 你在Prompt中使用的每一个词，都是在向量空间中放置一个"路标"。路标越多、越精确，AI走到你想要的目的地的概率就越高。</p></div>
+</div>
+<div class="content-card quiz-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #06B6D4, #7C3AED)"></div>
+<h4 class="card-heading"><span class="heading-icon">📝</span> 章节测验 <span class="heading-en">Chapter Quiz</span></h4>
+<div class="quiz-question" id="ch2_q1">
+<p class="quiz-q-text"><strong>第1题【基础概念】</strong> 以下关于&quot;分词（Tokenization）&quot;的描述，哪一个是正确的？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch2_q1" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">分词就是把每个汉字单独分开，一个字就是一个Token</span></label>
+<label class="quiz-option" data-quiz="ch2_q1" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">分词是AI处理语言的第一步，它把输入文本切分成模型能处理的基本单位</span></label>
+<label class="quiz-option" data-quiz="ch2_q1" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">分词只针对英文有效，中文不需要分词</span></label>
+<label class="quiz-option" data-quiz="ch2_q1" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">Token的数量和字数永远是相等的</span></label>
+</div>
+<div class="quiz-feedback" id="ch2_q1_feedback"></div>
+</div>
+<div class="quiz-question" id="ch2_q2">
+<p class="quiz-q-text"><strong>第2题【逻辑理解】</strong> 为什么了解&quot;上下文窗口（Context Window）&quot;的大小对写Prompt很重要？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch2_q2" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">因为超过窗口限制的文字会被AI自动翻译成英文</span></label>
+<label class="quiz-option" data-quiz="ch2_q2" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">因为你输入的Prompt越长，留给AI回复的空间就越小，需要合理分配</span></label>
+<label class="quiz-option" data-quiz="ch2_q2" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">因为上下文窗口决定了AI的回答是否正确</span></label>
+<label class="quiz-option" data-quiz="ch2_q2" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">因为上下文窗口大的模型一定比小的模型更聪明</span></label>
+</div>
+<div class="quiz-feedback" id="ch2_q2_feedback"></div>
+</div>
+<div class="quiz-question" id="ch2_q3">
+<p class="quiz-q-text"><strong>第3题【陷阱辨析】</strong> 关于向量空间与措辞选择，以下哪种做法最能说明&quot;措辞影响AI联想方向&quot;？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch2_q3" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">把Prompt从中文翻译成英文发送，AI一定回答得更好</span></label>
+<label class="quiz-option" data-quiz="ch2_q3" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">把&quot;写一篇文章&quot;换成&quot;写一篇学术论文&quot;，AI的输出风格可能会发生明显变化</span></label>
+<label class="quiz-option" data-quiz="ch2_q3" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">在Prompt中多加感叹号，AI会更认真对待你的请求</span></label>
+<label class="quiz-option" data-quiz="ch2_q3" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">使用更长的Prompt一定能得到更好的回答</span></label>
+</div>
+<div class="quiz-feedback" id="ch2_q3_feedback"></div>
+</div>
+</div>
+<div class="content-card lab-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #84CC16, #06B6D4)"></div>
+<h4 class="card-heading"><span class="heading-icon">🔬</span> 实操演练 <span class="heading-en">Mini-Lab</span></h4>
+<p>以下Prompt存在Token浪费和方向模糊的问题，请重构它：</p>
+<pre><code>我想让你帮我写一个东西，就是关于人工智能的，要写得比较好，比较全面，越详细越好，最好能让我的老板看了觉得我很厉害。</code></pre>
+<p>提示：找出哪些词是"噪音"（消耗Token但不提供有效信息），想想"比较好""比较全面"在向量空间中指向了哪里——答案是：哪里都不指向。</p>
+</div>
+</article>
+<article class="chapter" id="chapter-3">
+<div class="chapter-title-card">
+<div class="card-accent" style="background: var(--module-gradient)"></div>
+<span class="chapter-num">第3章</span>
+<h3 class="chapter-title">第一次提问就上手——好Prompt的基本卫生习惯</h3>
+<p class="chapter-title-en">Chapter 3: First-Time Prompting — Basic Prompt Hygiene</p>
+</div>
+<div class="content-card objectives-card">
+<div class="card-accent" style="background: var(--module-color)"></div>
+<h4 class="card-heading"><span class="heading-icon">📌</span> 学习目标 <span class="heading-en">Learning Objectives</span></h4>
+<ul class="objectives-list">
+<li><span class="check-icon">✓</span> 列举（List） 一个好Prompt应包含的五个基本要素。</li>
+<li><span class="check-icon">✓</span> 应用（Apply） "任务-背景-约束"三板斧来构建日常Prompt。</li>
+<li><span class="check-icon">✓</span> 评估（Evaluate） 一个Prompt的质量，判断它缺少了什么。</li>
+</ul>
+</div>
+<div class="content-card core-card">
+<div class="card-accent" style="background: var(--module-color)"></div>
+<h4 class="card-heading"><span class="heading-icon">📖</span> 核心内容 <span class="heading-en">Core Content</span></h4>
+<h4>引言：去餐厅点菜的艺术</h4>
+<p>如果你去餐厅对服务员说"给我来点吃的"，你觉得会端上来什么？可能是一碗白饭，也可能是一份满汉全席——谁知道呢？</p>
+<p>但如果你说"来一份宫保鸡丁，微辣，不要花生，多放葱"——你得到想要的菜的概率就大大提高了。</p>
+<p>和AI对话，道理一模一样。</p>
+<h4>好Prompt的五个基本卫生习惯</h4>
+<p>把这五样东西想象成你出门必带的五件套：手机、钥匙、钱包、口罩、纸巾。不一定每次都用得上全部，但带着它们永远不会错。</p>
+<p><strong>1. 角色（Role）——"你是谁"</strong></p>
+<p>告诉AI它应该扮演什么角色。就像你不会让厨师来帮你修电脑一样。</p>
+<p><strong>2. 任务（Task）——"做什么"</strong></p>
+<p>清楚、明确地说出你要AI干什么。不要含糊其辞。</p>
+<p><strong>3. 背景（Context）——"为什么做/在什么情况下"</strong></p>
+<p>给AI提供必要的背景信息。你不说，AI就只能瞎猜。</p>
+<p><strong>4. 格式（Format）——"怎么给我"</strong></p>
+<p>你想要一篇文章？一个列表？一个表格？一段代码？说清楚。</p>
+<p><strong>5. 约束（Constraint）——"不要什么/注意什么"</strong></p>
+<p>设定边界。字数限制、语言风格、必须避免的内容等。</p>
+<h4>费曼类比：Prompt就是点菜单</h4>
+<div class="table-wrapper"><table>
+<tr>
+<th>点菜</th>
+<th>写Prompt</th>
+</tr>
+<tr>
+<td>"师傅你好，我是你的老顾客了"</td>
+<td>角色："你是一位资深的财务顾问"</td>
+</tr>
+<tr>
+<td>"来一份水煮鱼"</td>
+<td>任务："帮我写一份季度财务报告摘要"</td>
+</tr>
+<tr>
+<td>"今天家里来客人，有老人和小孩"</td>
+<td>背景："受众是不懂财务的公司管理层"</td>
+</tr>
+<tr>
+<td>"帮我装个大盘子里"</td>
+<td>格式："用要点列表的形式，配一个关键数字汇总表"</td>
+</tr>
+<tr>
+<td>"微辣就好，不要放香菜"</td>
+<td>约束："不超过500字，不要使用专业财务缩写"</td>
+</tr>
+</table></div>
+<h4>三板斧速成法</h4>
+<p>如果五个要素记不住，至少记住<strong>三板斧</strong>：</p>
+<pre><code>【任务】+【背景】+【约束】</code></pre>
+<p>这三样东西覆盖了80%的日常Prompt需求。就像炒菜，你可以没有鲍鱼鱼翅（角色、格式），但不能没有锅、食材和火候（任务、背景、约束）。</p>
+</div>
+<div class="content-card case-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #F97316, #EC4899)"></div>
+<h4 class="card-heading"><span class="heading-icon">🔍</span> 案例分析：让AI帮你准备一场会议发言稿 <span class="heading-en">Case Study</span></h4>
+<div class="case-comparison">
+<div class="case-bad">
+<div class="case-label case-label-bad">❌ 平庸Prompt</div>
+<pre><code>帮我写个发言稿。</code></pre>
+</div>
+<div class="case-good">
+<div class="case-label case-label-good">✅ 顶尖Prompt</div>
+<pre><code>【角色】你是一位资深的企业演讲稿撰写专家。
+【任务】帮我写一份3分钟的会议开场发言稿。
+【背景】这是我们公司年度全体员工大会。我是市场部总监，需要汇报过去一年的成绩。核心数据：营收同比增长22%，新客户增加150家，团队从30人扩大到45人。
+【格式】分为三段：开场吸引注意力→核心数据展示→鼓舞展望未来。每段标注预估时长。
+【约束】语气自信但不傲慢，避免空洞的官话套话，控制在400-500字。</code></pre>
+</div>
+</div>
+<div class="case-analysis">
+<h4>深度拆解</h4>
+<p>平庸Prompt给了AI一个空白画布和一支笔，然后说"画"。它不知道画什么、画多大、给谁看、用什么风格。</p>
+<p>顶尖Prompt则像一份精确的建筑图纸：这里是承重墙，那里是窗户，用什么材料，层高多少，全部标注清楚。AI只需要"施工"，不需要"设计"——这恰恰是AI最擅长的事。</p>
+<p><strong>一句话总结：你做设计师，让AI做施工队。</strong></p></div>
+</div>
+<div class="content-card quiz-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #06B6D4, #7C3AED)"></div>
+<h4 class="card-heading"><span class="heading-icon">📝</span> 章节测验 <span class="heading-en">Chapter Quiz</span></h4>
+<div class="quiz-question" id="ch3_q1">
+<p class="quiz-q-text"><strong>第1题【基础概念】</strong> 以下哪一项不属于&quot;好Prompt的五个基本要素&quot;？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch3_q1" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">角色（Role）</span></label>
+<label class="quiz-option" data-quiz="ch3_q1" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">心情（Mood）</span></label>
+<label class="quiz-option" data-quiz="ch3_q1" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">背景（Context）</span></label>
+<label class="quiz-option" data-quiz="ch3_q1" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">约束（Constraint）</span></label>
+</div>
+<div class="quiz-feedback" id="ch3_q1_feedback"></div>
+</div>
+<div class="quiz-question" id="ch3_q2">
+<p class="quiz-q-text"><strong>第2题【逻辑理解】</strong> &quot;三板斧速成法&quot;中的三个要素是&quot;任务+背景+约束&quot;，而不是&quot;任务+角色+格式&quot;。以下哪个解释最合理？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch3_q2" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">因为角色和格式不重要</span></label>
+<label class="quiz-option" data-quiz="ch3_q2" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">因为任务、背景、约束覆盖了最核心的信息——做什么、为何做、做到什么程度——其余可以后补</span></label>
+<label class="quiz-option" data-quiz="ch3_q2" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">因为AI不理解角色和格式</span></label>
+<label class="quiz-option" data-quiz="ch3_q2" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">因为三板斧是初级方法，高级方法才用角色和格式</span></label>
+</div>
+<div class="quiz-feedback" id="ch3_q2_feedback"></div>
+</div>
+<div class="quiz-question" id="ch3_q3">
+<p class="quiz-q-text"><strong>第3题【陷阱辨析】</strong> 小明写了这样一个Prompt：&quot;你是一位世界上最厉害最聪明最牛的专家，请帮我回答一下这个问题。&quot; 这个Prompt最大的问题是什么？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch3_q3" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">用了太多夸张形容词，AI可能会生气</span></label>
+<label class="quiz-option" data-quiz="ch3_q3" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">给了一个非常模糊的角色，且缺少具体的任务、背景和约束</span></label>
+<label class="quiz-option" data-quiz="ch3_q3" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">Prompt太短了，AI处理不了</span></label>
+<label class="quiz-option" data-quiz="ch3_q3" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">不应该夸AI，应该用命令式语气</span></label>
+</div>
+<div class="quiz-feedback" id="ch3_q3_feedback"></div>
+</div>
+</div>
+<div class="content-card lab-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #84CC16, #06B6D4)"></div>
+<h4 class="card-heading"><span class="heading-icon">🔬</span> 实操演练 <span class="heading-en">Mini-Lab</span></h4>
+<p>请用"五要素法"重构以下糟糕的Prompt：</p>
+<pre><code>写一篇关于健康的文章。</code></pre>
+<p>提示：谁来写（角色）？写什么方向的健康主题（任务）？给谁看（背景）？多长、什么格式（格式）？有什么禁忌事项（约束）？</p>
+</div>
+</article>
+<article class="chapter" id="chapter-4">
+<div class="chapter-title-card">
+<div class="card-accent" style="background: var(--module-gradient)"></div>
+<span class="chapter-num">第4章</span>
+<h3 class="chapter-title">角色扮演入门——给AI套个人设有多重要</h3>
+<p class="chapter-title-en">Chapter 4: Role-Playing 101 — Why Personas Matter</p>
+</div>
+<div class="content-card objectives-card">
+<div class="card-accent" style="background: var(--module-color)"></div>
+<h4 class="card-heading"><span class="heading-icon">📌</span> 学习目标 <span class="heading-en">Learning Objectives</span></h4>
+<ul class="objectives-list">
+<li><span class="check-icon">✓</span> 解释（Explain） 为什么给AI设定角色能显著提升输出质量。</li>
+<li><span class="check-icon">✓</span> 创建（Create） 有效的角色设定（Role Prompt），包括身份、专业领域和行为准则。</li>
+<li><span class="check-icon">✓</span> 对比（Compare） 有角色设定与无角色设定时，AI输出的差异。</li>
+</ul>
+</div>
+<div class="content-card core-card">
+<div class="card-accent" style="background: var(--module-color)"></div>
+<h4 class="card-heading"><span class="heading-icon">📖</span> 核心内容 <span class="heading-en">Core Content</span></h4>
+<h4>引言：你会对每个人说一样的话吗？</h4>
+<p>想象两个场景：</p>
+<ul>
+<li>场景A：你的5岁侄子问你"为什么天是蓝色的？"</li>
+<li>场景B：你的物理教授问你"为什么天是蓝色的？"</li>
+</ul>
+<p>你的回答会一样吗？当然不会。对侄子你可能说"因为太阳公公给天空穿了蓝色的衣服呀"，对教授你得搬出瑞利散射理论。</p>
+<p><strong>同一个问题，不同的"你"，给出不同的回答。</strong></p>
+<p>AI也一样。如果你不告诉它"你是谁"，它就会用一种万金油式的、不痛不痒的默认风格来回答。而当你给它一个明确的角色设定，它就会自动调整词汇选择、语气风格、专业深度和回答结构。</p>
+<h4>费曼类比：AI的变装魔术</h4>
+<p>把AI想象成一个专业演员。这个演员天赋异禀，给他什么剧本、什么角色，他都能演。</p>
+<p>但问题是：如果你不给他剧本，他就只能演他的"默认角色"——一个彬彬有礼但毫无个性的路人甲。</p>
+<p><strong>角色设定（Role Prompt）就是你递给这个演员的"角色说明书"。</strong> 你说"你现在是一位40年经验的心脏外科专家"，他立刻换上白大褂，说话开始带上医学术语和严谨的判断习惯。你说"你现在是一位幽默风趣的美食博主"，他立刻松了领带，开始用网络热梗来讲解红烧肉的做法。</p>
+<h4>高效角色设定的三个维度</h4>
+<p>一个好的角色设定不是只有一句"你是XX专家"。它需要三个维度：</p>
+<p><strong>维度一：身份标签（Who）</strong></p>
+<ul>
+<li>"你是一位拥有20年经验的数据分析师"</li>
+<li>"你是一位面向小学生的科普作家"</li>
+</ul>
+<p><strong>维度二：行为准则（How）</strong></p>
+<ul>
+<li>"你的回答总是先给结论，再给原因"</li>
+<li>"你喜欢用日常生活中的比喻来解释复杂概念"</li>
+</ul>
+<p><strong>维度三：边界意识（What Not）</strong></p>
+<ul>
+<li>"当你不确定时，请明确说出'我不确定'，而不是编造答案"</li>
+<li>"不要使用任何超出初中知识范围的术语"</li>
+</ul>
+<h4>三维角色模板</h4>
+<pre><code>你是[身份标签]。
+你的回答风格是[行为准则]。
+请注意：[边界意识]。</code></pre>
+<p><strong>示例：</strong></p>
+<pre><code>你是一位拥有15年经验的个人理财顾问，专注于帮助工薪阶层家庭做财务规划。
+你的回答风格是：先给出明确的行动建议，再解释背后的原因。使用简单易懂的语言，遇到专业术语时用括号附加解释。
+请注意：不要推荐任何具体的金融产品或品牌。当涉及高风险投资时，务必提醒风险。如果问题超出你的专业范围，请坦诚告知。</code></pre>
+</div>
+<div class="content-card case-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #F97316, #EC4899)"></div>
+<h4 class="card-heading"><span class="heading-icon">🔍</span> 案例分析：让AI帮你分析一次面试失败的原因 <span class="heading-en">Case Study</span></h4>
+<div class="case-comparison">
+<div class="case-bad">
+<div class="case-label case-label-bad">❌ 平庸Prompt</div>
+<pre><code>我面试失败了，帮我分析原因。
+
+面试是一个产品经理岗位，面试官问我&quot;你怎么看AI对产品经理的影响&quot;，我说&quot;我觉得影响很大，会改变很多东西&quot;。</code></pre>
+</div>
+<div class="case-good">
+<div class="case-label case-label-good">✅ 顶尖Prompt</div>
+<pre><code>你是一位在Google和字节跳动都当过面试官的资深产品总监，面试过超过500位候选人。你以犀利但建设性的反馈著称，总能一针见血地指出问题。
+
+请分析我以下面试回答的问题，并给出改进建议：
+
+面试岗位：产品经理（3年经验要求）
+面试问题：&quot;你怎么看AI对产品经理的影响？&quot;
+我的回答：&quot;我觉得影响很大，会改变很多东西。&quot;
+
+请从以下三个角度分析：
+1. 内容深度：回答是否展现了独立思考？
+2. 结构表达：回答的组织方式是否专业？
+3. 差异化：这个回答能否让你从100个候选人中记住我？
+
+最后，请给出一个A+级的示范回答。</code></pre>
+</div>
+</div>
+<div class="case-analysis">
+<h4>深度拆解</h4>
+<div class="table-wrapper"><table>
+<tr>
+<th>维度</th>
+<th>平庸Prompt</th>
+<th>顶尖Prompt</th>
+</tr>
+<tr>
+<td><strong>角色精度</strong></td>
+<td>无（AI用"万能顾问"模式回答）</td>
+<td>具体到公司背景和面试量级</td>
+</tr>
+<tr>
+<td><strong>行为预期</strong></td>
+<td>无（AI可能输出一碗鸡汤）</td>
+<td>"犀利但建设性""一针见血"</td>
+</tr>
+<tr>
+<td><strong>分析框架</strong></td>
+<td>无（AI自由发挥）</td>
+<td>给定三个分析角度+示范要求</td>
+</tr>
+<tr>
+<td><strong>输出质量</strong></td>
+<td>大概率是空泛的"要自信""要准备充分"</td>
+<td>大概率获得结构化、有深度的专业反馈</td>
+</tr>
+</table></div>
+<p><strong>底层逻辑：</strong> 角色设定本质上是在告诉AI"从训练数据中的哪个区域提取知识和风格"。当你说"Google的产品总监"，AI的概率分布会偏向那些来自科技公司、产品管理领域的训练数据。当你加上"面试过500人"，它又进一步偏向"面试反馈"相关的内容。</p>
+<p><strong>你在给AI的内部搜索引擎输入更精确的关键词。</strong></p></div>
+</div>
+<div class="content-card quiz-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #06B6D4, #7C3AED)"></div>
+<h4 class="card-heading"><span class="heading-icon">📝</span> 章节测验 <span class="heading-en">Chapter Quiz</span></h4>
+<div class="quiz-question" id="ch4_q1">
+<p class="quiz-q-text"><strong>第1题【基础概念】</strong> 给AI设定角色的核心目的是什么？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch4_q1" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">让AI的回答听起来更有趣</span></label>
+<label class="quiz-option" data-quiz="ch4_q1" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">让AI从训练数据中特定的知识领域和风格区域提取信息，提升输出的精准度</span></label>
+<label class="quiz-option" data-quiz="ch4_q1" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">这只是一种礼貌性的开场白，不影响输出</span></label>
+<label class="quiz-option" data-quiz="ch4_q1" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">让AI以为自己是人类，从而更加努力地工作</span></label>
+</div>
+<div class="quiz-feedback" id="ch4_q1_feedback"></div>
+</div>
+<div class="quiz-question" id="ch4_q2">
+<p class="quiz-q-text"><strong>第2题【逻辑理解】</strong> 高效角色设定需要三个维度：身份标签、行为准则、边界意识。为什么&quot;边界意识&quot;是必要的？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch4_q2" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">因为不设边界，AI可能会输出有害内容</span></label>
+<label class="quiz-option" data-quiz="ch4_q2" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">因为边界意识限制了AI的输出范围，防止它在角色之外胡乱发挥，从而提高回答的可靠性</span></label>
+<label class="quiz-option" data-quiz="ch4_q2" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">因为这是AI系统的硬性要求，不加会报错</span></label>
+<label class="quiz-option" data-quiz="ch4_q2" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">因为边界意识会让AI的回答更短，节省你的阅读时间</span></label>
+</div>
+<div class="quiz-feedback" id="ch4_q2_feedback"></div>
+</div>
+<div class="quiz-question" id="ch4_q3">
+<p class="quiz-q-text"><strong>第3题【陷阱辨析】</strong> 以下哪个角色设定最有可能导致AI输出质量不佳？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch4_q3" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">&quot;你是一位有10年经验的儿科医生，擅长用通俗语言向家长解释病情&quot;</span></label>
+<label class="quiz-option" data-quiz="ch4_q3" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">&quot;你是一位全世界最厉害、最聪明、无所不知、无所不能的超级天才专家&quot;</span></label>
+<label class="quiz-option" data-quiz="ch4_q3" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">&quot;你是一位严谨的法律顾问，专注于中国劳动法领域，回答时总是先引用相关法条&quot;</span></label>
+<label class="quiz-option" data-quiz="ch4_q3" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">&quot;你是一位面向高中生的历史老师，擅长用讲故事的方式让枯燥的历史变得有趣&quot;</span></label>
+</div>
+<div class="quiz-feedback" id="ch4_q3_feedback"></div>
+</div>
+</div>
+<div class="content-card lab-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #84CC16, #06B6D4)"></div>
+<h4 class="card-heading"><span class="heading-icon">🔬</span> 实操演练 <span class="heading-en">Mini-Lab</span></h4>
+<p>以下Prompt缺少角色设定，请用"三维角色模板"为它补上一个有效的角色，并优化整体Prompt：</p>
+<pre><code>帮我写一个给员工的裁员通知邮件。公司需要裁掉20%的人。</code></pre>
+<p>提示：这是一封极其敏感的邮件。想想看，什么样的"角色"最适合写这种邮件？它需要什么样的行为准则（温和、尊重、法律合规）？边界意识是什么（不能承诺做不到的事、不能暴露具体名单）？</p>
+<p>---</p>
+<p># Module 2：进阶框架——结构化指令与语境构建</p>
+<blockquote>🎯 本模块目标：掌握主流Prompt框架、理解语境的威力、学会精确约束AI、并运用Few-shot技术教AI看样学样。</blockquote>
+</div>
+</article>
+</section>
+<section class="module-section" id="module-2" style="--module-color:#EC4899;--module-bg:#FDF2F8;--module-gradient:linear-gradient(135deg, #EC4899, #F472B6, #F9A8D4)">
+<div class="module-header">
+<img src="assets/module2-hero.jpg" alt="Module 2" class="module-hero-img" loading="lazy">
+<div class="module-header-content">
+<span class="module-label">Module 2 · 第2周</span>
+<h2 class="module-title">进阶框架——结构化指令与语境构建</h2>
+<p class="module-title-en">Advanced Frameworks — Structured Instructions & Context</p>
+<div class="module-goal"><span class="goal-icon">🎯</span> 掌握主流Prompt框架、理解语境的威力、学会精确约束AI、并运用Few-shot技术教AI看样学样。</div>
+</div>
+</div>
+<article class="chapter" id="chapter-5">
+<div class="chapter-title-card">
+<div class="card-accent" style="background: var(--module-gradient)"></div>
+<span class="chapter-num">第5章</span>
+<h3 class="chapter-title">BROKE框架——Prompt界的瑞士军刀</h3>
+<p class="chapter-title-en">Chapter 5: BROKE Framework — The Swiss Army Knife</p>
+</div>
+<div class="content-card objectives-card">
+<div class="card-accent" style="background: var(--module-color)"></div>
+<h4 class="card-heading"><span class="heading-icon">📌</span> 学习目标 <span class="heading-en">Learning Objectives</span></h4>
+<ul class="objectives-list">
+<li><span class="check-icon">✓</span> 识别（Identify） BROKE框架的五个组成部分及其各自的功能。</li>
+<li><span class="check-icon">✓</span> 应用（Apply） BROKE框架来构建中等复杂度的Prompt。</li>
+<li><span class="check-icon">✓</span> 比较（Compare） BROKE与其他常见框架（如CRISPE、CO-STAR）的异同。</li>
+</ul>
+</div>
+<div class="content-card core-card">
+<div class="card-accent" style="background: var(--module-color)"></div>
+<h4 class="card-heading"><span class="heading-icon">📖</span> 核心内容 <span class="heading-en">Core Content</span></h4>
+<h4>引言：为什么你需要一个框架？</h4>
+<p>在Module 1里，我们学了"五要素法"和"三板斧"。它们就像做菜时的"盐、糖、醋"——基本调料。</p>
+<p>但如果你要做一道法式大餐呢？只靠盐糖醋就不够了，你需要一套完整的烹饪流程：备料→腌制→煎→焖→装盘。</p>
+<p><strong>Prompt框架就是这套流程。</strong> 它不是死板的公式，而是一个"思考清单"——确保你在构建Prompt时不会遗漏关键信息。</p>
+<h4>BROKE框架详解</h4>
+<p>BROKE是一个简单好记的框架，每个字母代表一个步骤：</p>
+<div class="table-wrapper"><table>
+<tr>
+<th>字母</th>
+<th>英文</th>
+<th>中文</th>
+<th>比喻</th>
+</tr>
+<tr>
+<td><strong>B</strong></td>
+<td>Background</td>
+<td>背景</td>
+<td>故事发生的舞台</td>
+</tr>
+<tr>
+<td><strong>R</strong></td>
+<td>Role</td>
+<td>角色</td>
+<td>演员是谁</td>
+</tr>
+<tr>
+<td><strong>O</strong></td>
+<td>Objective</td>
+<td>目标</td>
+<td>演员要完成什么任务</td>
+</tr>
+<tr>
+<td><strong>K</strong></td>
+<td>Key Result</td>
+<td>关键结果</td>
+<td>观众期待看到什么</td>
+</tr>
+<tr>
+<td><strong>E</strong></td>
+<td>Evolve</td>
+<td>进化</td>
+<td>根据反馈持续优化</td>
+</tr>
+</table></div>
+<h4>费曼类比：拍一部微电影</h4>
+<p>把写一个好的Prompt想象成拍一部微电影：</p>
+<p><strong>B（Background/背景）</strong>——先搭好场景。你的故事发生在什么时代？什么地点？什么行业？什么情境下？</p>
+<blockquote>例："这是一家50人的科技创业公司，刚完成A轮融资，正在快速扩张期。"</blockquote>
+<p><strong>R（Role/角色）</strong>——选好演员。谁来演主角？</p>
+<blockquote>例："你是这家公司的首席人力官（CHO），拥有15年互联网行业HR经验。"</blockquote>
+<p><strong>O（Objective/目标）</strong>——明确剧情主线。主角这场戏要干什么？</p>
+<blockquote>例："请设计一套适合快速扩张期的招聘流程体系。"</blockquote>
+<p><strong>K（Key Result/关键结果）</strong>——观众要看到什么"交付物"。不是"演得好就行"，而是具体要交出什么。</p>
+<blockquote>例："输出一份包含以下内容的文档：(1)招聘流程图 (2)各环节时间节点 (3)面试评分标准模板 (4)常见踩坑清单。"</blockquote>
+<p><strong>E（Evolve/进化）</strong>——杀青后还能改。第一版不满意？给AI反馈，让它迭代优化。</p>
+<blockquote>例："这版流程对技术岗位写得很好，但对运营岗位的部分太笼统了。请保留技术岗位的部分不变，单独细化运营岗位的招聘流程。"</blockquote>
+<h4>其他常见框架一览</h4>
+<p>BROKE不是唯一的框架。下面是几个你可能会听到的名字：</p>
+<div class="table-wrapper"><table>
+<tr>
+<th>框架</th>
+<th>全称/组成</th>
+<th>特点</th>
+</tr>
+<tr>
+<td><strong>CRISPE</strong></td>
+<td>Capacity, Role, Insight, Statement, Personality, Experiment</td>
+<td>更注重AI的"人格"设定</td>
+</tr>
+<tr>
+<td><strong>CO-STAR</strong></td>
+<td>Context, Objective, Style, Tone, Audience, Response</td>
+<td>对受众和语气拆分更细</td>
+</tr>
+<tr>
+<td><strong>RASCEF</strong></td>
+<td>Role, Action, Steps, Context, Examples, Format</td>
+<td>强调分步骤执行</td>
+</tr>
+<tr>
+<td><strong>APE</strong></td>
+<td>Action, Purpose, Expectation</td>
+<td>极简主义，适合快速任务</td>
+</tr>
+</table></div>
+<p><strong>选择建议：</strong> 不要纠结"哪个框架最好"。好的厨师不会只用一个菜谱——重要的是理解背后的逻辑，然后灵活组合。BROKE是一个很好的全能起点。</p>
+</div>
+<div class="content-card case-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #F97316, #EC4899)"></div>
+<h4 class="card-heading"><span class="heading-icon">🔍</span> 案例分析：让AI帮你设计一个员工培训计划 <span class="heading-en">Case Study</span></h4>
+<div class="case-comparison">
+<div class="case-bad">
+<div class="case-label case-label-bad">❌ 平庸Prompt</div>
+<pre><code>帮我做一个员工培训计划。</code></pre>
+</div>
+<div class="case-good">
+<div class="case-label case-label-good">✅ 顶尖Prompt</div>
+<pre><code>【B-背景】我们是一家100人规模的电商公司，客服团队有25人，近三个月客户投诉率上升了15%。主要投诉集中在&quot;回复速度慢&quot;和&quot;态度生硬&quot;两个方面。
+
+【R-角色】你是一位拥有丰富电商行业经验的企业培训顾问，擅长设计实操性强、见效快的短期培训方案。
+
+【O-目标】请为客服团队设计一份为期2周的专项培训计划，目标是将投诉率降低至少10个百分点。
+
+【K-关键结果】请输出以下内容：
+1. 培训大纲（按天拆分，每天2小时）
+2. 每个培训模块的具体内容和教学方法
+3. 3个可以直接用于角色扮演练习的客户场景脚本
+4. 一份培训效果评估表
+
+【E-进化预告】我可能会根据第一版方案进行以下调整：
+- 增加针对VIP客户的特殊沟通技巧
+- 缩短或延长某些模块的时长</code></pre>
+</div>
+</div>
+<div class="case-analysis">
+<h4>深度拆解</h4>
+<p>平庸版 → AI面对的是一道"开放式作文题"，它不知道公司规模、行业、问题所在，只能输出一份放之四海而皆准的"万能模板"。</p>
+<p>顶尖版 → AI面对的是一道"有条件的应用题"。所有必要信息都已提供，输出标准都已明确，甚至连"后续可能的调整方向"都预告了。这让AI的第一版输出就有极高的命中率，且后续迭代成本极低。</p></div>
+</div>
+<div class="content-card quiz-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #06B6D4, #7C3AED)"></div>
+<h4 class="card-heading"><span class="heading-icon">📝</span> 章节测验 <span class="heading-en">Chapter Quiz</span></h4>
+<div class="quiz-question" id="ch5_q1">
+<p class="quiz-q-text"><strong>第1题【基础概念】</strong> BROKE框架中的&quot;K&quot;代表什么？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch5_q1" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">Knowledge（知识）——告诉AI需要调用什么知识领域</span></label>
+<label class="quiz-option" data-quiz="ch5_q1" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">Key Result（关键结果）——明确指定AI需要输出的具体交付物</span></label>
+<label class="quiz-option" data-quiz="ch5_q1" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">Keyword（关键词）——列出AI必须在回答中使用的关键词</span></label>
+<label class="quiz-option" data-quiz="ch5_q1" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">Keep（保持）——要求AI保持某种特定的语气</span></label>
+</div>
+<div class="quiz-feedback" id="ch5_q1_feedback"></div>
+</div>
+<div class="quiz-question" id="ch5_q2">
+<p class="quiz-q-text"><strong>第2题【逻辑理解】</strong> BROKE框架中的&quot;E（Evolve/进化）&quot;为什么被放在最后一步？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch5_q2" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">因为进化是最不重要的步骤，可做可不做</span></label>
+<label class="quiz-option" data-quiz="ch5_q2" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">因为E代表的是在获得AI第一版输出后，基于反馈进行迭代优化——这在逻辑上必须发生在其他步骤之后</span></label>
+<label class="quiz-option" data-quiz="ch5_q2" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">因为按字母表顺序，E排在B、R、O、K后面</span></label>
+<label class="quiz-option" data-quiz="ch5_q2" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">因为AI只有在收到&quot;进化&quot;指令后才会认真回答</span></label>
+</div>
+<div class="quiz-feedback" id="ch5_q2_feedback"></div>
+</div>
+<div class="quiz-question" id="ch5_q3">
+<p class="quiz-q-text"><strong>第3题【陷阱辨析】</strong> 小红学了BROKE框架后，每次写Prompt都严格按照B→R→O→K→E的顺序，一个字母都不能乱、不能少。这种做法：</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch5_q3" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">完全正确，框架的价值就在于严格遵守</span></label>
+<label class="quiz-option" data-quiz="ch5_q3" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">大方向正确，但过于教条——框架是思考清单而非死板公式，根据实际需求可以灵活调整、合并或省略某些步骤</span></label>
+<label class="quiz-option" data-quiz="ch5_q3" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">完全错误，框架只是用来考试的，实际用不上</span></label>
+<label class="quiz-option" data-quiz="ch5_q3" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">部分正确，但顺序必须反过来，E应该在最前面</span></label>
+</div>
+<div class="quiz-feedback" id="ch5_q3_feedback"></div>
+</div>
+</div>
+<div class="content-card lab-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #84CC16, #06B6D4)"></div>
+<h4 class="card-heading"><span class="heading-icon">🔬</span> 实操演练 <span class="heading-en">Mini-Lab</span></h4>
+<p>请用BROKE框架重构以下Prompt：</p>
+<pre><code>帮我写一份社交媒体营销方案。</code></pre>
+<p>提示：先想想B（这是什么公司？什么行业？什么阶段？预算？）、R（AI应该扮演什么角色？）、O（具体要做什么？）、K（你期待收到什么样的交付物？）、E（你可能会怎么迭代？）。</p>
+</div>
+</article>
+<article class="chapter" id="chapter-6">
+<div class="chapter-title-card">
+<div class="card-accent" style="background: var(--module-gradient)"></div>
+<span class="chapter-num">第6章</span>
+<h3 class="chapter-title">语境是王——背景信息如何改变一切</h3>
+<p class="chapter-title-en">Chapter 6: Context Is King — How Background Changes Everything</p>
+</div>
+<div class="content-card objectives-card">
+<div class="card-accent" style="background: var(--module-color)"></div>
+<h4 class="card-heading"><span class="heading-icon">📌</span> 学习目标 <span class="heading-en">Learning Objectives</span></h4>
+<ul class="objectives-list">
+<li><span class="check-icon">✓</span> 解释（Explain） 为什么提供充分的语境信息是提升AI输出质量的最关键因素。</li>
+<li><span class="check-icon">✓</span> 区分（Distinguish） "必要语境"与"噪音信息"的边界。</li>
+<li><span class="check-icon">✓</span> 构建（Construct） 结构化的语境描述，让AI快速进入状态。</li>
+</ul>
+</div>
+<div class="content-card core-card">
+<div class="card-accent" style="background: var(--module-color)"></div>
+<h4 class="card-heading"><span class="heading-icon">📖</span> 核心内容 <span class="heading-en">Core Content</span></h4>
+<h4>引言：同一句话，不同的宇宙</h4>
+<p>"我苹果坏了。"</p>
+<p>请问这个人遇到了什么问题？</p>
+<ul>
+<li>如果他在水果店——他的苹果烂了。</li>
+<li>如果他在苹果专卖店——他的iPhone/Mac坏了。</li>
+<li>如果他在果园里——他种的苹果树可能有病虫害。</li>
+</ul>
+<p><strong>同一句话，三个完全不同的"正确答案"。而决定哪个答案正确的，就是语境（Context）。</strong></p>
+<p>人类在日常交流中会自动补充语境——你在苹果专卖店说"我苹果坏了"，店员不会递给你一个新鲜水果。但AI不会自动补充。你给它什么语境，它就在什么框架里回答。你不给语境，它就猜——而猜错的概率极高。</p>
+<h4>费曼类比：GPS的起点坐标</h4>
+<p>语境就是GPS里的"当前位置"。</p>
+<p>你对GPS说"导航去最近的医院"。如果GPS知道你在北京王府井，它会导航去协和医院。如果GPS知道你在上海陆家嘴，它会导航去东方医院。</p>
+<p>但如果GPS不知道你在哪？它就只能说"抱歉，无法导航"——或者更糟糕的：随机给你一个结果。</p>
+<p><strong>AI也是一样。你的语境就是AI的起点坐标。没有起点，再好的"目的地"也导航不了。</strong></p>
+<h4>语境的三个层次</h4>
+<p><strong>第一层：任务语境（What）</strong></p>
+<p>你要干什么？这是最基础的。</p>
+<blockquote>"写一封邮件"——好的，写什么主题的邮件？</blockquote>
+<p><strong>第二层：环境语境（Where/When/Who）</strong></p>
+<p>这件事发生在什么环境下？涉及谁？</p>
+<blockquote>"写一封拒绝供应商提案的邮件。这是一家合作了3年的老供应商，我们想拒绝本次报价但保持长期合作关系。"</blockquote>
+<p><strong>第三层：隐含语境（Why/So What）</strong></p>
+<p>这件事背后的深层原因和影响是什么？</p>
+<blockquote>"我们拒绝报价的真实原因是预算被砍了40%，但我们不能把这个信息透露给供应商。同时我们下个季度可能还有一个更大的项目需要他们参与。"</blockquote>
+<p><strong>越深入的语境，AI的输出就越精准。</strong> 大多数人只提供第一层就停了，专家会一直挖到第三层。</p>
+<h4>必要语境 vs. 噪音信息</h4>
+<p>不是所有信息都是好信息。有时候你塞太多无关的东西，反而会把AI带偏。</p>
+<p><strong>判断标准：这条信息如果删掉，会不会改变AI应该给出的回答？</strong></p>
+<ul>
+<li>"我的公司在3楼" ← 除非你在问装修或办公室搬迁，否则这是噪音。</li>
+<li>"我的公司刚完成B轮融资" ← 如果你在问招聘策略，这是关键信息。</li>
+<li>"今天天气很好" ← 除非你在写天气相关内容，否则这是噪音。</li>
+</ul>
+</div>
+<div class="content-card case-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #F97316, #EC4899)"></div>
+<h4 class="card-heading"><span class="heading-icon">🔍</span> 案例分析：让AI帮你回复一个棘手的客户投诉 <span class="heading-en">Case Study</span></h4>
+<div class="case-comparison">
+<div class="case-bad">
+<div class="case-label case-label-bad">❌ 平庸Prompt</div>
+<pre><code>帮我回复一个客户投诉。客户说产品有问题。</code></pre>
+</div>
+<div class="case-good">
+<div class="case-label case-label-good">✅ 顶尖Prompt</div>
+<pre><code>请帮我撰写一封客户投诉回复邮件。以下是完整的背景信息：
+
+【客户信息】
+- 客户：张总，华南地区最大的经销商之一，年采购额约500万元
+- 合作年限：5年，此前从未投诉过
+
+【投诉内容】
+- 最新一批货物（订单号#2024-0892）中有15%的产品存在包装破损
+- 客户已经拍照取证并发送给了我方销售
+- 客户在邮件中语气较为强硬，提到了&quot;考虑更换供应商&quot;
+
+【内部情况（不能告诉客户的）】
+- 经调查，破损原因是物流公司操作不当，非我方生产问题
+- 我们正在更换物流公司，但新合同下月才生效
+- 公司批准了对本次损失进行全额补偿
+
+【回复目标】
+- 安抚客户情绪，保住合作关系
+- 承诺具体的补偿方案（全额补发破损产品）
+- 不甩锅给物流公司（维护职业形象）
+- 暗示未来物流品质会改善，但不承诺具体时间
+
+语气：诚恳、专业、不卑不亢。长度：300字以内。</code></pre>
+</div>
+</div>
+<div class="case-analysis">
+<h4>深度拆解</h4>
+<div class="table-wrapper"><table>
+<tr>
+<th>语境层次</th>
+<th>平庸Prompt</th>
+<th>顶尖Prompt</th>
+</tr>
+<tr>
+<td>任务语境</td>
+<td>✅ 有（回复投诉）</td>
+<td>✅ 有</td>
+</tr>
+<tr>
+<td>环境语境</td>
+<td>❌ 无</td>
+<td>✅ 客户身份、合作关系、投诉细节</td>
+</tr>
+<tr>
+<td>隐含语境</td>
+<td>❌ 无</td>
+<td>✅ 内部真实原因、不能说的信息、回复策略</td>
+</tr>
+</table></div>
+<p>平庸版的AI只能写出一封"万能道歉信"——"亲爱的客户，很抱歉给您带来不便……"。这种回复哪个公司都能用，但对张总这种VIP客户而言，它毫无诚意。</p>
+<p>顶尖版的AI知道了"棋盘上的每颗棋子"，它能写出一封真正有策略的、量身定制的回复。</p></div>
+</div>
+<div class="content-card quiz-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #06B6D4, #7C3AED)"></div>
+<h4 class="card-heading"><span class="heading-icon">📝</span> 章节测验 <span class="heading-en">Chapter Quiz</span></h4>
+<div class="quiz-question" id="ch6_q1">
+<p class="quiz-q-text"><strong>第1题【基础概念】</strong> 语境信息的三个层次，由浅入深的正确顺序是？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch6_q1" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">隐含语境 → 环境语境 → 任务语境</span></label>
+<label class="quiz-option" data-quiz="ch6_q1" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">环境语境 → 任务语境 → 隐含语境</span></label>
+<label class="quiz-option" data-quiz="ch6_q1" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">任务语境 → 环境语境 → 隐含语境</span></label>
+<label class="quiz-option" data-quiz="ch6_q1" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">任务语境 → 隐含语境 → 环境语境</span></label>
+</div>
+<div class="quiz-feedback" id="ch6_q1_feedback"></div>
+</div>
+<div class="quiz-question" id="ch6_q2">
+<p class="quiz-q-text"><strong>第2题【逻辑理解】</strong> 为什么说&quot;隐含语境&quot;是三层语境中最有杀伤力的？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch6_q2" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">因为它包含了最多的字数，让AI有更多的Token可以处理</span></label>
+<label class="quiz-option" data-quiz="ch6_q2" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">因为它提供了决策背后的深层逻辑和不可公开的信息，让AI能做出真正有策略性的输出</span></label>
+<label class="quiz-option" data-quiz="ch6_q2" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">因为AI只能理解隐含语境，前两层语境它理解不了</span></label>
+<label class="quiz-option" data-quiz="ch6_q2" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">因为隐含语境通常包含机密信息，AI遇到机密信息会更认真处理</span></label>
+</div>
+<div class="quiz-feedback" id="ch6_q2_feedback"></div>
+</div>
+<div class="quiz-question" id="ch6_q3">
+<p class="quiz-q-text"><strong>第3题【陷阱辨析】</strong> 小李在Prompt中写了以下语境信息来让AI帮他写一篇产品评测文章：&quot;我叫小李，今年28岁，双鱼座，养了一只猫叫咪咪，喜欢吃火锅，上周刚和女朋友去了三亚旅游。我要评测的产品是一款新的无线耳机。&quot; 这段语境的主要问题是什么？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch6_q3" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">信息太少了，应该补充更多个人信息</span></label>
+<label class="quiz-option" data-quiz="ch6_q3" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">大部分信息是噪音——和评测耳机无关的个人信息不仅无用，还可能分散AI的注意力</span></label>
+<label class="quiz-option" data-quiz="ch6_q3" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">应该用英文写，AI更擅长处理英文语境</span></label>
+<label class="quiz-option" data-quiz="ch6_q3" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">应该把所有信息都放在括号里</span></label>
+</div>
+<div class="quiz-feedback" id="ch6_q3_feedback"></div>
+</div>
+</div>
+<div class="content-card lab-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #84CC16, #06B6D4)"></div>
+<h4 class="card-heading"><span class="heading-icon">🔬</span> 实操演练 <span class="heading-en">Mini-Lab</span></h4>
+<p>以下Prompt缺少充分的语境，请为它补充三层语境信息，并重构：</p>
+<pre><code>帮我写一封催款邮件。</code></pre>
+<p>提示：想想——催谁的款？多少钱？逾期多久了？之前催过几次？对方是什么关系？你希望保持关系还是准备法律途径？这些"你知道但AI不知道"的信息，就是语境。</p>
+</div>
+</article>
+<article class="chapter" id="chapter-7">
+<div class="chapter-title-card">
+<div class="card-accent" style="background: var(--module-gradient)"></div>
+<span class="chapter-num">第7章</span>
+<h3 class="chapter-title">约束的艺术——给AI画一个精确的框</h3>
+<p class="chapter-title-en">Chapter 7: The Art of Constraints — Drawing Precise Boundaries</p>
+</div>
+<div class="content-card objectives-card">
+<div class="card-accent" style="background: var(--module-color)"></div>
+<h4 class="card-heading"><span class="heading-icon">📌</span> 学习目标 <span class="heading-en">Learning Objectives</span></h4>
+<ul class="objectives-list">
+<li><span class="check-icon">✓</span> 解释（Explain） 约束条件如何缩小AI的输出空间，提高输出精度。</li>
+<li><span class="check-icon">✓</span> 创建（Create） 多维度的约束条件组合（长度、格式、语气、内容边界等）。</li>
+<li><span class="check-icon">✓</span> 判断（Judge） 约束条件是"过松"还是"过紧"，找到平衡点。</li>
+</ul>
+</div>
+<div class="content-card core-card">
+<div class="card-accent" style="background: var(--module-color)"></div>
+<h4 class="card-heading"><span class="heading-icon">📖</span> 核心内容 <span class="heading-en">Core Content</span></h4>
+<h4>引言：河流为什么要有河岸？</h4>
+<p>你见过洪水吗？水没有河岸约束时，它会淹没一切，毫无方向地四处蔓延。但有了河岸，水就有了方向，有了力量，最终汇入大海。</p>
+<p><strong>AI的输出就像水。没有约束，它会"泛滥"——洋洋洒洒写两千字，什么都沾一点，什么都不深入。</strong> 有了约束，它的输出才会有方向、有密度、有价值。</p>
+<h4>费曼类比：填空题 vs. 作文题</h4>
+<p>回忆一下你上学时的考试。是填空题容易拿满分，还是作文题容易拿满分？</p>
+<p>毫无疑问是填空题——因为答案的空间被精确地限定了。</p>
+<p><strong>约束就是把AI面对的"作文题"变成"填空题"。</strong> 你给的约束越多越精确，AI"答对"的概率就越高。</p>
+<h4>约束的六个维度</h4>
+<p><strong>1. 长度约束</strong></p>
+<pre><code>控制在300字以内 / 不少于500字 / 5个要点，每点一句话</code></pre>
+<p><strong>2. 格式约束</strong></p>
+<pre><code>用Markdown表格呈现 / 用编号列表 / 分为三个段落，每段有小标题</code></pre>
+<p><strong>3. 语气/风格约束</strong></p>
+<pre><code>专业严谨 / 幽默轻松 / 像跟朋友聊天一样 / 学术论文风格</code></pre>
+<p><strong>4. 内容包含约束（必须有什么）</strong></p>
+<pre><code>必须包含至少3个真实案例 / 必须引用具体数据 / 必须提到竞品对比</code></pre>
+<p><strong>5. 内容排除约束（不能有什么）</strong></p>
+<pre><code>不要使用任何行业术语 / 不要提及竞争对手的品牌名 / 不要给出具体的投资建议</code></pre>
+<p><strong>6. 受众约束</strong></p>
+<pre><code>目标读者是没有技术背景的企业管理者 / 写给6岁小孩看的</code></pre>
+<h4>约束的松紧平衡</h4>
+<p>约束不是越多越好，也不是越紧越好。</p>
+<div class="table-wrapper"><table>
+<tr>
+<th>状态</th>
+<th>表现</th>
+<th>比喻</th>
+</tr>
+<tr>
+<td><strong>过松</strong></td>
+<td>AI自由发挥，输出质量像抽奖</td>
+<td>河流没有河岸→洪水泛滥</td>
+</tr>
+<tr>
+<td><strong>适中</strong></td>
+<td>AI在你划定的范围内输出高质量内容</td>
+<td>河流在河岸中奔流→有力有序</td>
+</tr>
+<tr>
+<td><strong>过紧</strong></td>
+<td>AI被限制得太死，输出干瘪无趣</td>
+<td>河流被塞进水管→水量太小</td>
+</tr>
+</table></div>
+<p><strong>经验法则：</strong> 约束应该限制"方向"，而不是限制"创造力"。告诉AI"不要用专业术语"是好约束（限制方向），告诉AI"每句话必须恰好15个字"是坏约束（限制创造力）。</p>
+</div>
+<div class="content-card case-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #F97316, #EC4899)"></div>
+<h4 class="card-heading"><span class="heading-icon">🔍</span> 案例分析：让AI写一篇公众号文章 <span class="heading-en">Case Study</span></h4>
+<div class="case-comparison">
+<div class="case-bad">
+<div class="case-label case-label-bad">❌ 平庸Prompt</div>
+<pre><code>写一篇关于时间管理的公众号文章。</code></pre>
+</div>
+<div class="case-good">
+<div class="case-label case-label-good">✅ 顶尖Prompt</div>
+<pre><code>请写一篇面向25-35岁职场人的微信公众号文章，主题是&quot;时间管理&quot;。
+
+具体要求：
+- 标题：吸引眼球但不标题党，15字以内
+- 长度：1200-1500字
+- 结构：开头用一个能引起共鸣的痛苦场景（比如加班、拖延），中间给出3个具体可操作的方法（每个方法配一个真实或贴近生活的案例），结尾升华但不鸡汤
+- 语气：像一个聪明的朋友在跟你分享经验，不是老师在教训你
+- 必须包含：至少一个数据（可以是调查数据或个人实验数据）
+- 不要包含：不要出现&quot;赋能&quot;&quot;抓手&quot;&quot;底层逻辑&quot;等互联网黑话；不要出现&quot;你一定要……&quot;之类的说教
+- 段落：每段不超过4行（适配手机阅读）
+- 结尾：引导读者留言互动</code></pre>
+</div>
+</div>
+<div class="case-analysis">
+<h4>深度拆解</h4>
+<p>顶尖版Prompt使用了多达8个维度的约束。注意它不只是说"写好一点"，而是精确定义了"好"是什么：</p>
+<div class="table-wrapper"><table>
+<tr>
+<th>约束</th>
+<th>为什么有效</th>
+</tr>
+<tr>
+<td>"25-35岁职场人"</td>
+<td>锁定受众→AI不会写给退休老人或在校学生看的内容</td>
+</tr>
+<tr>
+<td>"1200-1500字"</td>
+<td>长度精确→避免太短敷衍或太长啰嗦</td>
+</tr>
+<tr>
+<td>"3个具体可操作的方法"</td>
+<td>数量+品质要求→AI不会写5个泛泛而谈的建议</td>
+</tr>
+<tr>
+<td>"不要互联网黑话"</td>
+<td>排除约束→直接切掉AI最爱用的"万能词汇"</td>
+</tr>
+<tr>
+<td>"每段不超过4行"</td>
+<td>格式约束→适配真实使用场景（手机屏幕）</td>
+</tr>
+</table></div></div>
+</div>
+<div class="content-card quiz-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #06B6D4, #7C3AED)"></div>
+<h4 class="card-heading"><span class="heading-icon">📝</span> 章节测验 <span class="heading-en">Chapter Quiz</span></h4>
+<div class="quiz-question" id="ch7_q1">
+<p class="quiz-q-text"><strong>第1题【基础概念】</strong> 以下哪一项属于&quot;内容排除约束&quot;？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch7_q1" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">&quot;请用表格格式呈现&quot;</span></label>
+<label class="quiz-option" data-quiz="ch7_q1" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">&quot;不要使用任何专业术语&quot;</span></label>
+<label class="quiz-option" data-quiz="ch7_q1" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">&quot;控制在500字以内&quot;</span></label>
+<label class="quiz-option" data-quiz="ch7_q1" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">&quot;用轻松幽默的语气&quot;</span></label>
+</div>
+<div class="quiz-feedback" id="ch7_q1_feedback"></div>
+</div>
+<div class="quiz-question" id="ch7_q2">
+<p class="quiz-q-text"><strong>第2题【逻辑理解】</strong> 为什么说约束是在&quot;缩小AI的输出空间&quot;？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch7_q2" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">因为约束会减少AI模型的参数数量，让它变&quot;笨&quot;</span></label>
+<label class="quiz-option" data-quiz="ch7_q2" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">因为每增加一个约束条件，AI可选择的输出路径就减少了，剩下的路径更可能通向你想要的结果</span></label>
+<label class="quiz-option" data-quiz="ch7_q2" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">因为约束会直接删除AI训练数据中不相关的部分</span></label>
+<label class="quiz-option" data-quiz="ch7_q2" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">因为约束会让AI使用更少的Token来回答</span></label>
+</div>
+<div class="quiz-feedback" id="ch7_q2_feedback"></div>
+</div>
+<div class="quiz-question" id="ch7_q3">
+<p class="quiz-q-text"><strong>第3题【陷阱辨析】</strong> 小王给AI写了这样的约束：&quot;每句话必须以'所以'开头，必须使用至少5个成语，必须包含3个英文单词，每段恰好100字，总共恰好5段。&quot; 这组约束的主要问题是什么？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch7_q3" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">约束太少了，应该再加更多</span></label>
+<label class="quiz-option" data-quiz="ch7_q3" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">约束过于机械地限制了表达形式，AI会把注意力都花在&quot;满足格式要求&quot;上，而非&quot;产出有价值的内容&quot;——这是典型的&quot;过紧&quot;约束</span></label>
+<label class="quiz-option" data-quiz="ch7_q3" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">这些约束完全正确，能确保AI输出的一致性</span></label>
+<label class="quiz-option" data-quiz="ch7_q3" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">约束应该用英文写</span></label>
+</div>
+<div class="quiz-feedback" id="ch7_q3_feedback"></div>
+</div>
+</div>
+<div class="content-card lab-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #84CC16, #06B6D4)"></div>
+<h4 class="card-heading"><span class="heading-icon">🔬</span> 实操演练 <span class="heading-en">Mini-Lab</span></h4>
+<p>以下Prompt几乎没有约束，输出质量完全靠运气。请为它添加至少4个维度的约束条件：</p>
+<pre><code>帮我写一份工作总结。</code></pre>
+<p>提示：想想——多长？什么格式？给谁看的？语气如何？必须包含什么（业绩数据？项目进展？）？不能包含什么（私人信息？负面评价？）？</p>
+</div>
+</article>
+<article class="chapter" id="chapter-8">
+<div class="chapter-title-card">
+<div class="card-accent" style="background: var(--module-gradient)"></div>
+<span class="chapter-num">第8章</span>
+<h3 class="chapter-title">Few-shot魔法——教AI看样学样</h3>
+<p class="chapter-title-en">Chapter 8: Few-shot Magic — Teaching AI by Example</p>
+</div>
+<div class="content-card objectives-card">
+<div class="card-accent" style="background: var(--module-color)"></div>
+<h4 class="card-heading"><span class="heading-icon">📌</span> 学习目标 <span class="heading-en">Learning Objectives</span></h4>
+<ul class="objectives-list">
+<li><span class="check-icon">✓</span> 解释（Explain） 零样本（Zero-shot）、单样本（One-shot）和少样本（Few-shot）学习的区别。</li>
+<li><span class="check-icon">✓</span> 设计（Design） 有效的Few-shot示例来引导AI输出特定格式和风格的内容。</li>
+<li><span class="check-icon">✓</span> 评估（Evaluate） Few-shot示例的质量——什么是好示例，什么会误导AI。</li>
+</ul>
+</div>
+<div class="content-card core-card">
+<div class="card-accent" style="background: var(--module-color)"></div>
+<h4 class="card-heading"><span class="heading-icon">📖</span> 核心内容 <span class="heading-en">Core Content</span></h4>
+<h4>引言：你会怎么教一个实习生？</h4>
+<p>假设你是一个团队leader，来了一个新实习生。你要他帮你整理会议纪要。</p>
+<p>你会怎么做？</p>
+<p><strong>方法A（Zero-shot）：</strong> "去把昨天会议的纪要整理一下。"然后你就不管了。结果交上来，格式乱七八糟，重点完全抓错。</p>
+<p><strong>方法B（One-shot）：</strong> "去整理昨天会议的纪要。这是上周的纪要你参考一下。"给了一个样本，结果好了很多，但有些细节还是不对。</p>
+<p><strong>方法C（Few-shot）：</strong> "去整理昨天会议的纪要。这是过去三周的纪要，你看看格式和风格。特别注意：我们的纪要每段都要以'行动项'结尾。"给了三个样本加一条规则，交上来的纪要几乎和你自己写的一模一样。</p>
+<p><strong>这就是Few-shot Learning（少样本学习）的精髓——通过示例教会AI你想要的模式。</strong></p>
+<h4>费曼类比：师傅带徒弟</h4>
+<p>想象一个烘焙师傅教徒弟做蛋糕。</p>
+<p><strong>Zero-shot（零样本）：</strong> 师傅说"给我做个蛋糕"，然后转身走了。徒弟只能凭自己的理解乱做。</p>
+<p><strong>One-shot（单样本）：</strong> 师傅做了一个蛋糕给徒弟看，说"照这个做"。徒弟有了参考，做出来像那么回事，但细节可能不对。</p>
+<p><strong>Few-shot（少样本）：</strong> 师傅做了三个蛋糕——一个巧克力的、一个草莓的、一个抹茶的。徒弟通过观察三个样本，不仅学会了"怎么做蛋糕"，还学会了"不管什么口味，蛋糕的基本结构和步骤都是一样的"。</p>
+<p><strong>Few-shot的威力在于：让AI从多个具体例子中，自动归纳出你想要的通用模式。</strong></p>
+<h4>如何写好Few-shot示例</h4>
+<p><strong>原则一：示例之间要有一致的模式</strong></p>
+<p>如果你给三个示例，它们的格式、风格、逻辑结构应该一致。AI会找"共同点"。</p>
+<p><strong>原则二：示例要覆盖典型情况</strong></p>
+<p>不要给三个一模一样的例子。给有代表性的不同案例，让AI理解模式的"弹性"。</p>
+<p><strong>原则三：示例数量2-5个最佳</strong></p>
+<p>1个可能不够让AI"悟"出模式，超过5个可能浪费Token且边际收益递减。通常3个是性价比最高的。</p>
+<p><strong>原则四：先给示例，再给任务</strong></p>
+<p>顺序很重要。先展示模式，再提出请求——就像师傅先示范，再让徒弟做。</p>
+<h4>Few-shot模板结构</h4>
+<pre><code>请按照以下示例的格式和风格，完成最后的任务。
+
+【示例1】
+输入：[示例输入1]
+输出：[示例输出1]
+
+【示例2】
+输入：[示例输入2]
+输出：[示例输出2]
+
+【示例3】
+输入：[示例输入3]
+输出：[示例输出3]
+
+【你的任务】
+输入：[你的实际输入]
+输出：</code></pre>
+</div>
+<div class="content-card case-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #F97316, #EC4899)"></div>
+<h4 class="card-heading"><span class="heading-icon">🔍</span> 案例分析：让AI帮你为产品写标准化的评价摘要 <span class="heading-en">Case Study</span></h4>
+<div class="case-comparison">
+<div class="case-bad">
+<div class="case-label case-label-bad">❌ 平庸Prompt</div>
+<pre><code>帮我把这段产品评价总结一下：&quot;这个耳机音质特别好，低音很有力，但戴久了耳朵有点疼。续航大概能撑6小时。总的来说性价比很高。&quot;</code></pre>
+</div>
+<div class="case-good">
+<div class="case-label case-label-good">✅ 顶尖Prompt</div>
+<pre><code>我需要你帮我把产品用户评价转化为标准化的结构化摘要。请严格按照以下示例的格式输出。
+
+【示例1】
+原始评价：&quot;手机拍照特别清晰，夜景模式很惊艳。就是电池不太耐用，一天要充两次。价格偏贵。&quot;
+结构化摘要：
+- 产品类型：手机
+- 优点：拍照清晰 | 夜景模式出色
+- 缺点：电池续航差（一天两充）
+- 价格感受：偏贵
+- 综合情绪：偏正面（优点权重高于缺点）
+
+【示例2】
+原始评价：&quot;这把椅子坐着很舒服，腰部支撑特别好。但组装太复杂了，我花了两小时。颜色比图片上深一点。&quot;
+结构化摘要：
+- 产品类型：椅子
+- 优点：坐感舒适 | 腰部支撑好
+- 缺点：组装复杂（耗时两小时）| 颜色与图片有色差
+- 价格感受：未提及
+- 综合情绪：偏正面（使用体验好，但购买体验一般）
+
+【示例3】
+原始评价：&quot;完全不推荐这个充电宝。买了不到一个月就坏了。充电速度也很慢。唯一的优点是比较轻。&quot;
+结构化摘要：
+- 产品类型：充电宝
+- 优点：重量轻
+- 缺点：质量差（一个月内损坏）| 充电速度慢
+- 价格感受：未提及
+- 综合情绪：负面（产品质量不过关）
+
+【你的任务】
+原始评价：&quot;这个耳机音质特别好，低音很有力，但戴久了耳朵有点疼。续航大概能撑6小时。总的来说性价比很高。&quot;
+结构化摘要：</code></pre>
+</div>
+</div>
+<div class="case-analysis">
+<h4>深度拆解</h4>
+<div class="table-wrapper"><table>
+<tr>
+<th>维度</th>
+<th>Zero-shot版</th>
+<th>Few-shot版</th>
+</tr>
+<tr>
+<td><strong>格式确定性</strong></td>
+<td>AI自由发挥，格式不可预测</td>
+<td>AI从3个示例中学到了精确的格式模板</td>
+</tr>
+<tr>
+<td><strong>字段完整性</strong></td>
+<td>可能遗漏"价格感受""综合情绪"等维度</td>
+<td>每个示例都包含相同字段，AI会严格遵循</td>
+</tr>
+<tr>
+<td><strong>风格一致性</strong></td>
+<td>每次输出风格可能不同</td>
+<td>用词习惯（如"未提及"）会被AI学习和沿用</td>
+</tr>
+<tr>
+<td><strong>边界学习</strong></td>
+<td>不知道"未提及"的情况怎么处理</td>
+<td>示例2和3展示了"某维度未提及"时应如何填写</td>
+</tr>
+</table></div>
+<p><strong>核心洞察：</strong> Few-shot不是在"教AI新知识"，而是在"给AI一个精确的输出模具"。AI本来就有能力做这些事，但Few-shot帮它精确地知道了你要的"形状"。</p></div>
+</div>
+<div class="content-card quiz-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #06B6D4, #7C3AED)"></div>
+<h4 class="card-heading"><span class="heading-icon">📝</span> 章节测验 <span class="heading-en">Chapter Quiz</span></h4>
+<div class="quiz-question" id="ch8_q1">
+<p class="quiz-q-text"><strong>第1题【基础概念】</strong> Zero-shot、One-shot、Few-shot的核心区别是什么？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch8_q1" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">它们使用不同的AI模型</span></label>
+<label class="quiz-option" data-quiz="ch8_q1" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">它们的区别在于Prompt中提供了多少个示例——零个、一个、还是多个</span></label>
+<label class="quiz-option" data-quiz="ch8_q1" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">Zero-shot最准确，Few-shot最不准确</span></label>
+<label class="quiz-option" data-quiz="ch8_q1" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">它们分别对应初级、中级和高级的AI能力</span></label>
+</div>
+<div class="quiz-feedback" id="ch8_q1_feedback"></div>
+</div>
+<div class="quiz-question" id="ch8_q2">
+<p class="quiz-q-text"><strong>第2题【逻辑理解】</strong> 为什么Few-shot示例建议提供2-5个，而不是10个或20个？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch8_q2" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">因为AI最多只能处理5个示例</span></label>
+<label class="quiz-option" data-quiz="ch8_q2" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">因为过多的示例会消耗大量Token（占用上下文窗口），且超过一定数量后，AI从新增示例中学到的东西边际递减</span></label>
+<label class="quiz-option" data-quiz="ch8_q2" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">因为10个以上的示例会让AI崩溃报错</span></label>
+<label class="quiz-option" data-quiz="ch8_q2" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">因为这是学术论文规定的数量</span></label>
+</div>
+<div class="quiz-feedback" id="ch8_q2_feedback"></div>
+</div>
+<div class="quiz-question" id="ch8_q3">
+<p class="quiz-q-text"><strong>第3题【陷阱辨析】</strong> 小张给了AI三个Few-shot示例：示例1的输出是一段话，示例2的输出是一个表格，示例3的输出是一个列表。这组示例最大的问题是什么？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch8_q3" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">示例太少了，应该至少给5个</span></label>
+<label class="quiz-option" data-quiz="ch8_q3" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">三个示例的输出格式完全不一致，AI无法从中归纳出一个统一的输出模式——它会&quot;困惑&quot;</span></label>
+<label class="quiz-option" data-quiz="ch8_q3" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">示例应该从简到繁排列</span></label>
+<label class="quiz-option" data-quiz="ch8_q3" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">没有问题，多样化的示例可以提高AI的创造力</span></label>
+</div>
+<div class="quiz-feedback" id="ch8_q3_feedback"></div>
+</div>
+</div>
+<div class="content-card lab-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #84CC16, #06B6D4)"></div>
+<h4 class="card-heading"><span class="heading-icon">🔬</span> 实操演练 <span class="heading-en">Mini-Lab</span></h4>
+<p>请为以下任务设计一组3个Few-shot示例，然后提出你的实际任务：</p>
+<p>任务：将日常口语化的句子改写为正式商务邮件用语。</p>
+<p>示例你需要自己写：每个示例包含一个"口语原句"和一个"商务改写"。然后给出你要改写的实际句子："老板，那个项目我搞得差不多了，你啥时候有空我跟你说说。"</p>
+<p>---</p>
+<p># Module 3：复杂系统——逻辑链条与多步推理</p>
+<blockquote>🎯 本模块目标：掌握思维链技术、学会拆解复杂任务、教AI自我纠错、并实现多角色协作。</blockquote>
+</div>
+</article>
+</section>
+<section class="module-section" id="module-3" style="--module-color:#06B6D4;--module-bg:#ECFEFF;--module-gradient:linear-gradient(135deg, #06B6D4, #22D3EE, #67E8F9)">
+<div class="module-header">
+<img src="assets/module3-hero.jpg" alt="Module 3" class="module-hero-img" loading="lazy">
+<div class="module-header-content">
+<span class="module-label">Module 3 · 第3周</span>
+<h2 class="module-title">复杂系统——逻辑链条与多步推理</h2>
+<p class="module-title-en">Complex Systems — Logic Chains & Multi-step Reasoning</p>
+<div class="module-goal"><span class="goal-icon">🎯</span> 掌握思维链技术、学会拆解复杂任务、教AI自我纠错、并实现多角色协作。</div>
+</div>
+</div>
+<article class="chapter" id="chapter-9">
+<div class="chapter-title-card">
+<div class="card-accent" style="background: var(--module-gradient)"></div>
+<span class="chapter-num">第9章</span>
+<h3 class="chapter-title">思维链（Chain-of-Thought）——让AI展示解题过程</h3>
+<p class="chapter-title-en">Chapter 9: Chain-of-Thought — Making AI Show Its Work</p>
+</div>
+<div class="content-card objectives-card">
+<div class="card-accent" style="background: var(--module-color)"></div>
+<h4 class="card-heading"><span class="heading-icon">📌</span> 学习目标 <span class="heading-en">Learning Objectives</span></h4>
+<ul class="objectives-list">
+<li><span class="check-icon">✓</span> 解释（Explain） 思维链提示（Chain-of-Thought Prompting, CoT）的原理及其为什么能提升AI推理能力。</li>
+<li><span class="check-icon">✓</span> 应用（Apply） CoT技术来让AI处理需要逻辑推理的复杂问题。</li>
+<li><span class="check-icon">✓</span> 区分（Distinguish） 何时应该使用CoT、何时不需要。</li>
+</ul>
+</div>
+<div class="content-card core-card">
+<div class="card-accent" style="background: var(--module-color)"></div>
+<h4 class="card-heading"><span class="heading-icon">📖</span> 核心内容 <span class="heading-en">Core Content</span></h4>
+<h4>引言：数学老师为什么要你"写过程"？</h4>
+<p>小时候做数学题，你一定被老师说过这句话："光写答案不行，要写解题过程！"</p>
+<p>你当时可能觉得老师多此一举——答案对了不就行了？</p>
+<p>但老师的要求其实蕴含着深刻的智慧：<strong>当你被要求写出解题过程时，你犯错的概率会大大降低。</strong> 因为每写一步，你都在检查上一步的逻辑是否正确。而直接跳到答案，往往就是"拍脑袋"——拍对了算运气，拍错了都不知道错在哪。</p>
+<p>AI也一样。</p>
+<p>如果你直接让AI给答案，它就会"拍脑袋"——用概率预测直接跳到一个看似合理的结论。但如果你让它<strong>先展示推理过程，一步步推导</strong>，它的准确率会显著提升。</p>
+<p>这就是<strong>思维链提示（Chain-of-Thought Prompting, CoT）</strong>的核心思想。</p>
+<h4>费曼类比：搭桥过河</h4>
+<p>想象你要从河的这一边到对面。</p>
+<p><strong>没有CoT（直接跳）：</strong> 你往对岸看了一眼，然后深吸一口气，纵身一跃——如果河很窄，你可能跳过去了；如果河很宽，你就掉水里了。</p>
+<p><strong>有CoT（搭桥过河）：</strong> 你在河面上一块一块地放石头，每放一块都踩上去试试稳不稳，确认安全了再放下一块。最终你稳稳当当地走到了对岸。</p>
+<p><strong>CoT就是让AI在推理过程中"一块一块放石头"。</strong> 每一步推理就是一块石头，每一步都建立在上一步的基础上。</p>
+<h4>CoT的两种用法</h4>
+<p><strong>方法一：显式指令法（最简单）</strong></p>
+<p>在Prompt末尾加上一句话：</p>
+<pre><code>请一步一步地思考，展示你的推理过程。</code></pre>
+<p>或者英文版的经典咒语：</p>
+<pre><code>Let's think step by step.</code></pre>
+<p>就这么简单。这一句话能让AI在回答复杂问题时的准确率提升20%-60%（具体提升幅度取决于问题类型和模型能力）。</p>
+<p><strong>方法二：示范推理法（更强力）</strong></p>
+<p>先给AI展示一个"带过程的示范"，让它模仿你的推理模式。这本质上是把CoT和Few-shot结合起来。</p>
+<pre><code>【示例问题】小明有5个苹果，给了小红2个，又从妈妈那里拿了3个，然后吃掉了1个。请问小明还有几个苹果？
+
+【示范推理过程】
+第1步：小明初始有5个苹果。
+第2步：给了小红2个，所以 5 - 2 = 3个。
+第3步：从妈妈那里拿了3个，所以 3 + 3 = 6个。
+第4步：吃掉了1个，所以 6 - 1 = 5个。
+答案：小明还有5个苹果。
+
+【你的问题】[你的实际问题]
+请按照上面的推理格式，一步步解答。</code></pre>
+<h4>什么时候该用CoT？</h4>
+<div class="table-wrapper"><table>
+<tr>
+<th>场景</th>
+<th>用不用CoT？</th>
+<th>原因</th>
+</tr>
+<tr>
+<td>"帮我翻译这句话"</td>
+<td>❌ 不需要</td>
+<td>翻译是模式匹配，不是逻辑推理</td>
+</tr>
+<tr>
+<td>"这个合同里有哪些潜在风险？"</td>
+<td>✅ 需要</td>
+<td>需要逐条分析条款</td>
+</tr>
+<tr>
+<td>"帮我写首诗"</td>
+<td>❌ 不需要</td>
+<td>创意写作不需要线性推理</td>
+</tr>
+<tr>
+<td>"根据以下数据判断公司是否值得投资"</td>
+<td>✅ 需要</td>
+<td>需要多维度逻辑分析</td>
+</tr>
+<tr>
+<td>"中美贸易战对我们公司有什么影响？"</td>
+<td>✅ 需要</td>
+<td>需要因果链条推理</td>
+</tr>
+</table></div>
+<p><strong>经验法则：当问题需要"因为A，所以B，所以C"这种链式推理时，用CoT。</strong></p>
+</div>
+<div class="content-card case-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #F97316, #EC4899)"></div>
+<h4 class="card-heading"><span class="heading-icon">🔍</span> 案例分析：让AI分析一个商业决策 <span class="heading-en">Case Study</span></h4>
+<div class="case-comparison">
+<div class="case-bad">
+<div class="case-label case-label-bad">❌ 平庸Prompt</div>
+<pre><code>我们公司应该在这个时候扩张到东南亚市场吗？我们是做跨境电商的，年营收3000万人民币。</code></pre>
+</div>
+<div class="case-good">
+<div class="case-label case-label-good">✅ 顶尖Prompt</div>
+<pre><code>我需要你帮我分析一个商业决策。请按照以下逻辑链一步步推理，不要直接给结论。
+
+【背景】
+- 我们是一家跨境电商公司，主营家居用品
+- 年营收3000万人民币，净利润率约12%
+- 目前主要市场是北美和欧洲
+- 团队50人，没有任何东南亚市场的运营经验
+- 行业竞争对手已有3家进入东南亚
+
+【问题】我们是否应该在2025年扩张到东南亚市场？
+
+【请按以下步骤推理】
+第1步：分析东南亚电商市场的整体机遇（市场规模、增长率、消费趋势）
+第2步：分析我们进入该市场的优势和劣势
+第3步：分析竞争格局——3家竞争对手的先发优势有多强？
+第4步：评估所需的资源投入（资金、人力、时间）与我们当前的承受能力
+第5步：列出最大的3个风险及对应的缓解策略
+第6步：基于以上分析，给出你的建议及推荐的进入时机
+
+每一步请给出你的分析过程和依据，而非仅仅罗列结论。</code></pre>
+</div>
+</div>
+<div class="case-analysis">
+<h4>深度拆解</h4>
+<div class="table-wrapper"><table>
+<tr>
+<th>维度</th>
+<th>平庸Prompt</th>
+<th>顶尖Prompt</th>
+</tr>
+<tr>
+<td><strong>推理深度</strong></td>
+<td>AI可能直接说"建议扩张"或"不建议"，理由浮于表面</td>
+<td>AI被要求逐步推理，每一步都有据可依</td>
+</tr>
+<tr>
+<td><strong>逻辑可追溯</strong></td>
+<td>结论不知道怎么来的</td>
+<td>每一步推理都可以检查，发现哪一步有问题可以单独修正</td>
+</tr>
+<tr>
+<td><strong>思维全面性</strong></td>
+<td>可能遗漏关键维度</td>
+<td>6个步骤覆盖了机遇、优劣势、竞争、资源、风险、结论</td>
+</tr>
+</table></div>
+<p><strong>底层逻辑：</strong> CoT之所以有效，是因为它把一个大的"跳跃式预测"分解成了多个小的"步进式预测"。每一步的预测难度都更低，累计错误率远小于一步到位。</p></div>
+</div>
+<div class="content-card quiz-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #06B6D4, #7C3AED)"></div>
+<h4 class="card-heading"><span class="heading-icon">📝</span> 章节测验 <span class="heading-en">Chapter Quiz</span></h4>
+<div class="quiz-question" id="ch9_q1">
+<p class="quiz-q-text"><strong>第1题【基础概念】</strong> 思维链提示（Chain-of-Thought Prompting）的核心思想是什么？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch9_q1" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">让AI使用更高级的模型来回答问题</span></label>
+<label class="quiz-option" data-quiz="ch9_q1" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">要求AI在给出最终答案之前，先展示逐步推理的过程，从而提高推理准确性</span></label>
+<label class="quiz-option" data-quiz="ch9_q1" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">让AI在内部重启多次以获得最优答案</span></label>
+<label class="quiz-option" data-quiz="ch9_q1" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">要求AI只用简短的句子回答，避免长篇大论</span></label>
+</div>
+<div class="quiz-feedback" id="ch9_q1_feedback"></div>
+</div>
+<div class="quiz-question" id="ch9_q2">
+<p class="quiz-q-text"><strong>第2题【逻辑理解】</strong> 为什么&quot;一步步推理&quot;能提高AI的回答准确率？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch9_q2" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">因为AI看到&quot;一步步&quot;这三个字后会启动特殊的高精度模式</span></label>
+<label class="quiz-option" data-quiz="ch9_q2" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">因为分步推理将一个复杂的大跳跃分解为多个简单的小步骤，每步的出错概率更低，累计准确率更高</span></label>
+<label class="quiz-option" data-quiz="ch9_q2" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">因为分步推理会让AI消耗更多算力，算力越多准确率越高</span></label>
+<label class="quiz-option" data-quiz="ch9_q2" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">因为分步推理让AI有更多时间&quot;思考&quot;</span></label>
+</div>
+<div class="quiz-feedback" id="ch9_q2_feedback"></div>
+</div>
+<div class="quiz-question" id="ch9_q3">
+<p class="quiz-q-text"><strong>第3题【陷阱辨析】</strong> 以下哪个场景使用CoT的效果提升最不明显？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch9_q3" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">分析一份财务报表中的异常数据</span></label>
+<label class="quiz-option" data-quiz="ch9_q3" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">把一段中文翻译成日文</span></label>
+<label class="quiz-option" data-quiz="ch9_q3" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">判断一份法律合同中是否存在对我方不利的条款</span></label>
+<label class="quiz-option" data-quiz="ch9_q3" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">根据多个条件筛选出最优方案</span></label>
+</div>
+<div class="quiz-feedback" id="ch9_q3_feedback"></div>
+</div>
+</div>
+<div class="content-card lab-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #84CC16, #06B6D4)"></div>
+<h4 class="card-heading"><span class="heading-icon">🔬</span> 实操演练 <span class="heading-en">Mini-Lab</span></h4>
+<p>以下Prompt要求AI做一个需要推理的复杂判断，但没有使用CoT。请用CoT技术改造它：</p>
+<pre><code>我有100万元，应该投资股票、基金还是房产？我在北京，30岁，有稳定工作，月薪2万，没有贷款。</code></pre>
+<p>提示：加入"请一步步分析"的指令，并为AI设计3-5个推理步骤（如：分析风险承受能力 → 分析各投资渠道优劣 → 匹配个人情况 → 给出建议）。</p>
+</div>
+</article>
+<article class="chapter" id="chapter-10">
+<div class="chapter-title-card">
+<div class="card-accent" style="background: var(--module-gradient)"></div>
+<span class="chapter-num">第10章</span>
+<h3 class="chapter-title">多步任务拆解——把大象装进冰箱的正确方法</h3>
+<p class="chapter-title-en">Chapter 10: Task Decomposition — The Right Way</p>
+</div>
+<div class="content-card objectives-card">
+<div class="card-accent" style="background: var(--module-color)"></div>
+<h4 class="card-heading"><span class="heading-icon">📌</span> 学习目标 <span class="heading-en">Learning Objectives</span></h4>
+<ul class="objectives-list">
+<li><span class="check-icon">✓</span> 解构（Deconstruct） 一个复杂任务为多个可独立执行的子任务。</li>
+<li><span class="check-icon">✓</span> 设计（Design） 分步式Prompt序列，让AI逐步完成复杂工作。</li>
+<li><span class="check-icon">✓</span> 评估（Evaluate） 任务拆解的粒度是否合理。</li>
+</ul>
+</div>
+<div class="content-card core-card">
+<div class="card-accent" style="background: var(--module-color)"></div>
+<h4 class="card-heading"><span class="heading-icon">📖</span> 核心内容 <span class="heading-en">Core Content</span></h4>
+<h4>引言：大象、冰箱和三步法</h4>
+<p>经典脑筋急转弯：怎么把大象装进冰箱？</p>
+<p>答案：三步——(1)打开冰箱门 (2)把大象放进去 (3)关上冰箱门。</p>
+<p>这虽然是个笑话，但它揭示了一个深刻的道理：<strong>再大的任务，都可以拆成几个小步骤。</strong></p>
+<p>很多人在使用AI时，会一口气丢给它一个巨大的任务："帮我写一个完整的商业计划书"。这就像你对着冰箱说"把大象装进去"——AI（和冰箱）一样懵。</p>
+<p>但如果你把它拆成步骤呢？</p>
+<h4>费曼类比：盖房子的工序</h4>
+<p>没有人会对建筑工人说"给我盖个房子"然后就走了。盖房子有严格的工序：</p>
+<pre><code>打地基 → 搭框架 → 砌墙 → 接水电 → 装修 → 验收</code></pre>
+<p>每一步都必须在前一步完成后才能开始。你不能先装修再打地基。</p>
+<p><strong>复杂Prompt任务也一样。</strong> 你需要：</p>
+<ul class="numbered">
+<li>把大任务拆成小步骤</li>
+<li>确定步骤之间的先后顺序</li>
+<li>一步一步地让AI执行</li>
+</ul>
+<h4>三种拆解策略</h4>
+<p><strong>策略一：顺序拆解（一个Prompt干到底）</strong></p>
+<p>把所有步骤写在一个Prompt里，用清晰的编号告诉AI执行顺序。</p>
+<pre><code>请按以下步骤完成任务：
+
+步骤1：[第一步要做的事]
+步骤2：[基于步骤1的结果，做第二步]
+步骤3：[基于步骤2的结果，做第三步]
+
+注意：必须按顺序执行，后续步骤必须基于前一步的输出。</code></pre>
+<p>适用场景：步骤之间紧密关联、总量不超过上下文窗口。</p>
+<p><strong>策略二：分步执行（多轮对话拆解）</strong></p>
+<p>每一步单独发一个Prompt，上一步的输出作为下一步的输入。</p>
+<pre><code>[第1轮] 请帮我列出写一份商业计划书需要的所有章节标题。
+[AI输出章节标题]
+
+[第2轮] 很好。现在请展开第一章&quot;执行摘要&quot;的详细内容……
+[AI输出第一章内容]
+
+[第3轮] 接下来请展开第二章&quot;市场分析&quot;……</code></pre>
+<p>适用场景：任务极其庞大、需要中间审核、或单次输出会超长。</p>
+<p><strong>策略三：模块化拆解（并行独立子任务）</strong></p>
+<p>当一个大任务中的某些子任务之间没有依赖关系时，可以分别提交。</p>
+<pre><code>[Prompt A] 请帮我调研中国宠物食品市场的规模和增长率。
+[Prompt B] 请帮我分析宠物食品行业的头部3家公司的优劣势。
+[Prompt C] 请帮我设计一个新品牌的差异化定位策略。</code></pre>
+<p>A、B、C可以独立完成，最后你自己把结果整合在一起。</p>
+</div>
+<div class="content-card case-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #F97316, #EC4899)"></div>
+<h4 class="card-heading"><span class="heading-icon">🔍</span> 案例分析：让AI帮你写一份完整的竞品分析报告 <span class="heading-en">Case Study</span></h4>
+<div class="case-comparison">
+<div class="case-bad">
+<div class="case-label case-label-bad">❌ 平庸Prompt</div>
+<pre><code>帮我写一份我们公司和三个竞争对手的详细竞品分析报告。我们是做在线教育的。</code></pre>
+</div>
+<div class="case-good">
+<div class="case-label case-label-good">✅ 顶尖Prompt</div>
+<pre><code>我要进行一次竞品分析。我们公司是&quot;学有所成&quot;在线教育平台，主要面向K12英语辅导。竞争对手是：猿辅导、作业帮、学而思。
+
+第一步：请帮我设计一份竞品分析的框架模板。需要涵盖哪些分析维度？请以表格形式呈现，并为每个维度说明&quot;为什么要分析这个维度&quot;。</code></pre>
+</div>
+</div>
+<div class="case-analysis">
+<h4>深度拆解</h4>
+<p>平庸版想让AI一口吃成胖子——一个Prompt写出一整份报告。结果通常是：</p>
+<ul>
+<li>每个维度蜻蜓点水、不深入</li>
+<li>因为输出太长，后半部分质量明显下降</li>
+<li>缺少框架逻辑，看起来像"散文"而非"报告"</li>
+</ul>
+<p>顶尖版用"盖房子"的逻辑：先搭框架→逐步填充→最后综合。每一步AI都能集中精力做好一件事，而且你在每一步都可以检查、调整方向。</p></div>
+</div>
+<div class="content-card quiz-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #06B6D4, #7C3AED)"></div>
+<h4 class="card-heading"><span class="heading-icon">📝</span> 章节测验 <span class="heading-en">Chapter Quiz</span></h4>
+<div class="quiz-question" id="ch10_q1">
+<p class="quiz-q-text"><strong>第1题【基础概念】</strong> 以下哪种情况最适合使用&quot;分步执行&quot;（多轮对话）策略而非&quot;顺序拆解&quot;（一个Prompt干到底）？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch10_q1" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">让AI翻译一段500字的短文</span></label>
+<label class="quiz-option" data-quiz="ch10_q1" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">让AI写一份5000字的市场分析报告，涵盖行业、竞争、用户、趋势四大板块</span></label>
+<label class="quiz-option" data-quiz="ch10_q1" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">让AI列一个购物清单</span></label>
+<label class="quiz-option" data-quiz="ch10_q1" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">让AI总结一篇新闻</span></label>
+</div>
+<div class="quiz-feedback" id="ch10_q1_feedback"></div>
+</div>
+<div class="quiz-question" id="ch10_q2">
+<p class="quiz-q-text"><strong>第2题【逻辑理解】</strong> 任务拆解的核心价值是什么？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch10_q2" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">让Prompt看起来更专业</span></label>
+<label class="quiz-option" data-quiz="ch10_q2" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">减小每一步的复杂度，让AI在每个子任务上都能集中&quot;注意力&quot;，并允许你在中间步骤进行质量把控</span></label>
+<label class="quiz-option" data-quiz="ch10_q2" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">增加和AI对话的轮数，让AI&quot;记住&quot;你更多的信息</span></label>
+<label class="quiz-option" data-quiz="ch10_q2" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">让AI消耗更多Token，从而给出更好的回答</span></label>
+</div>
+<div class="quiz-feedback" id="ch10_q2_feedback"></div>
+</div>
+<div class="quiz-question" id="ch10_q3">
+<p class="quiz-q-text"><strong>第3题【陷阱辨析】</strong> 小赵把&quot;写一封邮件&quot;拆成了以下5步：(1)写&quot;你好&quot; (2)写第一段 (3)写第二段 (4)写&quot;此致&quot; (5)写名字。这种拆解的问题是什么？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch10_q3" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">完全正确，拆得越细越好</span></label>
+<label class="quiz-option" data-quiz="ch10_q3" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">拆解粒度过细——写一封短邮件本身是一个简单任务，过度拆解反而增加了沟通成本，降低了效率</span></label>
+<label class="quiz-option" data-quiz="ch10_q3" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">应该从第5步开始写</span></label>
+<label class="quiz-option" data-quiz="ch10_q3" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">应该用英文写邮件</span></label>
+</div>
+<div class="quiz-feedback" id="ch10_q3_feedback"></div>
+</div>
+</div>
+<div class="content-card lab-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #84CC16, #06B6D4)"></div>
+<h4 class="card-heading"><span class="heading-icon">🔬</span> 实操演练 <span class="heading-en">Mini-Lab</span></h4>
+<p>请把以下这个"不可能一次做好"的庞大任务，拆解为3-5个有逻辑顺序的子任务Prompt：</p>
+<pre><code>帮我创建一个完整的个人品牌打造方案，包括定位、内容策略、渠道选择、执行计划和效果评估。</code></pre>
+<p>提示：想想哪些步骤必须先做（比如定位一定在内容策略之前），哪些可以并行（比如渠道分析和内容策略可能可以同时做）。</p>
+</div>
+</article>
+<article class="chapter" id="chapter-11">
+<div class="chapter-title-card">
+<div class="card-accent" style="background: var(--module-gradient)"></div>
+<span class="chapter-num">第11章</span>
+<h3 class="chapter-title">自我纠错与迭代——教AI检查自己的作业</h3>
+<p class="chapter-title-en">Chapter 11: Self-Correction & Iteration</p>
+</div>
+<div class="content-card objectives-card">
+<div class="card-accent" style="background: var(--module-color)"></div>
+<h4 class="card-heading"><span class="heading-icon">📌</span> 学习目标 <span class="heading-en">Learning Objectives</span></h4>
+<ul class="objectives-list">
+<li><span class="check-icon">✓</span> 解释（Explain） AI为什么会出错，以及"自我纠错提示"如何利用AI自身来修正错误。</li>
+<li><span class="check-icon">✓</span> 设计（Design） 包含内置纠错机制的Prompt。</li>
+<li><span class="check-icon">✓</span> 应用（Apply） 迭代式对话策略，持续优化AI的输出。</li>
+</ul>
+</div>
+<div class="content-card core-card">
+<div class="card-accent" style="background: var(--module-color)"></div>
+<h4 class="card-heading"><span class="heading-icon">📖</span> 核心内容 <span class="heading-en">Core Content</span></h4>
+<h4>引言：为什么好作家都需要编辑？</h4>
+<p>世界上最好的作家——村上春树、J.K.罗琳、莫言——他们写完初稿后，都会把稿子交给编辑审阅、修改、打磨。不是因为他们写得不好，而是因为<strong>创造者本人往往看不到自己的盲点</strong>。</p>
+<p>AI也一样。它给你的第一版回答，往往像"初稿"——大方向可能没问题，但细节可能有遗漏、有矛盾、有冗余。</p>
+<p>好消息是：<strong>你可以让AI当自己的编辑。</strong></p>
+<h4>费曼类比：考试交卷前的检查</h4>
+<p>还记得考试时老师怎么说的吗？"做完后不要急着交卷，检查一遍！"</p>
+<p>你检查的时候会做什么？</p>
+<ul>
+<li>看看有没有漏做的题</li>
+<li>验算一下数学题的答案</li>
+<li>读一遍作文看有没有错别字</li>
+</ul>
+<p><strong>让AI"检查自己的作业"也是同样的逻辑。</strong> 你可以在Prompt中明确要求它：</p>
+<ul class="numbered">
+<li><strong>先给出初始回答</strong></li>
+<li><strong>然后以批判视角审视自己的回答</strong></li>
+<li><strong>找出问题并修正</strong></li>
+<li><strong>给出最终版本</strong></li>
+</ul>
+<h4>三种自我纠错技术</h4>
+<p><strong>技术一：内置审查指令</strong></p>
+<p>在原始Prompt末尾加上审查要求：</p>
+<pre><code>[你的主要任务]
+
+完成后，请自我审查：
+1. 检查是否有事实性错误或逻辑矛盾
+2. 检查是否遗漏了任何重要方面
+3. 检查语言是否流畅、表达是否清晰
+4. 如有问题，直接给出修正后的版本</code></pre>
+<p><strong>技术二：对立面质疑法</strong></p>
+<p>让AI扮演反对者来挑战自己的回答：</p>
+<pre><code>请先回答以下问题：[你的问题]
+
+然后，请想象你是一位严格的审稿人/反对者，对你自己的回答提出至少3个质疑或挑战。
+
+最后，基于这些质疑，修订你的回答。</code></pre>
+<p><strong>技术三：多角度验证法</strong></p>
+<p>让AI从不同角度验证同一个结论：</p>
+<pre><code>请回答：[你的问题]
+
+回答后，请从以下三个角度重新审视你的答案：
+- 角度1：一个悲观主义者会怎么看这个结论？
+- 角度2：一个新手小白能看懂你的解释吗？
+- 角度3：如果用一句话总结你的回答，这句话站得住脚吗？
+
+如果任何角度发现问题，请修正。</code></pre>
+<h4>迭代的艺术：对话中的持续优化</h4>
+<p>除了让AI"自查"，你还可以通过多轮对话来迭代优化：</p>
+<p><strong>迭代公式：反馈 = 保留什么 + 修改什么 + 为什么修改</strong></p>
+<pre><code>[第1轮] AI输出初始版本
+[第2轮] &quot;整体结构很好（保留），但第二段的数据论证太弱了（修改），因为我的老板是数据导向的决策者，需要更有说服力的数据支撑（为什么）。请只修改第二段，其余保持不变。&quot;
+[第3轮] &quot;现在第二段好多了。但结尾的行动建议太保守了，请给出更大胆的建议，同时附上风险提示。&quot;</code></pre>
+<p><strong>关键：每轮反馈要具体、有方向。</strong> "不太好，重写"是最差的反馈——AI不知道哪里不好、怎么改。</p>
+</div>
+<div class="content-card case-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #F97316, #EC4899)"></div>
+<h4 class="card-heading"><span class="heading-icon">🔍</span> 案例分析：让AI帮你写一份投资分析 <span class="heading-en">Case Study</span></h4>
+<div class="case-comparison">
+<div class="case-bad">
+<div class="case-label case-label-bad">❌ 平庸Prompt</div>
+<pre><code>帮我分析一下特斯拉这只股票值不值得买。</code></pre>
+</div>
+<div class="case-good">
+<div class="case-label case-label-good">✅ 顶尖Prompt</div>
+<pre><code>请以一位CFA持证分析师的视角，分析特斯拉（TSLA）在2025年是否值得长期持有。
+
+请从以下维度分析：
+1. 基本面：营收增长、利润率趋势、现金流状况
+2. 竞争格局：主要竞争对手及特斯拉的护城河
+3. 风险因素：至少列出3个主要风险
+4. 估值判断：当前估值是否合理
+
+⚠️ 分析完成后，请进行以下自我审查：
+- 审查1：你提到的任何数据是否可能已过时或不准确？如有，请标注&quot;[待验证]&quot;
+- 审查2：你的分析是否存在&quot;确认偏误&quot;——是不是只强调了看多或看空的一面？请确保正反观点平衡
+- 审查3：你的结论是否和前面的分析逻辑一致？有没有&quot;分析看空但结论看多&quot;的矛盾？
+
+请在最终输出中用【自查报告】标注你的审查结果。</code></pre>
+</div>
+</div>
+<div class="case-analysis">
+<h4>深度拆解</h4>
+<p>平庸版的风险在于：AI可能给出一个看起来自信满满的分析，但其中可能混入过时数据、单方面偏见或逻辑矛盾——而你无从检验。</p>
+<p>顶尖版通过三层自查机制，迫使AI：</p>
+<ul>
+<li>标注不确定的信息（降低虚假自信）</li>
+<li>检查自身偏见（提高客观性）</li>
+<li>验证逻辑一致性（避免自相矛盾）</li>
+</ul>
+<p><strong>这不是让AI变得"更聪明"，而是让它变得"更诚实"。</strong></p></div>
+</div>
+<div class="content-card quiz-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #06B6D4, #7C3AED)"></div>
+<h4 class="card-heading"><span class="heading-icon">📝</span> 章节测验 <span class="heading-en">Chapter Quiz</span></h4>
+<div class="quiz-question" id="ch11_q1">
+<p class="quiz-q-text"><strong>第1题【基础概念】</strong> 以下哪种不属于本章介绍的&quot;AI自我纠错技术&quot;？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch11_q1" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">内置审查指令</span></label>
+<label class="quiz-option" data-quiz="ch11_q1" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">对立面质疑法</span></label>
+<label class="quiz-option" data-quiz="ch11_q1" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">增加Prompt长度法</span></label>
+<label class="quiz-option" data-quiz="ch11_q1" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">多角度验证法</span></label>
+</div>
+<div class="quiz-feedback" id="ch11_q1_feedback"></div>
+</div>
+<div class="quiz-question" id="ch11_q2">
+<p class="quiz-q-text"><strong>第2题【逻辑理解】</strong> 迭代反馈公式是&quot;保留什么+修改什么+为什么修改&quot;。为什么&quot;为什么修改&quot;这一部分很重要？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch11_q2" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">这只是礼貌性的解释，删掉也没关系</span></label>
+<label class="quiz-option" data-quiz="ch11_q2" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">因为AI需要理解修改的原因和上下文，才能做出精准的修正，而非&quot;瞎改&quot;——原因信息帮AI缩小修改方向</span></label>
+<label class="quiz-option" data-quiz="ch11_q2" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">因为AI需要用户的原因来训练自己</span></label>
+<label class="quiz-option" data-quiz="ch11_q2" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">因为这部分会被记录下来供AI公司改进模型</span></label>
+</div>
+<div class="quiz-feedback" id="ch11_q2_feedback"></div>
+</div>
+<div class="quiz-question" id="ch11_q3">
+<p class="quiz-q-text"><strong>第3题【陷阱辨析】</strong> 小孙让AI写了一份方案后，反馈说：&quot;不好，重新写。&quot;AI重写后她又说&quot;还是不行，再来。&quot;如此反复了五次。这种迭代方式的核心问题是什么？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch11_q3" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">迭代次数太少了，至少要10次</span></label>
+<label class="quiz-option" data-quiz="ch11_q3" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">反馈太笼统——AI不知道哪里不好、应该往哪个方向改，因此每次重写都是&quot;盲人摸象&quot;</span></label>
+<label class="quiz-option" data-quiz="ch11_q3" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">应该换一个更好的AI模型</span></label>
+<label class="quiz-option" data-quiz="ch11_q3" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">五次迭代后AI会产生&quot;疲劳&quot;，回答质量会下降</span></label>
+</div>
+<div class="quiz-feedback" id="ch11_q3_feedback"></div>
+</div>
+</div>
+<div class="content-card lab-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #84CC16, #06B6D4)"></div>
+<h4 class="card-heading"><span class="heading-icon">🔬</span> 实操演练 <span class="heading-en">Mini-Lab</span></h4>
+<p>请为以下Prompt添加一个"内置自查机制"：</p>
+<pre><code>请帮我写一篇关于&quot;远程办公的利与弊&quot;的分析文章，1000字左右。</code></pre>
+<p>提示：在原始任务之后，加入2-3条自查指令。想想这类文章最常见的问题是什么（偏向一方？缺少具体案例？结论和论证矛盾？），然后让AI自己检查这些问题。</p>
+</div>
+</article>
+<article class="chapter" id="chapter-12">
+<div class="chapter-title-card">
+<div class="card-accent" style="background: var(--module-gradient)"></div>
+<span class="chapter-num">第12章</span>
+<h3 class="chapter-title">多角色协作——一个Prompt里的交响乐团</h3>
+<p class="chapter-title-en">Chapter 12: Multi-Role Collaboration — A Symphony in One Prompt</p>
+</div>
+<div class="content-card objectives-card">
+<div class="card-accent" style="background: var(--module-color)"></div>
+<h4 class="card-heading"><span class="heading-icon">📌</span> 学习目标 <span class="heading-en">Learning Objectives</span></h4>
+<ul class="objectives-list">
+<li><span class="check-icon">✓</span> 解释（Explain） 多角色协作Prompt的原理——为什么多个"虚拟角色"能产生更好的输出。</li>
+<li><span class="check-icon">✓</span> 设计（Design） 包含多个角色分工、对话和协作的复杂Prompt。</li>
+<li><span class="check-icon">✓</span> 评估（Evaluate） 何时使用多角色Prompt比单角色更有价值。</li>
+</ul>
+</div>
+<div class="content-card core-card">
+<div class="card-accent" style="background: var(--module-color)"></div>
+<h4 class="card-heading"><span class="heading-icon">📖</span> 核心内容 <span class="heading-en">Core Content</span></h4>
+<h4>引言：为什么公司开会不是一个人自言自语？</h4>
+<p>你有没有想过——为什么公司做重大决策时，不是老板一个人在办公室想想就行了，而是要拉一群人来开会？</p>
+<p>因为<strong>不同立场的人看问题的角度不同</strong>。市场部关心客户怎么想，财务部关心成本能不能承受，技术部关心方案能不能实现，法务部关心会不会踩红线。</p>
+<p><strong>多角色Prompt就是在AI内部"模拟一场会议"。</strong> 你让AI同时扮演多个角色，从不同角度讨论同一个问题，最终给出更全面、更平衡的答案。</p>
+<h4>费曼类比：一个人的辩论赛</h4>
+<p>你看过辩论赛吗？正方和反方各持一方观点，针锋相对，最终评委综合双方论据做出判断。</p>
+<p><strong>多角色Prompt就是让AI一个人演完整场辩论赛</strong>——既当正方，又当反方，最后还当评委。这听起来很"精分"，但AI确实能做到——因为它不是在"思考"，而是在从训练数据的不同区域"提取"不同视角的内容。</p>
+<h4>多角色协作的三种模式</h4>
+<p><strong>模式一：辩论模式</strong></p>
+<p>让两个或多个角色对立讨论，最后由一个"裁判"角色综合。</p>
+<pre><code>请模拟以下三个角色对&quot;公司是否应该全面推行远程办公&quot;这个问题进行辩论：
+
+角色1 - 人力资源总监（支持方）：从员工满意度、招聘竞争力的角度论证
+角色2 - 运营副总裁（反对方）：从团队协作效率、管理难度的角度论证
+角色3 - CEO（裁判）：综合双方观点，给出最终的平衡决策建议
+
+请按照&quot;支持方发言→反对方发言→支持方反驳→反对方反驳→CEO总结&quot;的顺序输出。</code></pre>
+<p><strong>模式二：协作模式</strong></p>
+<p>让多个角色各自贡献专业领域的分析，最后整合。</p>
+<pre><code>你是一个&quot;专家团&quot;。请从以下三个专家的视角分别分析&quot;开一家奶茶店的可行性&quot;：
+
+专家A - 财务分析师：分析初始投资、运营成本、回本周期
+专家B - 市场营销专家：分析目标客户、竞争格局、差异化策略
+专家C - 运营管理顾问：分析选址策略、供应链管理、人员配置
+
+最后，请以&quot;项目评审委员会主席&quot;的身份，综合三位专家的意见，给出是否推荐开店的最终建议及附加条件。</code></pre>
+<p><strong>模式三：红队/蓝队模式</strong></p>
+<p>让一个角色"进攻"（找漏洞），另一个角色"防守"（修补漏洞）。</p>
+<pre><code>【蓝队-策划者】请为一家新咖啡品牌写一份市场推广方案。
+
+【红队-挑战者】请以竞争对手首席战略官的身份，对上述方案提出至少5个致命质疑——它们的弱点在哪？如何打败它们？
+
+【蓝队-修订者】基于红队的质疑，修订推广方案，补上所有漏洞。</code></pre>
+</div>
+<div class="content-card case-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #F97316, #EC4899)"></div>
+<h4 class="card-heading"><span class="heading-icon">🔍</span> 案例分析：评估一个新业务提案 <span class="heading-en">Case Study</span></h4>
+<div class="case-comparison">
+<div class="case-bad">
+<div class="case-label case-label-bad">❌ 平庸Prompt</div>
+<pre><code>帮我评估这个新业务提案好不好：我们想在公司食堂旁边开一个健身房给员工用。</code></pre>
+</div>
+<div class="case-good">
+<div class="case-label case-label-good">✅ 顶尖Prompt</div>
+<pre><code>我有一个新业务提案需要评估。提案是：在公司食堂旁边开一个员工健身房。公司有800名员工，已有的福利包括弹性工作制和年度体检。
+
+请模拟一个高管评审会，由以下四位高管从各自角度给出评估意见：
+
+👤 CFO（首席财务官）：
+- 评估建设和运营成本
+- 分析投资回报率（从员工留存率提升、医疗保险费用降低等角度）
+- 给出财务可行性结论
+
+👤 CHRO（首席人力官）：
+- 分析对员工满意度和留存率的影响
+- 评估使用率预期（多少人真的会用？）
+- 对比其他可替代的员工福利方案
+
+👤 COO（首席运营官）：
+- 评估场地、设备、安全合规等运营层面的问题
+- 分析运营管理的复杂度和所需人力
+- 提出运营风险及应对方案
+
+👤 CEO（最终决策者）：
+- 综合以上三位的意见
+- 权衡战略价值与执行难度
+- 给出&quot;批准 / 驳回 / 有条件批准&quot;的最终决策，并说明理由
+
+请按照CFO → CHRO → COO → CEO的顺序依次输出每位高管的发言。</code></pre>
+</div>
+</div>
+<div class="case-analysis">
+<h4>深度拆解</h4>
+<p>平庸版让AI用"一个人的视角"来看问题。AI可能偏向某一个角度（比如只分析好处），忽略其他维度。</p>
+<p>顶尖版的四角色设计确保了：</p>
+<ul>
+<li><strong>财务</strong>、<strong>人力</strong>、<strong>运营</strong>三个关键维度都被覆盖</li>
+<li>每个角色有明确的"评估任务"，不会跑题</li>
+<li>CEO角色起到"整合者"的作用，避免信息碎片化</li>
+<li>最终给出有层次的决策（不是简单的"好"或"不好"）</li>
+</ul></div>
+</div>
+<div class="content-card quiz-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #06B6D4, #7C3AED)"></div>
+<h4 class="card-heading"><span class="heading-icon">📝</span> 章节测验 <span class="heading-en">Chapter Quiz</span></h4>
+<div class="quiz-question" id="ch12_q1">
+<p class="quiz-q-text"><strong>第1题【基础概念】</strong> 多角色Prompt的核心原理是什么？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch12_q1" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">让AI一次生成更多的文字</span></label>
+<label class="quiz-option" data-quiz="ch12_q1" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">让AI从训练数据中的不同知识领域和视角提取信息，模拟多方讨论，从而产出更全面平衡的分析</span></label>
+<label class="quiz-option" data-quiz="ch12_q1" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">让AI在内部调用多个不同的模型来回答</span></label>
+<label class="quiz-option" data-quiz="ch12_q1" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">增加AI的计算难度以获得更精准的回答</span></label>
+</div>
+<div class="quiz-feedback" id="ch12_q1_feedback"></div>
+</div>
+<div class="quiz-question" id="ch12_q2">
+<p class="quiz-q-text"><strong>第2题【逻辑理解】</strong> 在&quot;红队/蓝队模式&quot;中，为什么要让AI先扮演&quot;挑战者&quot;找漏洞，然后再修补？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch12_q2" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">这只是增加对话趣味性的方式</span></label>
+<label class="quiz-option" data-quiz="ch12_q2" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">因为通过主动寻找方案弱点，可以暴露出初始方案中被忽视的问题，从而让修订版更加健壮——这比直接生成&quot;完美方案&quot;更可靠</span></label>
+<label class="quiz-option" data-quiz="ch12_q2" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">因为AI只能先写坏的，再写好的</span></label>
+<label class="quiz-option" data-quiz="ch12_q2" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">因为红队模式能让AI消耗更多算力</span></label>
+</div>
+<div class="quiz-feedback" id="ch12_q2_feedback"></div>
+</div>
+<div class="quiz-question" id="ch12_q3">
+<p class="quiz-q-text"><strong>第3题【陷阱辨析】</strong> 小周让AI&quot;模拟20个不同角色依次发言，讨论公司午餐应该订什么外卖&quot;。这种多角色Prompt的问题是什么？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch12_q3" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">角色太少了，应该模拟50个</span></label>
+<label class="quiz-option" data-quiz="ch12_q3" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">问题太简单不值得使用多角色，且角色数量过多——AI在维持大量角色的一致性和独特性方面能力有限，超过4-5个角色后质量会明显下降</span></label>
+<label class="quiz-option" data-quiz="ch12_q3" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">应该让所有角色同时发言而不是依次发言</span></label>
+<label class="quiz-option" data-quiz="ch12_q3" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">多角色Prompt只能用于商业决策</span></label>
+</div>
+<div class="quiz-feedback" id="ch12_q3_feedback"></div>
+</div>
+</div>
+<div class="content-card lab-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #84CC16, #06B6D4)"></div>
+<h4 class="card-heading"><span class="heading-icon">🔬</span> 实操演练 <span class="heading-en">Mini-Lab</span></h4>
+<p>请为以下问题设计一个包含3个角色的"协作模式"Prompt：</p>
+<pre><code>问题：我应该辞职去创业吗？我现在在一家大公司做产品经理，年薪50万，有一个创业想法是做AI辅助健身APP。</code></pre>
+<p>提示：想想谁是讨论这个问题的最佳"三人组"？（比如：职业规划师、创业导师、理财顾问？）每个角色应该关注哪些独特的维度？最后谁来做总结？</p>
+<p>---</p>
+<p># Module 4：前沿极限——幻觉规避与自动化工作流</p>
+<blockquote>🎯 本模块目标：识别并规避AI幻觉、掌握事实锚定技术、设计自动化Prompt链、融会贯通成为顶尖专家。</blockquote>
+</div>
+</article>
+</section>
+<section class="module-section" id="module-4" style="--module-color:#F97316;--module-bg:#FFFBEB;--module-gradient:linear-gradient(135deg, #F97316, #FB923C, #FDBA74)">
+<div class="module-header">
+<img src="assets/module4-hero.jpg" alt="Module 4" class="module-hero-img" loading="lazy">
+<div class="module-header-content">
+<span class="module-label">Module 4 · 第4周</span>
+<h2 class="module-title">前沿极限——幻觉规避与自动化工作流</h2>
+<p class="module-title-en">Frontier — Hallucination Prevention & Automation</p>
+<div class="module-goal"><span class="goal-icon">🎯</span> 识别并规避AI幻觉、掌握事实锚定技术、设计自动化Prompt链、融会贯通成为顶尖专家。</div>
+</div>
+</div>
+<article class="chapter" id="chapter-13">
+<div class="chapter-title-card">
+<div class="card-accent" style="background: var(--module-gradient)"></div>
+<span class="chapter-num">第13章</span>
+<h3 class="chapter-title">AI幻觉——当AI一本正经地胡说八道</h3>
+<p class="chapter-title-en">Chapter 13: AI Hallucination — When AI Confidently Makes Things Up</p>
+</div>
+<div class="content-card objectives-card">
+<div class="card-accent" style="background: var(--module-color)"></div>
+<h4 class="card-heading"><span class="heading-icon">📌</span> 学习目标 <span class="heading-en">Learning Objectives</span></h4>
+<ul class="objectives-list">
+<li><span class="check-icon">✓</span> 定义（Define） 什么是AI幻觉（Hallucination），并解释其产生的根本原因。</li>
+<li><span class="check-icon">✓</span> 识别（Identify） AI幻觉的常见表现形式和高风险场景。</li>
+<li><span class="check-icon">✓</span> 分析（Analyze） 一段AI输出中可能包含幻觉的部分。</li>
+</ul>
+</div>
+<div class="content-card core-card">
+<div class="card-accent" style="background: var(--module-color)"></div>
+<h4 class="card-heading"><span class="heading-icon">📖</span> 核心内容 <span class="heading-en">Core Content</span></h4>
+<h4>引言：AI撒谎了吗？</h4>
+<p>有一天你问AI："《三体》的作者是谁？"它回答："刘慈欣。"完全正确。</p>
+<p>然后你问："刘慈欣的第一部长篇小说是什么？"它自信满满地回答："《超新星纪元》，发表于1989年。"</p>
+<p>你一查——嗯，这事有争议，但说法还算靠谱。</p>
+<p>接着你问一个更冷门的问题："刘慈欣在2003年发表的短篇小说《光荣与梦想》讲的是什么？"AI滔滔不绝地给你讲了一个关于火星殖民的故事——情节完整、细节丰富、逻辑自洽。</p>
+<p><strong>问题是：这个故事是AI编的。</strong> 《光荣与梦想》讲的根本不是火星殖民。但AI的回答看起来非常真实、非常自信，如果你不去核实，你永远不会知道它在"一本正经地胡说八道"。</p>
+<p><strong>这就是AI幻觉（Hallucination）。</strong></p>
+<h4>费曼类比：超级学霸综合征</h4>
+<p>想象你班上有一个"超级学霸"——他什么考试都考第一名。有一天你问了他一个他根本不知道答案的问题。</p>
+<p>一个诚实的学霸会说："这个我不知道。"</p>
+<p>但这个学霸有一个毛病：<strong>他永远不说"我不知道"。</strong> 不管你问什么，他都能立刻给你一个听起来非常合理的答案——即使这个答案完全是他现场编的。而且因为他太聪明了，编出来的东西逻辑通顺、用词专业，你根本分辨不出哪些是真知识、哪些是"创造性编造"。</p>
+<p><strong>AI就是这个学霸。</strong> 它不会说"我不知道"（除非你明确要求它这么做），它永远会给你一个"答案"。而这个答案可能是从训练数据中准确提取的——也可能是它现场"拼凑"出来的。</p>
+<h4>AI幻觉的产生原因</h4>
+<p>记住第1章的铁律：AI是<strong>概率预测机器</strong>。它不是在"回忆知识"，而是在预测"接下来最可能的文字"。</p>
+<div class="table-wrapper"><table>
+<tr>
+<th>你问</th>
+<th>AI的内心活动</th>
+<th>结果</th>
+</tr>
+<tr>
+<td>常见问题（训练数据充足）</td>
+<td>"这个模式我见过无数次" → 高概率预测正确的文字序列</td>
+<td>✅ 通常准确</td>
+</tr>
+<tr>
+<td>冷门问题（训练数据不足）</td>
+<td>"这个模式我不太熟，但根据相似模式……" → 拼凑出看似合理的文字序列</td>
+<td>⚠️ 可能是幻觉</td>
+</tr>
+<tr>
+<td>虚构问题（训练数据不存在）</td>
+<td>"没见过，但我可以生成一个统计上合理的序列" → 编造</td>
+<td>❌ 几乎必定是幻觉</td>
+</tr>
+</table></div>
+<h4>幻觉的五种常见表现</h4>
+<p><strong>1. 虚构事实（Fabrication）</strong></p>
+<p>编造不存在的数据、事件、人名、书名等。</p>
+<blockquote>"根据2024年世界银行报告，全球贫困率已降至1.2%。"——这份报告可能不存在。</blockquote>
+<p><strong>2. 过时信息当新闻说（Anachronism）</strong></p>
+<p>把训练数据截止日期前的信息当成最新的。</p>
+<blockquote>2025年问AI某公司的CEO是谁，它可能给出2023年的信息。</blockquote>
+<p><strong>3. 张冠李戴（Misattribution）</strong></p>
+<p>把A说的话安到B头上，把X的事迹安到Y身上。</p>
+<blockquote>"爱因斯坦曾说过'知识就是力量'。"——这句话是培根说的。</blockquote>
+<p><strong>4. 虚假自信（False Confidence）</strong></p>
+<p>明明不确定的事情，AI也用斩钉截铁的语气说出来。</p>
+<blockquote>"这种药的治愈率是87.3%。"——数字精确到了小数点后一位，但可能完全是编的。</blockquote>
+<p><strong>5. 逻辑编造（Plausible Fabrication）</strong></p>
+<p>编造的内容在逻辑上完全自洽，让人更难识别。</p>
+<blockquote>你问AI一篇不存在的论文的内容，它能给你编出完整的摘要、方法论和结论。</blockquote>
+</div>
+<div class="content-card case-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #F97316, #EC4899)"></div>
+<h4 class="card-heading"><span class="heading-icon">🔍</span> 案例分析：让AI提供法律参考 <span class="heading-en">Case Study</span></h4>
+<div class="case-comparison">
+<div class="case-bad">
+<div class="case-label case-label-bad">❌ 平庸Prompt</div>
+<pre><code>请列出中国劳动法中关于加班工资的具体条款和法条编号。</code></pre>
+</div>
+<div class="case-good">
+<div class="case-label case-label-good">✅ 顶尖Prompt</div>
+<pre><code>请列出中国劳动法中关于加班工资的相关规定。
+
+⚠️ 重要提示：
+1. 如果你不确定某个具体法条编号或内容，请明确标注&quot;[需核实]&quot;而不是猜测
+2. 如果某个规定可能已被修订或废止，请标注&quot;[可能已更新，请查阅最新版本]&quot;
+3. 请在最后附上一句提醒：本回答仅供参考，具体法律问题请咨询专业律师或查阅官方法律数据库
+
+请按照以下格式输出：
+- 法律名称：
+- 相关条款概述：
+- 确信度：高/中/低</code></pre>
+</div>
+</div>
+<div class="case-analysis">
+<h4>深度拆解</h4>
+<p>安全版通过三重防线降低幻觉风险：</p>
+<ul class="numbered">
+<li><strong>"不确定就标注"</strong>——给了AI一个体面的"不知道"出口</li>
+<li><strong>要求标注确信度</strong>——迫使AI对自己的输出进行"自评"</li>
+<li><strong>免责提醒</strong>——确保用户知道这不是专业法律意见</li>
+</ul>
+<p><strong>关键洞察：大多数幻觉不是因为AI"想骗你"，而是因为你没给它"说不知道"的权限。</strong></p></div>
+</div>
+<div class="content-card quiz-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #06B6D4, #7C3AED)"></div>
+<h4 class="card-heading"><span class="heading-icon">📝</span> 章节测验 <span class="heading-en">Chapter Quiz</span></h4>
+<div class="quiz-question" id="ch13_q1">
+<p class="quiz-q-text"><strong>第1题【基础概念】</strong> AI幻觉（Hallucination）的根本原因是什么？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch13_q1" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">AI的训练数据中包含了大量错误信息</span></label>
+<label class="quiz-option" data-quiz="ch13_q1" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">AI不是在&quot;回忆&quot;知识，而是在做概率预测——当训练数据不足时，它会生成统计上合理但事实上可能错误的内容</span></label>
+<label class="quiz-option" data-quiz="ch13_q1" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">AI故意生成错误信息来测试用户</span></label>
+<label class="quiz-option" data-quiz="ch13_q1" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">AI的硬件出了故障</span></label>
+</div>
+<div class="quiz-feedback" id="ch13_q1_feedback"></div>
+</div>
+<div class="quiz-question" id="ch13_q2">
+<p class="quiz-q-text"><strong>第2题【逻辑理解】</strong> 为什么&quot;虚假自信（False Confidence）&quot;是AI幻觉中最危险的表现形式？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch13_q2" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">因为它消耗的计算资源最多</span></label>
+<label class="quiz-option" data-quiz="ch13_q2" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">因为AI用极其确定、精确的语气呈现可能错误的信息，让用户更容易不加验证地接受</span></label>
+<label class="quiz-option" data-quiz="ch13_q2" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">因为只有最新的AI模型才会产生虚假自信</span></label>
+<label class="quiz-option" data-quiz="ch13_q2" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">因为虚假自信会导致AI系统崩溃</span></label>
+</div>
+<div class="quiz-feedback" id="ch13_q2_feedback"></div>
+</div>
+<div class="quiz-question" id="ch13_q3">
+<p class="quiz-q-text"><strong>第3题【陷阱辨析】</strong> 小刘用AI查了一段历史知识，AI的回答非常详细、条理清晰，而且引用了具体的年份和人名。小刘因此认为这段回答一定是准确的。小刘的判断有什么问题？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch13_q3" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">没有问题，AI引用了具体年份和人名说明它很确定</span></label>
+<label class="quiz-option" data-quiz="ch13_q3" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">&quot;详细、有条理、有具体数据&quot;恰恰可能是AI幻觉的特征——AI最擅长让编造的内容看起来真实可信，因此不能仅凭&quot;看起来靠谱&quot;来判断准确性</span></label>
+<label class="quiz-option" data-quiz="ch13_q3" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">小刘应该让AI重新回答一次，如果两次答案一样就说明是对的</span></label>
+<label class="quiz-option" data-quiz="ch13_q3" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">历史知识不需要核实，因为AI的历史知识库是最完善的</span></label>
+</div>
+<div class="quiz-feedback" id="ch13_q3_feedback"></div>
+</div>
+</div>
+<div class="content-card lab-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #84CC16, #06B6D4)"></div>
+<h4 class="card-heading"><span class="heading-icon">🔬</span> 实操演练 <span class="heading-en">Mini-Lab</span></h4>
+<p>以下Prompt高度容易触发AI幻觉，请改写它使其更安全：</p>
+<pre><code>请告诉我王小明教授在2021年发表在《自然》杂志上的那篇关于量子纠缠的论文的主要发现是什么？</code></pre>
+<p>提示：这个"王小明教授"和"那篇论文"可能根本不存在——但如果你这么问，AI大概率会给你编一个听起来非常靠谱的论文摘要。想想怎么改才能让AI诚实地告诉你"可能找不到这个信息"？</p>
+</div>
+</article>
+<article class="chapter" id="chapter-14">
+<div class="chapter-title-card">
+<div class="card-accent" style="background: var(--module-gradient)"></div>
+<span class="chapter-num">第14章</span>
+<h3 class="chapter-title">事实校验与锚定——给AI装上安全带</h3>
+<p class="chapter-title-en">Chapter 14: Fact-Checking & Anchoring — Safety Belts for AI</p>
+</div>
+<div class="content-card objectives-card">
+<div class="card-accent" style="background: var(--module-color)"></div>
+<h4 class="card-heading"><span class="heading-icon">📌</span> 学习目标 <span class="heading-en">Learning Objectives</span></h4>
+<ul class="objectives-list">
+<li><span class="check-icon">✓</span> 解释（Explain） 事实锚定（Fact Anchoring）策略如何降低AI幻觉风险。</li>
+<li><span class="check-icon">✓</span> 创建（Create） 包含多层防幻觉机制的安全Prompt。</li>
+<li><span class="check-icon">✓</span> 应用（Apply） "输入锚定"与"输出限定"的双向策略。</li>
+</ul>
+</div>
+<div class="content-card core-card">
+<div class="card-accent" style="background: var(--module-color)"></div>
+<h4 class="card-heading"><span class="heading-icon">📖</span> 核心内容 <span class="heading-en">Core Content</span></h4>
+<h4>引言：为什么新闻记者要交叉验证？</h4>
+<p>好的新闻记者在报道一条新闻时，绝不只听一个信源。他们会找至少两到三个独立信源交叉验证——只有多个信源都说同样的事，才会写进报道。</p>
+<p>这叫<strong>交叉验证（Cross-validation）</strong>。</p>
+<p>你不能像新闻记者一样训练AI（那不是你的事），但你可以像新闻记者一样<strong>使用AI</strong>——通过聪明的Prompt设计，让AI自己进行"交叉验证"，或者限制它只能基于你给的材料回答。</p>
+<h4>策略一：输入锚定——只许你用我给的材料</h4>
+<p>这是最强力的防幻觉手段：<strong>把AI需要的信息直接喂给它，然后告诉它"只能基于我给的内容回答，不许自己编"。</strong></p>
+<pre><code>请阅读以下材料，然后仅基于材料内容回答问题。如果材料中没有相关信息，请回答&quot;材料中未提供相关信息&quot;。
+
+【材料开始】
+[在这里粘贴你的文章/数据/报告]
+【材料结束】
+
+问题：[你的问题]</code></pre>
+<p><strong>为什么有效？</strong> 你把AI从"开卷考试"变成了"闭卷考试"——但卷子上已经给了所有需要的资料。它不需要去"回忆"训练数据，只需要从你给的材料中提取信息。</p>
+<h4>策略二：输出限定——要求AI标注确信度</h4>
+<pre><code>请回答以下问题。对于每一条陈述，请用以下标签标注你的确信度：
+
+[✅ 高确信] - 你非常确定这个信息是准确的
+[⚠️ 中确信] - 你认为大概率正确，但建议用户核实
+[❓ 低确信] - 你不确定，这可能是推测或不完整的信息
+
+如果你完全不知道，请直接说&quot;我没有足够的信息来回答这个问题&quot;。</code></pre>
+<h4>策略三：双重验证——让AI质疑自己</h4>
+<pre><code>请回答以下问题：[问题]
+
+回答完成后，请以&quot;事实核查员&quot;的身份，审查你自己的回答：
+1. 标出所有包含具体数据（数字、日期、百分比）的地方
+2. 对每个数据点评估：&quot;这个数据是我从训练数据中可靠回忆的，还是我推测/编造的？&quot;
+3. 对可能不准确的部分标注&quot;[建议核实]&quot;</code></pre>
+<h4>策略四：限制输出范围——不知道就说不知道</h4>
+<p>这是最简单但经常被忽视的策略：</p>
+<pre><code>重要规则：如果你不确定某个信息的准确性，宁可说&quot;我不确定&quot;或&quot;需要进一步核实&quot;，也不要编造答案。被发现编造的后果远比承认不知道更严重。</code></pre>
+<h4>防幻觉Prompt模板</h4>
+<p>将以上策略组合成一个万能模板：</p>
+<pre><code>【任务】[你的具体任务]
+
+【参考材料】（如有）
+[粘贴你提供的材料]
+
+【安全规则】
+1. 仅基于参考材料和你有高确信度的知识回答
+2. 对不确定的信息标注 [待核实]
+3. 不要编造数据、引用或不存在的来源
+4. 如果某部分超出你的知识范围，请明确告知
+5. 回答最后附上&quot;确信度自评&quot;：整体确信度为 高/中/低</code></pre>
+</div>
+<div class="content-card case-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #F97316, #EC4899)"></div>
+<h4 class="card-heading"><span class="heading-icon">🔍</span> 案例分析：让AI帮你整理一份产品竞品信息 <span class="heading-en">Case Study</span></h4>
+<div class="case-comparison">
+<div class="case-bad">
+<div class="case-label case-label-bad">❌ 平庸Prompt</div>
+<pre><code>请列出Notion、Obsidian和Roam Research这三款笔记软件在2025年的最新定价和功能对比。</code></pre>
+</div>
+<div class="case-good">
+<div class="case-label case-label-good">✅ 顶尖Prompt</div>
+<pre><code>请帮我列出Notion、Obsidian和Roam Research这三款笔记软件的功能对比。
+
+⚠️ 安全规则：
+1. 关于定价：请标注你的信息可能不是最新的，建议用户访问官方网站核实。如果你不确定某个定价，写&quot;[价格需核实]&quot;而不是猜一个数字。
+2. 关于功能：只列出你有较高确信度的功能。如果某个功能你不确定是否存在，标注&quot;[待确认]&quot;。
+3. 在表格最后，加一行&quot;信息时效性说明&quot;，提醒用户这些信息可能不反映最新情况。
+
+格式：Markdown对比表格。</code></pre>
+</div>
+</div>
+<div class="case-analysis">
+<h4>深度拆解</h4>
+<div class="table-wrapper"><table>
+<tr>
+<th>维度</th>
+<th>危险Prompt</th>
+<th>安全Prompt</th>
+</tr>
+<tr>
+<td>定价信息</td>
+<td>AI可能给过时或编造的价格</td>
+<td>强制标注"需核实"</td>
+</tr>
+<tr>
+<td>功能列表</td>
+<td>可能混入不存在的功能</td>
+<td>不确定的标注"待确认"</td>
+</tr>
+<tr>
+<td>时效性</td>
+<td>用户可能误以为是最新信息</td>
+<td>明确提醒信息可能过时</td>
+</tr>
+<tr>
+<td>用户信任</td>
+<td>虚假的确定性→用户做出错误决策</td>
+<td>透明的不确定性→用户知道要去核实什么</td>
+</tr>
+</table></div></div>
+</div>
+<div class="content-card quiz-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #06B6D4, #7C3AED)"></div>
+<h4 class="card-heading"><span class="heading-icon">📝</span> 章节测验 <span class="heading-en">Chapter Quiz</span></h4>
+<div class="quiz-question" id="ch14_q1">
+<p class="quiz-q-text"><strong>第1题【基础概念】</strong> &quot;输入锚定&quot;策略的核心思想是什么？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch14_q1" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">在Prompt中使用更多的关键词来锚定AI的注意力</span></label>
+<label class="quiz-option" data-quiz="ch14_q1" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">直接把参考材料喂给AI，并要求它仅基于给定材料回答，从而大幅减少AI&quot;自由发挥&quot;的空间</span></label>
+<label class="quiz-option" data-quiz="ch14_q1" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">让AI在回答前先在互联网上搜索最新信息</span></label>
+<label class="quiz-option" data-quiz="ch14_q1" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">固定AI的回答长度不超过500字</span></label>
+</div>
+<div class="quiz-feedback" id="ch14_q1_feedback"></div>
+</div>
+<div class="quiz-question" id="ch14_q2">
+<p class="quiz-q-text"><strong>第2题【逻辑理解】</strong> &quot;要求AI标注确信度&quot;为什么能减少幻觉带来的危害？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch14_q2" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">标注确信度会直接提高AI回答的准确率</span></label>
+<label class="quiz-option" data-quiz="ch14_q2" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">确信度标注不能阻止AI产生幻觉，但能让用户知道哪些部分需要格外核实——把&quot;隐性风险&quot;变成&quot;显性风险&quot;</span></label>
+<label class="quiz-option" data-quiz="ch14_q2" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">AI看到&quot;确信度&quot;三个字就会更加谨慎</span></label>
+<label class="quiz-option" data-quiz="ch14_q2" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">确信度标注是给AI的奖惩机制</span></label>
+</div>
+<div class="quiz-feedback" id="ch14_q2_feedback"></div>
+</div>
+<div class="quiz-question" id="ch14_q3">
+<p class="quiz-q-text"><strong>第3题【陷阱辨析】</strong> 小王在Prompt中加了一句&quot;请确保你的回答100%准确，不要有任何错误&quot;，他认为这样就能消除AI幻觉。这种想法的问题是什么？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch14_q3" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">完全正确，AI会遵守这条指令</span></label>
+<label class="quiz-option" data-quiz="ch14_q3" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">这条指令没有任何效果——AI不具备自我验证事实的能力，它不知道自己什么时候在&quot;幻觉&quot;，因此要求它&quot;不要有错误&quot;就像要求一个梦游的人&quot;不要梦游&quot;</span></label>
+<label class="quiz-option" data-quiz="ch14_q3" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">应该写成英文才有效</span></label>
+<label class="quiz-option" data-quiz="ch14_q3" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">应该写&quot;确保99%准确&quot;而不是&quot;100%&quot;</span></label>
+</div>
+<div class="quiz-feedback" id="ch14_q3_feedback"></div>
+</div>
+</div>
+<div class="content-card lab-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #84CC16, #06B6D4)"></div>
+<h4 class="card-heading"><span class="heading-icon">🔬</span> 实操演练 <span class="heading-en">Mini-Lab</span></h4>
+<p>请为以下高幻觉风险的Prompt添加完整的防幻觉安全机制：</p>
+<pre><code>请帮我写一篇关于比特币发展历史的文章，需要包含具体的时间线、关键事件、价格数据和重要人物。</code></pre>
+<p>提示：这个Prompt涉及大量具体数据（日期、价格、人名），每一个都是幻觉高发点。想想怎么用"输入锚定""确信度标注""限制输出范围"等策略来加固它。</p>
+</div>
+</article>
+<article class="chapter" id="chapter-15">
+<div class="chapter-title-card">
+<div class="card-accent" style="background: var(--module-gradient)"></div>
+<span class="chapter-num">第15章</span>
+<h3 class="chapter-title">自动化Prompt链——让AI自己干活的流水线</h3>
+<p class="chapter-title-en">Chapter 15: Automated Prompt Chains — The AI Assembly Line</p>
+</div>
+<div class="content-card objectives-card">
+<div class="card-accent" style="background: var(--module-color)"></div>
+<h4 class="card-heading"><span class="heading-icon">📌</span> 学习目标 <span class="heading-en">Learning Objectives</span></h4>
+<ul class="objectives-list">
+<li><span class="check-icon">✓</span> 解释（Explain） 什么是Prompt链（Prompt Chaining）以及它的工作原理。</li>
+<li><span class="check-icon">✓</span> 设计（Design） 一个3-5步的Prompt链来自动化完成复杂任务。</li>
+<li><span class="check-icon">✓</span> 评估（Evaluate） Prompt链中每个环节的"输入-处理-输出"是否正确对接。</li>
+</ul>
+</div>
+<div class="content-card core-card">
+<div class="card-accent" style="background: var(--module-color)"></div>
+<h4 class="card-heading"><span class="heading-icon">📖</span> 核心内容 <span class="heading-en">Core Content</span></h4>
+<h4>引言：工厂流水线的启示</h4>
+<p>你参观过工厂流水线吗？</p>
+<p>一辆汽车的生产不是一个工人从头到尾做完的。它被拆成了几十个工位：第一个工位焊接车身、第二个工位安装发动机、第三个工位喷漆、第四个工位装内饰……每个工位只做一件事，做完就传给下一个工位。</p>
+<p><strong>Prompt链就是AI版的工厂流水线。</strong></p>
+<p>你把一个复杂任务拆成多个步骤，每个步骤用一个专门的Prompt处理，上一步的输出自动成为下一步的输入。</p>
+<h4>费曼类比：接力赛跑</h4>
+<p>想象一场4×100米接力赛。四个运动员各跑100米，每人只负责自己的那段，通过"交接棒"把任务传给下一个人。</p>
+<p><strong>Prompt链中的每个Prompt就是一名"接力运动员"。</strong> 它接过上一棒（输入），全力跑完自己的100米（处理），然后把接力棒（输出）稳稳地交给下一个人。</p>
+<h4>Prompt链的基本结构</h4>
+<pre><code>Prompt 1（收集原料）
+    ↓ [输出1]
+Prompt 2（加工处理）
+    ↓ [输出2]
+Prompt 3（质量检验）
+    ↓ [输出3]
+Prompt 4（包装输出）
+    ↓ [最终产品]</code></pre>
+<h4>实战示例：自动化生成周报</h4>
+<p>假设你每周都要写一份给老板的周报，这是你用Prompt链设计的自动化流水线：</p>
+<p><strong>Prompt 1：信息提取</strong></p>
+<pre><code>以下是我这周的工作日志（碎片化记录）：
+[粘贴你一周的零散笔记、聊天记录、完成事项清单]
+
+请帮我从中提取所有有意义的工作事项，按以下分类整理：
+- 已完成的任务
+- 进行中的任务
+- 遇到的问题/阻碍
+- 重要的会议/沟通
+
+仅提取事实，不要添加分析或评价。</code></pre>
+<p><strong>Prompt 2：优先级排序和亮点提炼</strong></p>
+<pre><code>以下是我本周的工作事项整理：
+[粘贴Prompt 1的输出]
+
+请帮我：
+1. 按重要程度排序（高→中→低）
+2. 从中提炼出3个&quot;本周亮点&quot;——即最能体现工作价值和成果的事项
+3. 标注哪些事项需要在下周跟进</code></pre>
+<p><strong>Prompt 3：撰写周报</strong></p>
+<pre><code>请基于以下信息撰写一份给部门总监看的周报：
+[粘贴Prompt 2的输出]
+
+要求：
+- 格式：开头一句话总结本周→本周亮点（3点）→进行中事项（状态更新）→下周计划→需要支持的事项
+- 语气：简洁、专业、有信心
+- 长度：500字以内
+- 数据：如有具体数字（完成率、用户数等），突出展示</code></pre>
+<p><strong>Prompt 4：自查优化</strong></p>
+<pre><code>请检查以下周报的质量：
+[粘贴Prompt 3的输出]
+
+检查项：
+1. 是否有空洞的描述（如&quot;做了很多工作&quot;），如有请替换为具体内容
+2. 语气是否合适——不卑不亢、不邀功也不自贬
+3. 老板读完后能否在30秒内抓到重点
+4. 有无错别字或语法问题
+
+如有任何修改，请直接输出修订后的完整版本。</code></pre>
+<h4>Prompt链的设计原则</h4>
+<p><strong>原则一：每个环节只做一件事</strong></p>
+<p>一个Prompt不要又提取数据、又分析、又写报告。拆开！</p>
+<p><strong>原则二：输出格式要对接输入格式</strong></p>
+<p>Prompt 1的输出要能直接被Prompt 2使用，不需要你手动整理。</p>
+<p><strong>原则三：加入"质检环节"</strong></p>
+<p>流水线的倒数第二步应该是"质量检验"——让AI检查之前步骤的输出。</p>
+<p><strong>原则四：保持可调试性</strong></p>
+<p>每一步的输出你都应该能看到，这样出了问题能准确定位是哪个环节。</p>
+</div>
+<div class="content-card case-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #F97316, #EC4899)"></div>
+<h4 class="card-heading"><span class="heading-icon">🔍</span> 案例分析：将一份英文技术文档翻译并改写成面向客户的中文产品说明 <span class="heading-en">Case Study</span></h4>
+<div class="case-comparison">
+<div class="case-bad">
+<div class="case-label case-label-bad">❌ 平庸Prompt</div>
+<pre><code>请把这份英文技术文档翻译成中文，并改写成客户能看懂的产品说明书。
+[粘贴英文文档]</code></pre>
+</div>
+<div class="case-good">
+<div class="case-label case-label-good">✅ 顶尖Prompt</div>
+<pre><code>请将以下英文技术文档翻译成中文。要求：忠实原文，不要改写或简化。专业术语首次出现时附英文原名。
+[粘贴英文文档]</code></pre>
+</div>
+</div>
+</div>
+<div class="content-card quiz-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #06B6D4, #7C3AED)"></div>
+<h4 class="card-heading"><span class="heading-icon">📝</span> 章节测验 <span class="heading-en">Chapter Quiz</span></h4>
+<div class="quiz-question" id="ch15_q1">
+<p class="quiz-q-text"><strong>第1题【基础概念】</strong> Prompt链（Prompt Chaining）的工作原理是什么？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch15_q1" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">在一个超长的Prompt中把所有指令写在一起</span></label>
+<label class="quiz-option" data-quiz="ch15_q1" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">将复杂任务拆分为多个步骤，每步用专门的Prompt处理，上一步的输出作为下一步的输入</span></label>
+<label class="quiz-option" data-quiz="ch15_q1" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">让多个AI模型同时处理同一个问题</span></label>
+<label class="quiz-option" data-quiz="ch15_q1" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">用链条把多个AI连接在一起</span></label>
+</div>
+<div class="quiz-feedback" id="ch15_q1_feedback"></div>
+</div>
+<div class="quiz-question" id="ch15_q2">
+<p class="quiz-q-text"><strong>第2题【逻辑理解】</strong> 为什么Prompt链中建议加入&quot;质检环节&quot;？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch15_q2" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">为了让AI消耗更多Token</span></label>
+<label class="quiz-option" data-quiz="ch15_q2" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">因为流水线中的每一步都可能引入误差或质量问题，质检环节能在最终输出前发现并修正这些问题</span></label>
+<label class="quiz-option" data-quiz="ch15_q2" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">因为这是AI系统的强制要求</span></label>
+<label class="quiz-option" data-quiz="ch15_q2" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">为了延长与AI的对话时间</span></label>
+</div>
+<div class="quiz-feedback" id="ch15_q2_feedback"></div>
+</div>
+<div class="quiz-question" id="ch15_q3">
+<p class="quiz-q-text"><strong>第3题【陷阱辨析】</strong> 小陈设计了一个5步的Prompt链，但第3步的输出格式是一段自由文本，而第4步需要一个结构化的JSON格式输入。这个链会出什么问题？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch15_q3" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">不会有任何问题，AI会自动适配</span></label>
+<label class="quiz-option" data-quiz="ch15_q3" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">第3步的输出和第4步的输入&quot;接口不匹配&quot;——就像接力赛中跑步的人把接力棒扔给了游泳的人，交接失败</span></label>
+<label class="quiz-option" data-quiz="ch15_q3" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">JSON格式不能用在Prompt链中</span></label>
+<label class="quiz-option" data-quiz="ch15_q3" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">应该把5步合并成1步来避免这个问题</span></label>
+</div>
+<div class="quiz-feedback" id="ch15_q3_feedback"></div>
+</div>
+</div>
+<div class="content-card lab-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #84CC16, #06B6D4)"></div>
+<h4 class="card-heading"><span class="heading-icon">🔬</span> 实操演练 <span class="heading-en">Mini-Lab</span></h4>
+<p>请为以下场景设计一个3-4步的Prompt链（写出每步的Prompt概要即可，不需要完整Prompt）：</p>
+<pre><code>场景：你有一段30分钟的客户访谈录音的文字稿，需要最终产出一份&quot;客户需求分析报告&quot;。</code></pre>
+<p>提示：想想流水线的步骤——第一步可能是什么（提取关键信息？）、第二步呢（分类整理？）、第三步呢（分析洞察？）、第四步呢（撰写报告？）。</p>
+</div>
+</article>
+<article class="chapter" id="chapter-16">
+<div class="chapter-title-card">
+<div class="card-accent" style="background: var(--module-gradient)"></div>
+<span class="chapter-num">第16章</span>
+<h3 class="chapter-title">融会贯通——从学员到顶尖Prompt专家</h3>
+<p class="chapter-title-en">Chapter 16: Mastery — From Student to Expert</p>
+</div>
+<div class="content-card objectives-card">
+<div class="card-accent" style="background: var(--module-color)"></div>
+<h4 class="card-heading"><span class="heading-icon">📌</span> 学习目标 <span class="heading-en">Learning Objectives</span></h4>
+<ul class="objectives-list">
+<li><span class="check-icon">✓</span> 综合（Synthesize） 前15章所有知识和技术，形成个人的Prompt设计方法论。</li>
+<li><span class="check-icon">✓</span> 创造（Create） 针对任意复杂场景的顶尖Prompt。</li>
+<li><span class="check-icon">✓</span> 评估（Evaluate） 自己和他人Prompt的质量，并给出改进建议。</li>
+</ul>
+</div>
+<div class="content-card quiz-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #06B6D4, #7C3AED)"></div>
+<h4 class="card-heading"><span class="heading-icon">📝</span> 章节测验 <span class="heading-en">Chapter Quiz</span></h4>
+<div class="quiz-question" id="ch16_q1">
+<p class="quiz-q-text"><strong>第1题【基础概念】</strong> 一位Prompt专家在面对新任务时，&quot;思维清单&quot;的第一步应该是什么？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch16_q1" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">立刻开始写Prompt</span></label>
+<label class="quiz-option" data-quiz="ch16_q1" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">先分析任务特征——简单还是复杂？推理还是创意？幻觉风险高不高？</span></label>
+<label class="quiz-option" data-quiz="ch16_q1" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">先去网上搜索别人写过的Prompt模板</span></label>
+<label class="quiz-option" data-quiz="ch16_q1" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">先选择使用哪个AI模型</span></label>
+</div>
+<div class="quiz-feedback" id="ch16_q1_feedback"></div>
+</div>
+<div class="quiz-question" id="ch16_q2">
+<p class="quiz-q-text"><strong>第2题【逻辑理解】</strong> &quot;终极模板&quot;中列出了8个模块（角色、背景、任务、步骤、示例、输出规格、约束、安全机制），但不是每次都要全部使用。以下哪个判断标准最合理？</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch16_q2" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">总是使用全部8个模块才能保证最好的输出</span></label>
+<label class="quiz-option" data-quiz="ch16_q2" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">根据任务复杂度灵活取舍——简单任务可能只需要任务+约束，复杂任务则需要更完整的模板</span></label>
+<label class="quiz-option" data-quiz="ch16_q2" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">至少使用6个以上才算合格</span></label>
+<label class="quiz-option" data-quiz="ch16_q2" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">只有在写英文Prompt时才需要完整模板</span></label>
+</div>
+<div class="quiz-feedback" id="ch16_q2_feedback"></div>
+</div>
+<div class="quiz-question" id="ch16_q3">
+<p class="quiz-q-text"><strong>第3题【陷阱辨析】</strong> 小林学完整本教材后，每次用AI都把&quot;终极模板&quot;的所有8个模块填满，包括让AI帮他把&quot;今天吃什么&quot;写成一个完整的BROKE框架Prompt。这种做法：</p>
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="ch16_q3" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">非常专业，说明学得很扎实</span></label>
+<label class="quiz-option" data-quiz="ch16_q3" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">矫枉过正——工具应该为任务服务，而不是任务为工具服务。简单问题用简单方法，才是真正的&quot;融会贯通&quot;</span></label>
+<label class="quiz-option" data-quiz="ch16_q3" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">完全正确，这样AI一定能推荐最好的餐厅</span></label>
+<label class="quiz-option" data-quiz="ch16_q3" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">应该再加上Few-shot示例才完美</span></label>
+</div>
+<div class="quiz-feedback" id="ch16_q3_feedback"></div>
+</div>
+</div>
+<div class="content-card lab-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #84CC16, #06B6D4)"></div>
+<h4 class="card-heading"><span class="heading-icon">🔬</span> 实操演练 <span class="heading-en">Mini-Lab</span></h4>
+<p>这是你的"毕业设计"。请综合运用本书所学的所有技术，为以下复杂场景写一个顶尖Prompt：</p>
+<pre><code>场景：你是一家中型电商公司的市场总监。公司准备在下个月举办&quot;双12&quot;大促活动。你需要AI帮你：
+1. 制定一份完整的大促营销方案
+2. 方案需要涵盖：目标设定、预算分配、渠道策略、内容规划、时间线、效果预估
+3. 你的老板是一个数据驱动型的CEO，方案里必须有数据支撑
+4. 去年双11的数据：GMV 800万，转化率3.2%，获客成本45元/人</code></pre>
+<p>提示：综合使用角色设定 + BROKE框架 + 语境 + 约束 + 防幻觉策略 + 可能的CoT/分步执行。</p>
+</div>
+</article>
+</section>
+
+<section class="exam-section" id="exam">
+<div class="exam-header">
+<h2 class="section-title">期末综合大考<span class="title-en">Final Comprehensive Exam</span></h2>
+<p class="exam-desc">本考试涵盖全书四大模块的核心知识，共10道中高难度情景选择题。请独立完成。</p>
+</div>
+<div class="content-card exam-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #7C3AED, #EC4899, #06B6D4)"></div>
+<div class="exam-q-header"><span class="exam-q-num">第1题</span><span class="exam-q-topic">【多条件约束 + 角色设定】</span></div>
+<p>小美是一家创业公司的CEO，她给AI写了这样的Prompt：</p>
+<pre><code>你是一位全球最顶尖的、无所不知的商业顾问。请帮我分析我们公司应该做什么产品。<p></code></pre></p>
+<p>以下哪个问题是这个Prompt最致命的缺陷？</p>
+<div class="quiz-question" id="exam_q1">
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="exam_q1" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">没有指定输出格式</span></label>
+<label class="quiz-option" data-quiz="exam_q1" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">角色过于夸张且模糊（&quot;全球最顶尖&quot;&quot;无所不知&quot;没有实际指向），同时完全缺少公司背景、行业、资源等关键语境信息——AI没有任何锚点来生成有针对性的建议</span></label>
+<label class="quiz-option" data-quiz="exam_q1" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">应该用英文写才能获得更好的回答</span></label>
+<label class="quiz-option" data-quiz="exam_q1" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">没有加上&quot;请一步一步思考&quot;</span></label>
+</div>
+<div class="quiz-feedback" id="exam_q1_feedback"></div>
+</div>
+</div>
+<div class="content-card exam-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #7C3AED, #EC4899, #06B6D4)"></div>
+<div class="exam-q-header"><span class="exam-q-num">第2题</span><span class="exam-q-topic">【幻觉识别 + 事实锚定】</span></div>
+<p>你让AI帮你查一个数据："2024年中国新能源汽车年产量是多少？"AI回答："2024年中国新能源汽车年产量为1,247.8万辆，同比增长28.3%。" 这个回答：</p>
+<div class="quiz-question" id="exam_q2">
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="exam_q2" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">一定是准确的，因为数据精确到了小数点</span></label>
+<label class="quiz-option" data-quiz="exam_q2" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">可能是准确的，但数据的精确度（精确到小数点后一位）恰恰应该引起警惕——这种&quot;精确&quot;可能是AI为了&quot;看起来靠谱&quot;而生成的虚假自信，必须去官方数据源核实</span></label>
+<label class="quiz-option" data-quiz="exam_q2" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">一定是编造的，因为AI没有2024年的数据</span></label>
+<label class="quiz-option" data-quiz="exam_q2" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">只要问两次，两次答案一样就说明准确</span></label>
+</div>
+<div class="quiz-feedback" id="exam_q2_feedback"></div>
+</div>
+</div>
+<div class="content-card exam-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #7C3AED, #EC4899, #06B6D4)"></div>
+<div class="exam-q-header"><span class="exam-q-num">第3题</span><span class="exam-q-topic">【CoT + 任务拆解】</span></div>
+<p>你需要让AI帮你判断"是否应该在北京开一家猫咖"。以下哪种Prompt策略最合适？</p>
+<div class="quiz-question" id="exam_q3">
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="exam_q3" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">&quot;请直接告诉我应该还是不应该开。&quot;</span></label>
+<label class="quiz-option" data-quiz="exam_q3" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">&quot;请用CoT思维链，按照'市场需求分析→竞争环境评估→成本收益估算→风险识别→最终建议'的步骤逐步推理。&quot;</span></label>
+<label class="quiz-option" data-quiz="exam_q3" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">&quot;请用Few-shot给我三个开猫咖成功的案例和三个失败的案例。&quot;</span></label>
+<label class="quiz-option" data-quiz="exam_q3" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">&quot;请扮演一只猫，从猫的角度告诉我是否应该开猫咖。&quot;</span></label>
+</div>
+<div class="quiz-feedback" id="exam_q3_feedback"></div>
+</div>
+</div>
+<div class="content-card exam-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #7C3AED, #EC4899, #06B6D4)"></div>
+<div class="exam-q-header"><span class="exam-q-num">第4题</span><span class="exam-q-topic">【Few-shot + 格式控制】</span></div>
+<p>你想让AI把客户反馈邮件转化为标准化的工单。你给了3个Few-shot示例，但发现AI的输出和示例的格式仍然不一致。最可能的原因是什么？</p>
+<div class="quiz-question" id="exam_q4">
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="exam_q4" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">AI今天状态不好</span></label>
+<label class="quiz-option" data-quiz="exam_q4" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">3个示例本身的格式就不一致——AI找不到统一的模式来模仿</span></label>
+<label class="quiz-option" data-quiz="exam_q4" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">Few-shot只在英文环境下有效</span></label>
+<label class="quiz-option" data-quiz="exam_q4" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">应该给30个示例才够</span></label>
+</div>
+<div class="quiz-feedback" id="exam_q4_feedback"></div>
+</div>
+</div>
+<div class="content-card exam-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #7C3AED, #EC4899, #06B6D4)"></div>
+<div class="exam-q-header"><span class="exam-q-num">第5题</span><span class="exam-q-topic">【多角色协作 + 防幻觉】</span></div>
+<p>你设计了一个多角色Prompt来评估"公司是否应该上市"。四个角色分别是CFO、法务总监、投行顾问和CEO。AI的输出中，CFO角色给出了具体的估值数字和市盈率数据。你应该：</p>
+<div class="quiz-question" id="exam_q5">
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="exam_q5" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">直接采用这些数字，因为CFO角色是专业的</span></label>
+<label class="quiz-option" data-quiz="exam_q5" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">对这些具体数字持怀疑态度——多角色设定能提供多视角分析，但无法保证具体数据的真实性，所有数字都需要独立核实</span></label>
+<label class="quiz-option" data-quiz="exam_q5" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">让AI重新生成一次，取两次结果的平均值</span></label>
+<label class="quiz-option" data-quiz="exam_q5" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">把数字去掉，只保留定性分析</span></label>
+</div>
+<div class="quiz-feedback" id="exam_q5_feedback"></div>
+</div>
+</div>
+<div class="content-card exam-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #7C3AED, #EC4899, #06B6D4)"></div>
+<div class="exam-q-header"><span class="exam-q-num">第6题</span><span class="exam-q-topic">【约束的松紧平衡】</span></div>
+<p>以下四个Prompt中，哪一个的约束设计最合理？</p>
+<div class="quiz-question" id="exam_q6">
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="exam_q6" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">&quot;写一篇文章。&quot;（零约束）</span></label>
+<label class="quiz-option" data-quiz="exam_q6" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">&quot;写一篇关于人工智能的文章，面向大学生，1500-2000字，以故事开头引入，包含至少2个真实案例，不使用超过本科水平的技术术语。&quot;（多维度适中约束）</span></label>
+<label class="quiz-option" data-quiz="exam_q6" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">&quot;写一篇文章，每句话必须以数字开头，每段恰好7句话，必须用3个比喻和2个排比，第三段必须包含'然而'这个词。&quot;（机械过紧约束）</span></label>
+<label class="quiz-option" data-quiz="exam_q6" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">&quot;写一篇好文章，要好看，要有意思，要让人想看。&quot;（模糊无效约束）</span></label>
+</div>
+<div class="quiz-feedback" id="exam_q6_feedback"></div>
+</div>
+</div>
+<div class="content-card exam-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #7C3AED, #EC4899, #06B6D4)"></div>
+<div class="exam-q-header"><span class="exam-q-num">第7题</span><span class="exam-q-topic">【语境层次 + 实战应用】</span></div>
+<p>你让AI帮你给一位重要客户写生日祝福邮件。以下哪组语境信息最有效？</p>
+<div class="quiz-question" id="exam_q7">
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="exam_q7" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">&quot;今天是客户的生日，帮我写个祝福。&quot;</span></label>
+<label class="quiz-option" data-quiz="exam_q7" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">&quot;帮我写一封生日邮件。我很重视这个客户。&quot;</span></label>
+<label class="quiz-option" data-quiz="exam_q7" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">&quot;客户王总今天生日。他是我们公司最大的客户，年合同额500万。上个月因为交货延迟他很不满，我们刚修复了关系。他个人喜欢高尔夫和红酒。请写一封既表达祝福又微妙巩固关系的邮件，500字以内，语气真诚不谄媚。&quot;</span></label>
+<label class="quiz-option" data-quiz="exam_q7" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">&quot;王总，1975年出生，金牛座，身高178，清华MBA毕业，开奔驰S级。帮我写个生日邮件。&quot;</span></label>
+</div>
+<div class="quiz-feedback" id="exam_q7_feedback"></div>
+</div>
+</div>
+<div class="content-card exam-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #7C3AED, #EC4899, #06B6D4)"></div>
+<div class="exam-q-header"><span class="exam-q-num">第8题</span><span class="exam-q-topic">【Prompt链设计】</span></div>
+<p>你要设计一个Prompt链，将一篇3000字的学术论文转化为一条60秒的短视频脚本。以下哪个链式设计最合理？</p>
+<div class="quiz-question" id="exam_q8">
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="exam_q8" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">直接一步完成：&quot;把这篇论文改写成短视频脚本&quot;</span></label>
+<label class="quiz-option" data-quiz="exam_q8" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">步骤1：提取论文核心观点和结论 → 步骤2：将学术语言转化为大众语言 → 步骤3：按短视频结构（钩子→痛点→解决方案→号召行动）组织脚本 → 步骤4：质检（检查是否在60秒内、是否通俗易懂）</span></label>
+<label class="quiz-option" data-quiz="exam_q8" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">步骤1：翻译成英文 → 步骤2：翻译回中文 → 步骤3：缩短篇幅</span></label>
+<label class="quiz-option" data-quiz="exam_q8" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">步骤1：让AI读论文 → 步骤2：让AI写一篇公众号文章 → 步骤3：让AI把文章缩短</span></label>
+</div>
+<div class="quiz-feedback" id="exam_q8_feedback"></div>
+</div>
+</div>
+<div class="content-card exam-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #7C3AED, #EC4899, #06B6D4)"></div>
+<div class="exam-q-header"><span class="exam-q-num">第9题</span><span class="exam-q-topic">【综合判断——识别最优Prompt】</span></div>
+<p>以下四个Prompt都是为了让AI"推荐适合跑步新手的跑鞋"，哪一个最优？</p>
+<div class="quiz-question" id="exam_q9">
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="exam_q9" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">&quot;推荐跑鞋。&quot;</span></label>
+<label class="quiz-option" data-quiz="exam_q9" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">&quot;你是一位有10年经验的运动用品销售顾问。请为一位跑步新手推荐3双跑鞋。这位新手的情况：女性，25岁，体重55kg，打算每周跑3次、每次5公里，预算500元以内。推荐时请说明每双鞋的适合理由。注意：不要推荐已停产的型号。如果你不确定某款鞋是否还在售，请标注[需核实在售状态]。&quot;</span></label>
+<label class="quiz-option" data-quiz="exam_q9" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">&quot;推荐3双跑鞋，不要太贵的。&quot;</span></label>
+<label class="quiz-option" data-quiz="exam_q9" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">&quot;你是全世界最厉害的跑鞋专家，请推荐全世界最好的跑鞋，越详细越好，越多越好。&quot;</span></label>
+</div>
+<div class="quiz-feedback" id="exam_q9_feedback"></div>
+</div>
+</div>
+<div class="content-card exam-card">
+<div class="card-accent" style="background: linear-gradient(135deg, #7C3AED, #EC4899, #06B6D4)"></div>
+<div class="exam-q-header"><span class="exam-q-num">第10题</span><span class="exam-q-topic">【终极综合——诊断并修复一个Prompt】</span></div>
+<p>以下是小张写的一个"自认为很完美"的Prompt。请判断它最主要的问题是什么：</p>
+<pre><code>你是一位超级厉害的AI专家。请帮我分析一下最近的经济形势，然后帮我做一个投资计划，<p>顺便帮我写一封给客户的邮件，还有帮我列一下下周的会议议程，最后帮我总结一下上个月的工作。</p>
+<p>语气要好一点，格式随便。</p>
+<p></code></pre></p>
+<div class="quiz-question" id="exam_q10">
+<div class="quiz-options">
+<label class="quiz-option" data-quiz="exam_q10" data-value="A"><span class="quiz-letter">A</span><span class="quiz-text">Prompt太短了</span></label>
+<label class="quiz-option" data-quiz="exam_q10" data-value="B"><span class="quiz-letter">B</span><span class="quiz-text">一个Prompt中塞了5个完全不相关的任务，且缺少所有必要的语境信息。每个任务都应该独立处理并配备各自的背景、约束和格式要求——这违反了&quot;一个Prompt一个焦点&quot;的原则</span></label>
+<label class="quiz-option" data-quiz="exam_q10" data-value="C"><span class="quiz-letter">C</span><span class="quiz-text">应该加上&quot;请一步一步思考&quot;</span></label>
+<label class="quiz-option" data-quiz="exam_q10" data-value="D"><span class="quiz-letter">D</span><span class="quiz-text">&quot;格式随便&quot;其实是最好的约束，因为给了AI最大自由度</span></label>
+</div>
+<div class="quiz-feedback" id="exam_q10_feedback"></div>
+</div>
+</div>
+</section>
+
+<section class="appendix-section" id="appendix">
+<h2 class="section-title">附录：答案及解析<span class="title-en">Appendix: Answers & Analysis</span></h2>
+<p class="appendix-desc">点击每章展开查看答案和详细解析。</p>
+<details class="appendix-chapter">
+<summary>第1章：AI不是人</summary>
+<div class="appendix-content">
+<div class="appendix-answer"><span class="answer-label">第1题答案：<strong>C</strong></span><p class="answer-explanation">大语言模型的核心机制是根据输入文字预测接下来最可能出现的文字。选项A错误——AI不会"思考"；选项B错误——它不是搜索引擎，不是从数据库检索现成答案；选项D错误——它不是随机生成再筛选，而是直接按概率分布采样。理解这一点是所有Prompt Engineering的基石：<strong>你在和一个概率预测机器对话，不是和一个"聪明人"对话。</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第2题答案：<strong>B</strong></span><p class="answer-explanation">当你在Prompt中指定"10岁小孩能理解"，你改变了AI内部的概率分布。AI在预测下一个词时，会偏向训练数据中"面向儿童的简单解释"所使用的词汇和句式。选项A错误——AI没有"智商"可言；选项C错误——AI不会切换子模型；选项D错误——这绝非心理暗示，它会产生可测量的输出差异。<strong>本质上，你是在用语言指令调整AI的概率权重。</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第3题答案：<strong>D</strong></span><p class="answer-explanation">这是一个极为常见的认知陷阱。AI的回答自信且详细，并不意味着它正确。正如第1章所强调的，AI是概率预测机器——它可以以极高的"确信语气"输出完全错误的内容。选项A、B、C都是正确的认知。<strong>永远不要把"AI说得好听"等同于"AI说得对"。</strong><br><br>---</p></div>
+</div>
+</details>
+<details class="appendix-chapter">
+<summary>第2章：你说的每句话，AI听到的是什么？</summary>
+<div class="appendix-content">
+<div class="appendix-answer"><span class="answer-label">第1题答案：<strong>B</strong></span><p class="answer-explanation">分词是AI处理语言的第一步——把连续的文本切分成模型能处理的基本单位（Token）。选项A不完全正确——一个汉字通常是一个Token，但不是"分词就是把每个汉字分开"这么简单（有时多字词会被当成一个Token）；选项C错误——中文同样需要分词；选项D错误——Token数量和字数并非总是相等。<strong>理解分词帮助你更准确地估算Prompt的"成本"和AI的"肚量"。</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第2题答案：<strong>B</strong></span><p class="answer-explanation">上下文窗口是AI一次能处理的Token总量上限，包括你的输入和AI的输出。如果你的Prompt占了90%的窗口，AI只剩10%的空间来回答——这可能导致回答被截断或质量下降。选项A荒谬——超出限制的文字不会被翻译成英文，而是被截断或导致错误；选项C和D都是过度推断。<strong>管理Token就像管理预算——你需要合理分配。</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第3题答案：<strong>B</strong></span><p class="answer-explanation">把"写一篇文章"换成"写一篇学术论文"，在向量空间中，AI的"搜索范围"从泛泛的"文章"区域缩窄到了"学术论文"区域——那里的训练数据风格严谨、引用规范、结构固定。选项A——语言本身不决定质量；选项C——感叹号不影响AI的认真程度；选项D——长度不等于质量。<strong>每个词都是一个向量空间中的"路标"，选对词就是选对方向。</strong><br><br>---</p></div>
+</div>
+</details>
+<details class="appendix-chapter">
+<summary>第3章：第一次提问就上手</summary>
+<div class="appendix-content">
+<div class="appendix-answer"><span class="answer-label">第1题答案：<strong>B</strong></span><p class="answer-explanation">五个基本要素是角色（Role）、任务（Task）、背景（Context）、格式（Format）、约束（Constraint）。没有"心情（Mood）"——虽然你可以在约束中指定语气情绪，但"心情"不是一个独立的标准要素。</p></div>
+<div class="appendix-answer"><span class="answer-label">第2题答案：<strong>B</strong></span><p class="answer-explanation">三板斧之所以选择"任务+背景+约束"，是因为它们覆盖了最核心的三个问题：做什么？在什么情况下做？做到什么程度？角色和格式当然有用，但它们是"锦上添花"而非"雪中送炭"。选项A错误——角色和格式当然重要；选项C错误——AI完全理解角色和格式设定；选项D偷换了概念。<strong>核心逻辑：先保证"做对的事"，再优化"做得更好看"。</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第3题答案：<strong>B</strong></span><p class="answer-explanation">"全球最厉害最聪明最牛"是无意义的修饰——它不指向任何具体的专业领域或行为模式。同时Prompt缺少了实质性的任务描述、背景信息和约束条件。选项A——AI不会生气；选项C——Prompt长度不是问题，内容空洞才是；选项D——语气不是关键。<strong>角色设定需要具体、可操作，而非堆砌形容词。</strong><br><br>---</p></div>
+</div>
+</details>
+<details class="appendix-chapter">
+<summary>第4章：角色扮演入门</summary>
+<div class="appendix-content">
+<div class="appendix-answer"><span class="answer-label">第1题答案：<strong>B</strong></span><p class="answer-explanation">角色设定的核心原理是引导AI从训练数据的特定区域提取知识和风格。当你设定"儿科医生"，AI会偏向医学+通俗解释的交叉区域；设定"法律顾问"，则偏向法律+严谨论述的区域。选项A太肤浅；选项C完全错误——角色设定显著影响输出；选项D荒谬——AI不"以为自己是人"。<strong>角色设定本质上是一种精确的向量空间导航。</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第2题答案：<strong>B</strong></span><p class="answer-explanation">边界意识限制了角色的"行动范围"，防止AI在角色设定之外胡乱发挥。比如你让它扮演医生但不设边界，它可能给出超出医学范围的投资建议。选项A有一定道理但不是核心原因；选项C完全错误；选项D是附带效果而非主要目的。<strong>边界意识是角色的"围栏"，确保AI在正确的赛道上奔跑。</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第3题答案：<strong>B</strong></span><p class="answer-explanation">"全世界最厉害、最聪明、无所不知、无所不能"——这串形容词在向量空间中指向的是一个模糊的、无所不在的区域，等于什么都没指向。相比之下，A、C、D的角色设定都有明确的专业领域、目标受众和行为模式。<strong>"万能角色"就是"没有角色"。</strong><br><br>---</p></div>
+</div>
+</details>
+<details class="appendix-chapter">
+<summary>第5章：BROKE框架</summary>
+<div class="appendix-content">
+<div class="appendix-answer"><span class="answer-label">第1题答案：<strong>B</strong></span><p class="answer-explanation">BROKE中的K代表Key Result（关键结果），即明确指定AI需要输出的具体交付物。不是Knowledge（知识）、不是Keyword（关键词）、也不是Keep（保持）。<strong>K确保了你不只是"布置任务"，还定义了"验收标准"。</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第2题答案：<strong>B</strong></span><p class="answer-explanation">E（Evolve/进化）在逻辑上必须发生在其他步骤之后，因为它是基于AI的初始输出进行迭代优化——你不可能在没有第一版输出的情况下"进化"。选项A错误——E是框架中极为重要的一环；选项C——字母顺序是巧合；选项D——AI不需要"进化"指令才认真回答。<strong>E代表的是Prompt Engineering中的"迭代思维"——没有一次就完美的输出。</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第3题答案：<strong>B</strong></span><p class="answer-explanation">框架是"思考清单"而非"死板公式"。在实际使用中，简单任务可能只需要O和K，复杂任务才需要完整的BROKE。过度教条地遵守框架反而会降低效率。选项A和D都过于极端；选项C否定了框架的价值。<strong>真正的专家使用框架是灵活组合，不是僵硬套用。</strong><br><br>---</p></div>
+</div>
+</details>
+<details class="appendix-chapter">
+<summary>第6章：语境是王</summary>
+<div class="appendix-content">
+<div class="appendix-answer"><span class="answer-label">第1题答案：<strong>C</strong></span><p class="answer-explanation">三层语境由浅入深的正确顺序是：任务语境（做什么）→ 环境语境（在什么情境下）→ 隐含语境（背后的深层原因和不可公开的信息）。每一层都在前一层基础上增加信息密度。</p></div>
+<div class="appendix-answer"><span class="answer-label">第2题答案：<strong>B</strong></span><p class="answer-explanation">隐含语境提供了"棋盘上看不见的信息"——决策的真实原因、不能公开说的限制、长远的战略意图。这些信息让AI不只是"回答问题"，而是"做出有策略性的回答"。选项A是对Token的误解；选项C完全颠倒——AI能理解所有三层；选项D毫无根据。<strong>隐含语境是区分"平庸回答"和"高手级回答"的关键。</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第3题答案：<strong>B</strong></span><p class="answer-explanation">年龄、星座、宠物、饮食偏好、旅游经历——这些和"评测无线耳机"毫无关系，属于"噪音信息"。它们不仅无用，还会消耗宝贵的Token空间，甚至可能把AI带偏（比如AI可能莫名其妙地在耳机评测中提到猫或火锅）。<strong>语境的黄金法则：问自己"删掉这条信息，会不会改变AI应该给出的回答？"如果不会，就删掉。</strong><br><br>---</p></div>
+</div>
+</details>
+<details class="appendix-chapter">
+<summary>第7章：约束的艺术</summary>
+<div class="appendix-content">
+<div class="appendix-answer"><span class="answer-label">第1题答案：<strong>B</strong></span><p class="answer-explanation">"不要使用任何专业术语"是典型的内容排除约束——它定义了"不能有什么"。选项A是格式约束；选项C是长度约束；选项D是语气/风格约束。<strong>精确分类约束类型，有助于你在设计Prompt时做到"全维度覆盖"。</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第2题答案：<strong>B</strong></span><p class="answer-explanation">每增加一个约束，AI的"可选输出路径"就减少一部分——就像河道越窄，水流方向越确定。当可选路径被收缩到一个较小的范围时，剩下的路径更大概率通向你想要的结果。选项A、C、D都是对AI工作原理的误解。<strong>约束的本质是"缩小搜索空间"。</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第3题答案：<strong>B</strong></span><p class="answer-explanation">这组约束全部是机械性的格式限制（每句开头、成语数量、英文单词、段落字数），没有一条约束是在"引导内容方向"。AI会把全部精力花在满足这些格式要求上，根本无暇顾及"内容是否有价值"。这就是典型的"过紧"约束。<strong>约束应该限制"方向"，不该限制"呼吸"。</strong><br><br>---</p></div>
+</div>
+</details>
+<details class="appendix-chapter">
+<summary>第8章：Few-shot魔法</summary>
+<div class="appendix-content">
+<div class="appendix-answer"><span class="answer-label">第1题答案：<strong>B</strong></span><p class="answer-explanation">Zero-shot、One-shot、Few-shot的核心区别就是示例数量——0个、1个、多个。它们使用的是同一个模型、同一种能力，只是"参考案例"数量不同。选项A和D完全错误；选项C恰好说反了——一般Few-shot准确率更高。<strong>本质上，Few-shot是在用实例告诉AI"我要的输出长什么样"。</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第2题答案：<strong>B</strong></span><p class="answer-explanation">两个原因：（1）过多示例消耗大量Token，占用上下文窗口空间；（2）边际递减效应——AI从第3个到第5个示例中学到的"新模式"远少于从第1个到第3个学到的。选项A错误——AI能处理远超5个示例；选项C和D都是编造的。<strong>2-5个示例是Token成本和模式学习效果之间的最佳平衡点。</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第3题答案：<strong>B</strong></span><p class="answer-explanation">Few-shot的核心价值在于让AI从多个示例中归纳出"共同模式"。如果三个示例的格式都不一样（段落、表格、列表），AI找不到"共同点"，它不知道应该模仿哪种格式。<strong>Few-shot示例之间最重要的特征是"结构一致性"——格式、字段、风格都要对齐。</strong><br><br>---</p></div>
+</div>
+</details>
+<details class="appendix-chapter">
+<summary>第9章：思维链（Chain-of-Thought）</summary>
+<div class="appendix-content">
+<div class="appendix-answer"><span class="answer-label">第1题答案：<strong>B</strong></span><p class="answer-explanation">CoT的核心思想就是要求AI在给出最终答案前展示逐步推理过程，使每步推理可检查、可追溯。选项A——CoT不涉及模型选择；选项C——不是重启；选项D——CoT通常会让回答更长，而非更短。<strong>CoT把"拍脑袋"变成了"有据可查"。</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第2题答案：<strong>B</strong></span><p class="answer-explanation">分步推理将一个大的预测任务分解为多个小预测。每个小预测的出错概率远低于直接做大跳跃的出错概率，累计准确率因此大幅提升。选项A——没有什么"高精度模式"；选项C——准确率和算力没有简单的线性关系；选项D——AI不存在"思考时间"的概念。<strong>CoT的数学本质是：降低每步的预测难度，降低累计错误率。</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第3题答案：<strong>B</strong></span><p class="answer-explanation">翻译主要是模式匹配任务（中文→日文的映射关系），不需要链式因果推理。而A（财务分析）、C（法律判断）、D（多条件筛选）都需要"因为A，所以B，所以C"的推理链。<strong>CoT的适用场景是"需要推理链条"的任务，不是所有任务。</strong><br><br>---</p></div>
+</div>
+</details>
+<details class="appendix-chapter">
+<summary>第10章：多步任务拆解</summary>
+<div class="appendix-content">
+<div class="appendix-answer"><span class="answer-label">第1题答案：<strong>B</strong></span><p class="answer-explanation">5000字的多板块报告需要分步执行——先搭框架、再逐个填充、最后整合。如果一步到位，后半部分质量几乎必然下降（AI的注意力会分散）。其他选项都是简单任务，一个Prompt足够。<strong>判断标准：任务是否超过AI在单次输出中能保持质量的长度？</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第2题答案：<strong>B</strong></span><p class="answer-explanation">核心价值有两层：（1）降低每步复杂度，让AI集中"注意力"；（2）允许你在中间步骤进行质量把控。选项A是表面效果；选项C——对话轮数本身不增加记忆；选项D——Token多不等于答案好。<strong>分步执行=降低复杂度+增加可控性。</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第3题答案：<strong>B</strong></span><p class="answer-explanation">写一封短邮件本身是一个简单任务，不需要拆成5步。过度拆解增加了沟通成本（5轮对话），每一步都太简单没有拆解价值。这就像用解牛刀去削苹果。<strong>拆解粒度要适中——每步应该是一个"有意义的子任务"，而不是一个"动作"。</strong><br><br>---</p></div>
+</div>
+</details>
+<details class="appendix-chapter">
+<summary>第11章：自我纠错与迭代</summary>
+<div class="appendix-content">
+<div class="appendix-answer"><span class="answer-label">第1题答案：<strong>C</strong></span><p class="answer-explanation">本章介绍了三种技术：内置审查指令、对立面质疑法、多角度验证法。"增加Prompt长度法"不是一种自我纠错技术——长度和质量没有因果关系。</p></div>
+<div class="appendix-answer"><span class="answer-label">第2题答案：<strong>B</strong></span><p class="answer-explanation">如果你只说"修改第二段"而不说"为什么"，AI可能改变了你不想改的部分，或者朝错误的方向修改。原因信息帮AI理解你的意图和标准，从而精确地修正。选项A——删掉会显著降低修改准确率；选项C和D都是对AI学习机制的误解。<strong>"为什么修改"是迭代中最有价值的信息，它定义了修改的方向。</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第3题答案：<strong>B</strong></span><p class="answer-explanation">"不好，重新写"——AI从这个反馈中获得的信息量为零。它不知道哪里不好、怎么不好、你想要什么方向的修改。所以每次重写都是全新的随机尝试，可能越改越差。选项A和D都是编造的；选项C虽然换模型可能有用，但核心问题是反馈质量。<strong>好的迭代反馈=具体+有方向+有原因。</strong><br><br>---</p></div>
+</div>
+</details>
+<details class="appendix-chapter">
+<summary>第12章：多角色协作</summary>
+<div class="appendix-content">
+<div class="appendix-answer"><span class="answer-label">第1题答案：<strong>B</strong></span><p class="answer-explanation">多角色Prompt通过让AI模拟不同立场/专业的角色，从训练数据的不同区域提取信息和视角。这本质上是"用一个模型模拟多个信息源"。选项A——文字量不是目的；选项C——只用一个模型；选项D——计算难度不等于准确度。<strong>多角色的价值=多视角×信息互补。</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第2题答案：<strong>B</strong></span><p class="answer-explanation">"先攻击再防守"的逻辑：如果你直接让AI生成一个"完美方案"，它可能会忽略很多隐患（因为它的默认倾向是"看起来好就行"）。但如果你先让它扮演"敌人"来找漏洞，这些漏洞就暴露出来了，修订版可以对症下药。选项A、C、D都偏离了核心。<strong>红队模式的价值=主动暴露弱点+针对性强化。</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第3题答案：<strong>B</strong></span><p class="answer-explanation">两个问题：（1）讨论"午餐订什么外卖"完全不需要多角色——这是一个简单偏好问题；（2）20个角色超过了AI维持角色一致性和独特性的能力上限——超过4-5个角色后，角色之间会开始"雷同"、丧失独特视角。选项A会让问题更严重；选项C和D都是错误理解。<strong>多角色是重型武器，用它打蚊子既浪费又低效。</strong><br><br>---</p></div>
+</div>
+</details>
+<details class="appendix-chapter">
+<summary>第13章：AI幻觉</summary>
+<div class="appendix-content">
+<div class="appendix-answer"><span class="answer-label">第1题答案：<strong>B</strong></span><p class="answer-explanation">幻觉的根本原因是AI的工作机制——概率预测。当训练数据不足以支撑准确预测时，AI会生成"统计上合理但事实上错误"的内容。选项A——训练数据有错误会加剧问题，但不是根本原因；选项C——AI没有"故意"这个概念；选项D——和硬件无关。<strong>幻觉是概率预测的副产品，不是bug，是feature变成了liability。</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第2题答案：<strong>B</strong></span><p class="answer-explanation">虚假自信的危险在于它制造了一种"确定性的幻觉"——精确的数字、自信的语气让用户放松了核实的警惕。如果AI老实说"我不确定，大概在XXX左右"，用户至少知道要去核实。但当AI说"准确数字是1,247.8万辆"时，大多数人会直接信以为真。<strong>虚假自信=隐藏了不确定性=放大了错误传播的风险。</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第3题答案：<strong>B</strong></span><p class="answer-explanation">这是本章最核心的陷阱——"看起来靠谱"恰恰是AI幻觉最危险的地方。AI最擅长的就是让编造的内容看起来详细、有条理、有具体数据。你不能用"输出质量的外观"来判断"信息的准确性"。选项A犯了"精确=正确"的谬误；选项C——两次答案一样只能说明AI在该模式上收敛了，不能证明正确性；选项D——AI的历史知识同样可能出错。<strong>AI输出的"形式完美"和"内容准确"是两个完全独立的维度。</strong><br><br>---</p></div>
+</div>
+</details>
+<details class="appendix-chapter">
+<summary>第14章：事实校验与锚定</summary>
+<div class="appendix-content">
+<div class="appendix-answer"><span class="answer-label">第1题答案：<strong>B</strong></span><p class="answer-explanation">输入锚定的核心是"限制AI的信息来源"——你给什么材料，它就只能用什么材料，不允许自由发挥。这从根源上大幅降低了幻觉概率，因为AI不需要去"回忆"训练数据中可能不存在的信息。选项A混淆了"锚定"的含义；选项C——AI不能实时联网（除非使用搜索增强功能）；选项D——字数限制不是输入锚定。<strong>输入锚定=把开卷考试变成"闭卷但给资料"的考试。</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第2题答案：<strong>B</strong></span><p class="answer-explanation">确信度标注不会阻止AI产生幻觉——幻觉是概率预测的固有特征。但它能让用户知道"哪些部分AI自己也不太确定"，从而有针对性地去核实。这把"隐性风险"（你不知道哪里可能有错）变成了"显性风险"（错误的位置被标记出来了）。选项A——准确率不会直接提高；选项C和D都是人为联想。<strong>确信度标注=风险可视化工具。</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第3题答案：<strong>B</strong></span><p class="answer-explanation">AI不具备"元认知"能力——它不知道自己什么时候在幻觉、什么时候在准确回忆。要求它"不要有错误"就像要求一个色盲的人"不要看错颜色"——他并不知道自己看到的颜色是错的。有效的防幻觉策略是改变Prompt结构（如输入锚定、确信度标注），而非简单地下达"不要出错"的指令。<strong>你不能靠命令来消除一个结构性问题。</strong><br><br>---</p></div>
+</div>
+</details>
+<details class="appendix-chapter">
+<summary>第15章：自动化Prompt链</summary>
+<div class="appendix-content">
+<div class="appendix-answer"><span class="answer-label">第1题答案：<strong>B</strong></span><p class="answer-explanation">Prompt链的工作原理就是"流水线"——把复杂任务拆成多步，每步用专门的Prompt处理，步步相连。选项A是"一步到位"法，不是链；选项C和D都是对"链"的误解。<strong>Prompt链=任务分步+输出串联+逐步加工。</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第2题答案：<strong>B</strong></span><p class="answer-explanation">流水线中的每一步都可能引入误差——翻译可能丢失nuance、简化可能过度、结构转换可能不当。质检环节在"出厂"前捕获这些问题。选项A和D无意义；选项C没有这个要求。<strong>质检环节的存在理由=流水线中的误差会累积，必须在终点前拦截。</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第3题答案：<strong>B</strong></span><p class="answer-explanation">Prompt链的一个核心设计原则是"输出格式要对接输入格式"——就像接力赛中交接棒必须顺畅。如果第3步输出的是自由文本，而第4步期望的是JSON，这个"接口"就断了。选项A——AI不会总是自动适配，尤其是格式差异很大时；选项C——JSON可以用；选项D——合并反而可能更糟。<strong>设计Prompt链时，必须确保每一步的"输出格式"和下一步的"输入格式"兼容。</strong><br><br>---</p></div>
+</div>
+</details>
+<details class="appendix-chapter">
+<summary>第16章：融会贯通</summary>
+<div class="appendix-content">
+</div>
+</details>
+<details class="appendix-chapter appendix-exam">
+<summary>期末综合大考</summary>
+<div class="appendix-content">
+<div class="appendix-answer"><span class="answer-label">第1题答案：<strong>B</strong></span><p class="answer-explanation">这道题综合考察角色设定和语境构建。这个Prompt有两大致命缺陷：（1）角色设定空洞无物——"全球最顶尖""无所不知"在向量空间中没有具体指向，等于没设角色；（2）完全缺少语境——公司做什么行业？什么阶段？有什么资源？面临什么问题？没有这些信息，AI的建议只能是放之四海而皆准的废话。选项A虽然正确但不是"最致命的"；选项C和D都是次要因素。<strong>角色设定需要具体化，语境信息需要充分化——两者缺一，Prompt就"先天不足"。</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第2题答案：<strong>B</strong></span><p class="answer-explanation">这道题考察幻觉识别中的"虚假自信"。数据精确到小数点后一位（1,247.8万辆，28.3%）往往是AI幻觉的特征——真实的统计数据可能精确到这个程度，但AI也非常擅长"生成看起来精确的假数据"。正确态度：不是说它一定错，而是"这种精确度应该触发你的核实本能"。选项A犯了"精确=准确"的谬误；选项C过于绝对——AI可能有2024年的数据；选项D——重复回答一致不证明正确。<strong>对所有具体数据保持"有罪推定"，直到官方源证实。</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第3题答案：<strong>B</strong></span><p class="answer-explanation">这是一个需要多维度推理的商业决策题——它完美匹配CoT的适用场景。B选项设计了一条清晰的推理链：市场需求→竞争→成本收益→风险→结论，确保AI的分析全面且逻辑可追溯。A太粗暴；C的Few-shot不适合此类需要原创分析的任务；D纯属娱乐。<strong>复杂决策=复杂推理=CoT的最佳战场。</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第4题答案：<strong>B</strong></span><p class="answer-explanation">Few-shot的核心原则是"示例之间要有一致的模式"。如果你给的3个示例格式各不相同，AI找不到"共同的输出模板"来模仿，自然无法输出一致的格式。选项A——AI没有"状态"概念；选项C——Few-shot对所有语言都有效；选项D——3个格式一致的示例远胜30个格式不一致的。<strong>Few-shot的质量>数量，一致性是最关键的质量指标。</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第5题答案：<strong>B</strong></span><p class="answer-explanation">多角色协作能提供多视角分析，但不能保证具体数据的准确性。即使AI在扮演"CFO"角色，它给出的估值数字仍然是基于概率预测的——它不是在查阅真实的财务系统。所有定量数据必须独立核实。选项A犯了"角色=能力"的谬误；选项C没有统计学根据；选项D丢掉了有用的定量分析框架。<strong>多角色提供"视角"，不提供"事实"——定性有用，定量需验。</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第6题答案：<strong>B</strong></span><p class="answer-explanation">B选项展示了理想的约束设计：多维度但不机械、具体但不死板。它限制了方向（受众、主题、风格、长度、案例要求），但没有限制创造力。A零约束；C过紧且机械（和第7章的小王犯了一样的错）；D的约束全是无法操作的模糊词。<strong>好约束=给方向，不给脚镣。</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第7题答案：<strong>C</strong></span><p class="answer-explanation">C选项提供了三层完整语境：（1）任务语境——生日邮件；（2）环境语境——客户身份、合作金额、近期关系波动；（3）隐含语境——修复关系的微妙目的、个人爱好可用于个性化。还有明确的约束（字数、语气）。A和B都缺少环境和隐含语境；D给了大量噪音信息（星座、身高、车型——和写邮件无关）。<strong>C的语境让AI能写出一封"有策略的"邮件，而非"有模板的"邮件。</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第8题答案：<strong>B</strong></span><p class="answer-explanation">B选项的链式设计遵循了"每步只做一件事"的原则：提取核心→转换语言→组织结构→质检。每一步的任务清晰、可独立执行、输出可对接下一步。A一步到位很难同时处理好"学术理解""语言转换""结构组织"；C毫无意义；D的中间步骤"写公众号文章"和最终目标"短视频脚本"偏差很大。<strong>好的链设计=每步任务清晰+步骤间逻辑递进+输出对接无缝。</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第9题答案：<strong>B</strong></span><p class="answer-explanation">B选项集成了几乎所有关键技术：角色设定（有经验的销售顾问）、精确的受众语境（性别、年龄、体重、运动习惯、预算）、明确的任务和格式约束（3双、说明理由）、内容排除约束（不推荐停产型号）、以及防幻觉措施（标注在售状态不确定性）。A太简、C太模糊、D是"万能角色"陷阱。<strong>顶尖Prompt不是"用了最多技术"的，而是"每个技术都用在了点上"的。</strong></p></div>
+<div class="appendix-answer"><span class="answer-label">第10题答案：<strong>B</strong></span><p class="answer-explanation">这个Prompt犯了"大杂烩"的致命错误——5个完全不相关的任务塞在一个Prompt里：经济分析、投资计划、客户邮件、会议议程、月度总结。每一个任务都需要不同的角色设定、语境信息、格式要求和专业知识。混在一起的后果：每个任务都只能获得浅层处理，质量全面下降。加上"格式随便"等于放弃了所有输出控制。选项A——长度不是问题；选项C——CoT解决不了多任务混杂的问题；选项D——"格式随便"是最坏的约束。<strong>一个Prompt一个焦点。多任务必须拆分为多个独立的、各自配备完整语境的Prompt。</strong><br><br>---<br><br>> 📖 教材完。<br>><br>> 最后的最后，记住一句话：<strong>AI是你的工具，而你是工具的主人。</strong> 好的工匠不会抱怨锤子不够聪明——他会学会怎么正确地握锤子。<br>><br>> 去改变世界吧，Prompt专家。<br><br>---<br><br>*《本可靠脸的我，非要选择AI替我动脑指南（人类最后的倔强：一个月成为全球顶尖AI提示专家）》*<br>*作者：陈金理*<br>*全书完*</p></div>
+</div>
+</details>
+</section>
+
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <p class="footer-book">《本可靠脸的我，非要选择AI替我动脑指南》</p>
+    <p class="footer-author">作者：陈金理</p>
+    <p class="footer-attribution">
+      <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
+    </p>
+  </div>
+</footer>
+
+</main>
+<script>
+const ANSWERS = {"ch1_q1": {"answer": "C", "explanation": "大语言模型的核心机制是根据输入文字预测接下来最可能出现的文字。选项A错误——AI不会\"思考\"；选项B错误——它不是搜索引擎，不是从数据库检索现成答案；选项D错误——它不是随机生成再筛选，而是直接按概率分布采样。理解这一点是所有Prompt Engineering的基石：**你在和一个概率预测机器对话，不是和一个\"聪明人\"对话。**"}, "ch1_q2": {"answer": "B", "explanation": "当你在Prompt中指定\"10岁小孩能理解\"，你改变了AI内部的概率分布。AI在预测下一个词时，会偏向训练数据中\"面向儿童的简单解释\"所使用的词汇和句式。选项A错误——AI没有\"智商\"可言；选项C错误——AI不会切换子模型；选项D错误——这绝非心理暗示，它会产生可测量的输出差异。**本质上，你是在用语言指令调整AI的概率权重。**"}, "ch1_q3": {"answer": "D", "explanation": "这是一个极为常见的认知陷阱。AI的回答自信且详细，并不意味着它正确。正如第1章所强调的，AI是概率预测机器——它可以以极高的\"确信语气\"输出完全错误的内容。选项A、B、C都是正确的认知。**永远不要把\"AI说得好听\"等同于\"AI说得对\"。**\n\n---"}, "ch2_q1": {"answer": "B", "explanation": "分词是AI处理语言的第一步——把连续的文本切分成模型能处理的基本单位（Token）。选项A不完全正确——一个汉字通常是一个Token，但不是\"分词就是把每个汉字分开\"这么简单（有时多字词会被当成一个Token）；选项C错误——中文同样需要分词；选项D错误——Token数量和字数并非总是相等。**理解分词帮助你更准确地估算Prompt的\"成本\"和AI的\"肚量\"。**"}, "ch2_q2": {"answer": "B", "explanation": "上下文窗口是AI一次能处理的Token总量上限，包括你的输入和AI的输出。如果你的Prompt占了90%的窗口，AI只剩10%的空间来回答——这可能导致回答被截断或质量下降。选项A荒谬——超出限制的文字不会被翻译成英文，而是被截断或导致错误；选项C和D都是过度推断。**管理Token就像管理预算——你需要合理分配。**"}, "ch2_q3": {"answer": "B", "explanation": "把\"写一篇文章\"换成\"写一篇学术论文\"，在向量空间中，AI的\"搜索范围\"从泛泛的\"文章\"区域缩窄到了\"学术论文\"区域——那里的训练数据风格严谨、引用规范、结构固定。选项A——语言本身不决定质量；选项C——感叹号不影响AI的认真程度；选项D——长度不等于质量。**每个词都是一个向量空间中的\"路标\"，选对词就是选对方向。**\n\n---"}, "ch3_q1": {"answer": "B", "explanation": "五个基本要素是角色（Role）、任务（Task）、背景（Context）、格式（Format）、约束（Constraint）。没有\"心情（Mood）\"——虽然你可以在约束中指定语气情绪，但\"心情\"不是一个独立的标准要素。"}, "ch3_q2": {"answer": "B", "explanation": "三板斧之所以选择\"任务+背景+约束\"，是因为它们覆盖了最核心的三个问题：做什么？在什么情况下做？做到什么程度？角色和格式当然有用，但它们是\"锦上添花\"而非\"雪中送炭\"。选项A错误——角色和格式当然重要；选项C错误——AI完全理解角色和格式设定；选项D偷换了概念。**核心逻辑：先保证\"做对的事\"，再优化\"做得更好看\"。**"}, "ch3_q3": {"answer": "B", "explanation": "\"全球最厉害最聪明最牛\"是无意义的修饰——它不指向任何具体的专业领域或行为模式。同时Prompt缺少了实质性的任务描述、背景信息和约束条件。选项A——AI不会生气；选项C——Prompt长度不是问题，内容空洞才是；选项D——语气不是关键。**角色设定需要具体、可操作，而非堆砌形容词。**\n\n---"}, "ch4_q1": {"answer": "B", "explanation": "角色设定的核心原理是引导AI从训练数据的特定区域提取知识和风格。当你设定\"儿科医生\"，AI会偏向医学+通俗解释的交叉区域；设定\"法律顾问\"，则偏向法律+严谨论述的区域。选项A太肤浅；选项C完全错误——角色设定显著影响输出；选项D荒谬——AI不\"以为自己是人\"。**角色设定本质上是一种精确的向量空间导航。**"}, "ch4_q2": {"answer": "B", "explanation": "边界意识限制了角色的\"行动范围\"，防止AI在角色设定之外胡乱发挥。比如你让它扮演医生但不设边界，它可能给出超出医学范围的投资建议。选项A有一定道理但不是核心原因；选项C完全错误；选项D是附带效果而非主要目的。**边界意识是角色的\"围栏\"，确保AI在正确的赛道上奔跑。**"}, "ch4_q3": {"answer": "B", "explanation": "\"全世界最厉害、最聪明、无所不知、无所不能\"——这串形容词在向量空间中指向的是一个模糊的、无所不在的区域，等于什么都没指向。相比之下，A、C、D的角色设定都有明确的专业领域、目标受众和行为模式。**\"万能角色\"就是\"没有角色\"。**\n\n---"}, "ch5_q1": {"answer": "B", "explanation": "BROKE中的K代表Key Result（关键结果），即明确指定AI需要输出的具体交付物。不是Knowledge（知识）、不是Keyword（关键词）、也不是Keep（保持）。**K确保了你不只是\"布置任务\"，还定义了\"验收标准\"。**"}, "ch5_q2": {"answer": "B", "explanation": "E（Evolve/进化）在逻辑上必须发生在其他步骤之后，因为它是基于AI的初始输出进行迭代优化——你不可能在没有第一版输出的情况下\"进化\"。选项A错误——E是框架中极为重要的一环；选项C——字母顺序是巧合；选项D——AI不需要\"进化\"指令才认真回答。**E代表的是Prompt Engineering中的\"迭代思维\"——没有一次就完美的输出。**"}, "ch5_q3": {"answer": "B", "explanation": "框架是\"思考清单\"而非\"死板公式\"。在实际使用中，简单任务可能只需要O和K，复杂任务才需要完整的BROKE。过度教条地遵守框架反而会降低效率。选项A和D都过于极端；选项C否定了框架的价值。**真正的专家使用框架是灵活组合，不是僵硬套用。**\n\n---"}, "ch6_q1": {"answer": "C", "explanation": "三层语境由浅入深的正确顺序是：任务语境（做什么）→ 环境语境（在什么情境下）→ 隐含语境（背后的深层原因和不可公开的信息）。每一层都在前一层基础上增加信息密度。"}, "ch6_q2": {"answer": "B", "explanation": "隐含语境提供了\"棋盘上看不见的信息\"——决策的真实原因、不能公开说的限制、长远的战略意图。这些信息让AI不只是\"回答问题\"，而是\"做出有策略性的回答\"。选项A是对Token的误解；选项C完全颠倒——AI能理解所有三层；选项D毫无根据。**隐含语境是区分\"平庸回答\"和\"高手级回答\"的关键。**"}, "ch6_q3": {"answer": "B", "explanation": "年龄、星座、宠物、饮食偏好、旅游经历——这些和\"评测无线耳机\"毫无关系，属于\"噪音信息\"。它们不仅无用，还会消耗宝贵的Token空间，甚至可能把AI带偏（比如AI可能莫名其妙地在耳机评测中提到猫或火锅）。**语境的黄金法则：问自己\"删掉这条信息，会不会改变AI应该给出的回答？\"如果不会，就删掉。**\n\n---"}, "ch7_q1": {"answer": "B", "explanation": "\"不要使用任何专业术语\"是典型的内容排除约束——它定义了\"不能有什么\"。选项A是格式约束；选项C是长度约束；选项D是语气/风格约束。**精确分类约束类型，有助于你在设计Prompt时做到\"全维度覆盖\"。**"}, "ch7_q2": {"answer": "B", "explanation": "每增加一个约束，AI的\"可选输出路径\"就减少一部分——就像河道越窄，水流方向越确定。当可选路径被收缩到一个较小的范围时，剩下的路径更大概率通向你想要的结果。选项A、C、D都是对AI工作原理的误解。**约束的本质是\"缩小搜索空间\"。**"}, "ch7_q3": {"answer": "B", "explanation": "这组约束全部是机械性的格式限制（每句开头、成语数量、英文单词、段落字数），没有一条约束是在\"引导内容方向\"。AI会把全部精力花在满足这些格式要求上，根本无暇顾及\"内容是否有价值\"。这就是典型的\"过紧\"约束。**约束应该限制\"方向\"，不该限制\"呼吸\"。**\n\n---"}, "ch8_q1": {"answer": "B", "explanation": "Zero-shot、One-shot、Few-shot的核心区别就是示例数量——0个、1个、多个。它们使用的是同一个模型、同一种能力，只是\"参考案例\"数量不同。选项A和D完全错误；选项C恰好说反了——一般Few-shot准确率更高。**本质上，Few-shot是在用实例告诉AI\"我要的输出长什么样\"。**"}, "ch8_q2": {"answer": "B", "explanation": "两个原因：（1）过多示例消耗大量Token，占用上下文窗口空间；（2）边际递减效应——AI从第3个到第5个示例中学到的\"新模式\"远少于从第1个到第3个学到的。选项A错误——AI能处理远超5个示例；选项C和D都是编造的。**2-5个示例是Token成本和模式学习效果之间的最佳平衡点。**"}, "ch8_q3": {"answer": "B", "explanation": "Few-shot的核心价值在于让AI从多个示例中归纳出\"共同模式\"。如果三个示例的格式都不一样（段落、表格、列表），AI找不到\"共同点\"，它不知道应该模仿哪种格式。**Few-shot示例之间最重要的特征是\"结构一致性\"——格式、字段、风格都要对齐。**\n\n---"}, "ch9_q1": {"answer": "B", "explanation": "CoT的核心思想就是要求AI在给出最终答案前展示逐步推理过程，使每步推理可检查、可追溯。选项A——CoT不涉及模型选择；选项C——不是重启；选项D——CoT通常会让回答更长，而非更短。**CoT把\"拍脑袋\"变成了\"有据可查\"。**"}, "ch9_q2": {"answer": "B", "explanation": "分步推理将一个大的预测任务分解为多个小预测。每个小预测的出错概率远低于直接做大跳跃的出错概率，累计准确率因此大幅提升。选项A——没有什么\"高精度模式\"；选项C——准确率和算力没有简单的线性关系；选项D——AI不存在\"思考时间\"的概念。**CoT的数学本质是：降低每步的预测难度，降低累计错误率。**"}, "ch9_q3": {"answer": "B", "explanation": "翻译主要是模式匹配任务（中文→日文的映射关系），不需要链式因果推理。而A（财务分析）、C（法律判断）、D（多条件筛选）都需要\"因为A，所以B，所以C\"的推理链。**CoT的适用场景是\"需要推理链条\"的任务，不是所有任务。**\n\n---"}, "ch10_q1": {"answer": "B", "explanation": "5000字的多板块报告需要分步执行——先搭框架、再逐个填充、最后整合。如果一步到位，后半部分质量几乎必然下降（AI的注意力会分散）。其他选项都是简单任务，一个Prompt足够。**判断标准：任务是否超过AI在单次输出中能保持质量的长度？**"}, "ch10_q2": {"answer": "B", "explanation": "核心价值有两层：（1）降低每步复杂度，让AI集中\"注意力\"；（2）允许你在中间步骤进行质量把控。选项A是表面效果；选项C——对话轮数本身不增加记忆；选项D——Token多不等于答案好。**分步执行=降低复杂度+增加可控性。**"}, "ch10_q3": {"answer": "B", "explanation": "写一封短邮件本身是一个简单任务，不需要拆成5步。过度拆解增加了沟通成本（5轮对话），每一步都太简单没有拆解价值。这就像用解牛刀去削苹果。**拆解粒度要适中——每步应该是一个\"有意义的子任务\"，而不是一个\"动作\"。**\n\n---"}, "ch11_q1": {"answer": "C", "explanation": "本章介绍了三种技术：内置审查指令、对立面质疑法、多角度验证法。\"增加Prompt长度法\"不是一种自我纠错技术——长度和质量没有因果关系。"}, "ch11_q2": {"answer": "B", "explanation": "如果你只说\"修改第二段\"而不说\"为什么\"，AI可能改变了你不想改的部分，或者朝错误的方向修改。原因信息帮AI理解你的意图和标准，从而精确地修正。选项A——删掉会显著降低修改准确率；选项C和D都是对AI学习机制的误解。**\"为什么修改\"是迭代中最有价值的信息，它定义了修改的方向。**"}, "ch11_q3": {"answer": "B", "explanation": "\"不好，重新写\"——AI从这个反馈中获得的信息量为零。它不知道哪里不好、怎么不好、你想要什么方向的修改。所以每次重写都是全新的随机尝试，可能越改越差。选项A和D都是编造的；选项C虽然换模型可能有用，但核心问题是反馈质量。**好的迭代反馈=具体+有方向+有原因。**\n\n---"}, "ch12_q1": {"answer": "B", "explanation": "多角色Prompt通过让AI模拟不同立场/专业的角色，从训练数据的不同区域提取信息和视角。这本质上是\"用一个模型模拟多个信息源\"。选项A——文字量不是目的；选项C——只用一个模型；选项D——计算难度不等于准确度。**多角色的价值=多视角×信息互补。**"}, "ch12_q2": {"answer": "B", "explanation": "\"先攻击再防守\"的逻辑：如果你直接让AI生成一个\"完美方案\"，它可能会忽略很多隐患（因为它的默认倾向是\"看起来好就行\"）。但如果你先让它扮演\"敌人\"来找漏洞，这些漏洞就暴露出来了，修订版可以对症下药。选项A、C、D都偏离了核心。**红队模式的价值=主动暴露弱点+针对性强化。**"}, "ch12_q3": {"answer": "B", "explanation": "两个问题：（1）讨论\"午餐订什么外卖\"完全不需要多角色——这是一个简单偏好问题；（2）20个角色超过了AI维持角色一致性和独特性的能力上限——超过4-5个角色后，角色之间会开始\"雷同\"、丧失独特视角。选项A会让问题更严重；选项C和D都是错误理解。**多角色是重型武器，用它打蚊子既浪费又低效。**\n\n---"}, "ch13_q1": {"answer": "B", "explanation": "幻觉的根本原因是AI的工作机制——概率预测。当训练数据不足以支撑准确预测时，AI会生成\"统计上合理但事实上错误\"的内容。选项A——训练数据有错误会加剧问题，但不是根本原因；选项C——AI没有\"故意\"这个概念；选项D——和硬件无关。**幻觉是概率预测的副产品，不是bug，是feature变成了liability。**"}, "ch13_q2": {"answer": "B", "explanation": "虚假自信的危险在于它制造了一种\"确定性的幻觉\"——精确的数字、自信的语气让用户放松了核实的警惕。如果AI老实说\"我不确定，大概在XXX左右\"，用户至少知道要去核实。但当AI说\"准确数字是1,247.8万辆\"时，大多数人会直接信以为真。**虚假自信=隐藏了不确定性=放大了错误传播的风险。**"}, "ch13_q3": {"answer": "B", "explanation": "这是本章最核心的陷阱——\"看起来靠谱\"恰恰是AI幻觉最危险的地方。AI最擅长的就是让编造的内容看起来详细、有条理、有具体数据。你不能用\"输出质量的外观\"来判断\"信息的准确性\"。选项A犯了\"精确=正确\"的谬误；选项C——两次答案一样只能说明AI在该模式上收敛了，不能证明正确性；选项D——AI的历史知识同样可能出错。**AI输出的\"形式完美\"和\"内容准确\"是两个完全独立的维度。**\n\n---"}, "ch14_q1": {"answer": "B", "explanation": "输入锚定的核心是\"限制AI的信息来源\"——你给什么材料，它就只能用什么材料，不允许自由发挥。这从根源上大幅降低了幻觉概率，因为AI不需要去\"回忆\"训练数据中可能不存在的信息。选项A混淆了\"锚定\"的含义；选项C——AI不能实时联网（除非使用搜索增强功能）；选项D——字数限制不是输入锚定。**输入锚定=把开卷考试变成\"闭卷但给资料\"的考试。**"}, "ch14_q2": {"answer": "B", "explanation": "确信度标注不会阻止AI产生幻觉——幻觉是概率预测的固有特征。但它能让用户知道\"哪些部分AI自己也不太确定\"，从而有针对性地去核实。这把\"隐性风险\"（你不知道哪里可能有错）变成了\"显性风险\"（错误的位置被标记出来了）。选项A——准确率不会直接提高；选项C和D都是人为联想。**确信度标注=风险可视化工具。**"}, "ch14_q3": {"answer": "B", "explanation": "AI不具备\"元认知\"能力——它不知道自己什么时候在幻觉、什么时候在准确回忆。要求它\"不要有错误\"就像要求一个色盲的人\"不要看错颜色\"——他并不知道自己看到的颜色是错的。有效的防幻觉策略是改变Prompt结构（如输入锚定、确信度标注），而非简单地下达\"不要出错\"的指令。**你不能靠命令来消除一个结构性问题。**\n\n---"}, "ch15_q1": {"answer": "B", "explanation": "Prompt链的工作原理就是\"流水线\"——把复杂任务拆成多步，每步用专门的Prompt处理，步步相连。选项A是\"一步到位\"法，不是链；选项C和D都是对\"链\"的误解。**Prompt链=任务分步+输出串联+逐步加工。**"}, "ch15_q2": {"answer": "B", "explanation": "流水线中的每一步都可能引入误差——翻译可能丢失nuance、简化可能过度、结构转换可能不当。质检环节在\"出厂\"前捕获这些问题。选项A和D无意义；选项C没有这个要求。**质检环节的存在理由=流水线中的误差会累积，必须在终点前拦截。**"}, "ch15_q3": {"answer": "B", "explanation": "Prompt链的一个核心设计原则是\"输出格式要对接输入格式\"——就像接力赛中交接棒必须顺畅。如果第3步输出的是自由文本，而第4步期望的是JSON，这个\"接口\"就断了。选项A——AI不会总是自动适配，尤其是格式差异很大时；选项C——JSON可以用；选项D——合并反而可能更糟。**设计Prompt链时，必须确保每一步的\"输出格式\"和下一步的\"输入格式\"兼容。**\n\n---"}, "exam_q1": {"answer": "B", "explanation": "这道题综合考察角色设定和语境构建。这个Prompt有两大致命缺陷：（1）角色设定空洞无物——\"全球最顶尖\"\"无所不知\"在向量空间中没有具体指向，等于没设角色；（2）完全缺少语境——公司做什么行业？什么阶段？有什么资源？面临什么问题？没有这些信息，AI的建议只能是放之四海而皆准的废话。选项A虽然正确但不是\"最致命的\"；选项C和D都是次要因素。**角色设定需要具体化，语境信息需要充分化——两者缺一，Prompt就\"先天不足\"。**"}, "exam_q2": {"answer": "B", "explanation": "这道题考察幻觉识别中的\"虚假自信\"。数据精确到小数点后一位（1,247.8万辆，28.3%）往往是AI幻觉的特征——真实的统计数据可能精确到这个程度，但AI也非常擅长\"生成看起来精确的假数据\"。正确态度：不是说它一定错，而是\"这种精确度应该触发你的核实本能\"。选项A犯了\"精确=准确\"的谬误；选项C过于绝对——AI可能有2024年的数据；选项D——重复回答一致不证明正确。**对所有具体数据保持\"有罪推定\"，直到官方源证实。**"}, "exam_q3": {"answer": "B", "explanation": "这是一个需要多维度推理的商业决策题——它完美匹配CoT的适用场景。B选项设计了一条清晰的推理链：市场需求→竞争→成本收益→风险→结论，确保AI的分析全面且逻辑可追溯。A太粗暴；C的Few-shot不适合此类需要原创分析的任务；D纯属娱乐。**复杂决策=复杂推理=CoT的最佳战场。**"}, "exam_q4": {"answer": "B", "explanation": "Few-shot的核心原则是\"示例之间要有一致的模式\"。如果你给的3个示例格式各不相同，AI找不到\"共同的输出模板\"来模仿，自然无法输出一致的格式。选项A——AI没有\"状态\"概念；选项C——Few-shot对所有语言都有效；选项D——3个格式一致的示例远胜30个格式不一致的。**Few-shot的质量>数量，一致性是最关键的质量指标。**"}, "exam_q5": {"answer": "B", "explanation": "多角色协作能提供多视角分析，但不能保证具体数据的准确性。即使AI在扮演\"CFO\"角色，它给出的估值数字仍然是基于概率预测的——它不是在查阅真实的财务系统。所有定量数据必须独立核实。选项A犯了\"角色=能力\"的谬误；选项C没有统计学根据；选项D丢掉了有用的定量分析框架。**多角色提供\"视角\"，不提供\"事实\"——定性有用，定量需验。**"}, "exam_q6": {"answer": "B", "explanation": "B选项展示了理想的约束设计：多维度但不机械、具体但不死板。它限制了方向（受众、主题、风格、长度、案例要求），但没有限制创造力。A零约束；C过紧且机械（和第7章的小王犯了一样的错）；D的约束全是无法操作的模糊词。**好约束=给方向，不给脚镣。**"}, "exam_q7": {"answer": "C", "explanation": "C选项提供了三层完整语境：（1）任务语境——生日邮件；（2）环境语境——客户身份、合作金额、近期关系波动；（3）隐含语境——修复关系的微妙目的、个人爱好可用于个性化。还有明确的约束（字数、语气）。A和B都缺少环境和隐含语境；D给了大量噪音信息（星座、身高、车型——和写邮件无关）。**C的语境让AI能写出一封\"有策略的\"邮件，而非\"有模板的\"邮件。**"}, "exam_q8": {"answer": "B", "explanation": "B选项的链式设计遵循了\"每步只做一件事\"的原则：提取核心→转换语言→组织结构→质检。每一步的任务清晰、可独立执行、输出可对接下一步。A一步到位很难同时处理好\"学术理解\"\"语言转换\"\"结构组织\"；C毫无意义；D的中间步骤\"写公众号文章\"和最终目标\"短视频脚本\"偏差很大。**好的链设计=每步任务清晰+步骤间逻辑递进+输出对接无缝。**"}, "exam_q9": {"answer": "B", "explanation": "B选项集成了几乎所有关键技术：角色设定（有经验的销售顾问）、精确的受众语境（性别、年龄、体重、运动习惯、预算）、明确的任务和格式约束（3双、说明理由）、内容排除约束（不推荐停产型号）、以及防幻觉措施（标注在售状态不确定性）。A太简、C太模糊、D是\"万能角色\"陷阱。**顶尖Prompt不是\"用了最多技术\"的，而是\"每个技术都用在了点上\"的。**"}, "exam_q10": {"answer": "B", "explanation": "这个Prompt犯了\"大杂烩\"的致命错误——5个完全不相关的任务塞在一个Prompt里：经济分析、投资计划、客户邮件、会议议程、月度总结。每一个任务都需要不同的角色设定、语境信息、格式要求和专业知识。混在一起的后果：每个任务都只能获得浅层处理，质量全面下降。加上\"格式随便\"等于放弃了所有输出控制。选项A——长度不是问题；选项C——CoT解决不了多任务混杂的问题；选项D——\"格式随便\"是最坏的约束。**一个Prompt一个焦点。多任务必须拆分为多个独立的、各自配备完整语境的Prompt。**\n\n---\n\n> 📖 教材完。\n>\n> 最后的最后，记住一句话：**AI是你的工具，而你是工具的主人。** 好的工匠不会抱怨锤子不够聪明——他会学会怎么正确地握锤子。\n>\n> 去改变世界吧，Prompt专家。\n\n---\n\n*《本可靠脸的我，非要选择AI替我动脑指南（人类最后的倔强：一个月成为全球顶尖AI提示专家）》*\n*作者：陈金理*\n*全书完*"}, "ch16_q1": {"answer": "B", "explanation": "顶尖Prompt专家面对新任务时，第一步是\"任务分析\"——用5秒钟快速判断：任务简单还是复杂？需要推理还是创意？幻觉风险高不高？选项A是新手做法，不分析就动手；选项C依赖别人的模板，不是专家思维；选项D选模型是次要的，先理解任务本身才是关键。**先\"诊断\"，再\"开药\"——这是专家和新手的根本区别。**"}, "ch16_q2": {"answer": "B", "explanation": "\"终极模板\"的8个模块是一个\"工具箱\"，不是\"必做清单\"。简单任务（如翻译一句话）可能只需要任务+约束，复杂任务（如商业分析报告）才需要更完整的模板。选项A和C过于教条——强迫每次都用满所有模块是\"为工具服务\"而非\"为任务服务\"；选项D毫无根据。**灵活取舍是\"融会贯通\"的核心标志。**"}, "ch16_q3": {"answer": "B", "explanation": "小林犯了\"过度教条化\"的错误——把\"今天吃什么\"这种简单问题也套上完整的BROKE框架，就像用大炮打蚊子。真正融会贯通的人知道：简单问题用简单方法，复杂问题用复杂工具。选项A和C把\"形式主义\"当成了\"专业\"；选项D更是火上浇油。**工具应该为任务服务，而不是任务为工具服务——这是本书最后、也是最重要的一课。**"}};
+
+// ─── Sidebar ───────────────────────────────────────────────────────────────
+const sidebar = document.getElementById('sidebar');
+const menuBtn = document.getElementById('menuBtn');
+const sidebarClose = document.getElementById('sidebarClose');
+const overlay = document.getElementById('sidebarOverlay');
+
+function openSidebar() { sidebar.classList.add('open'); overlay.classList.add('active'); }
+function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('active'); }
+
+menuBtn.addEventListener('click', openSidebar);
+sidebarClose.addEventListener('click', closeSidebar);
+overlay.addEventListener('click', closeSidebar);
+
+// Close sidebar on link click (mobile)
+sidebar.querySelectorAll('.sidebar-link').forEach(link => {
+  link.addEventListener('click', () => { if (window.innerWidth < 1024) closeSidebar(); });
+});
+
+// ─── Dark Mode ─────────────────────────────────────────────────────────────
+const darkToggle = document.getElementById('darkToggle');
+let userOverrideDark = false;
+
+function setDarkMode(isDark) {
+  if (isDark) {
+    document.body.classList.add('dark');
+  } else {
+    document.body.classList.remove('dark');
+  }
+  darkToggle.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+}
+
+function toggleDark() {
+  userOverrideDark = true;
+  document.body.classList.toggle('dark');
+  darkToggle.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+}
+darkToggle.addEventListener('click', toggleDark);
+
+// Auto dark mode: switch to dark after midnight (00:00-06:00), light otherwise
+function checkAutoDark() {
+  if (userOverrideDark) return; // user manually toggled, respect their choice
+  const hour = new Date().getHours();
+  const shouldBeDark = (hour >= 0 && hour < 6);
+  setDarkMode(shouldBeDark);
+}
+checkAutoDark(); // check on load
+setInterval(checkAutoDark, 60000); // check every minute
+
+// ─── Scroll Animation ─────────────────────────────────────────────────────
+const animatedEls = document.querySelectorAll('.content-card, .toc-card, .module-header, .chapter-title-card');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+  });
+}, { threshold: 0.01, rootMargin: '200px 0px 200px 0px' });
+animatedEls.forEach(el => observer.observe(el));
+// Immediately show elements in viewport
+requestAnimationFrame(() => {
+  animatedEls.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight + 200) { el.classList.add('visible'); observer.unobserve(el); }
+  });
+});
+
+// Handle hash navigation - reveal elements near hash target
+if (window.location.hash) {
+  setTimeout(() => {
+    const target = document.querySelector(window.location.hash);
+    if (target) {
+      const y = target.getBoundingClientRect().top + window.scrollY;
+      animatedEls.forEach(el => {
+        const elY = el.getBoundingClientRect().top + window.scrollY;
+        if (Math.abs(elY - y) < 2000) { el.classList.add('visible'); observer.unobserve(el); }
+      });
+    }
+  }, 100);
+}
+
+// ─── Active Sidebar Link ──────────────────────────────────────────────────
+const sections = document.querySelectorAll('section[id], article[id]');
+const sidebarLinks = sidebar.querySelectorAll('.sidebar-link');
+
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      sidebarLinks.forEach(link => {
+        link.classList.toggle('active',
+          link.getAttribute('href') === '#' + id
+        );
+      });
+    }
+  });
+}, { threshold: 0.1, rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => sectionObserver.observe(s));
+
+// ─── Quiz Interaction ─────────────────────────────────────────────────────
+document.querySelectorAll('.quiz-option').forEach(option => {
+  option.addEventListener('click', function() {
+    const qid = this.dataset.quiz;
+    const selected = this.dataset.value;
+    const container = document.getElementById(qid);
+    const feedback = document.getElementById(qid + '_feedback');
+    
+    // Check if already answered
+    if (container.classList.contains('answered')) return;
+    container.classList.add('answered');
+    
+    // Get correct answer
+    const answerData = ANSWERS[qid];
+    if (!answerData) return;
+    
+    const correct = answerData.answer;
+    const explanation = answerData.explanation;
+    
+    // Mark options
+    container.querySelectorAll('.quiz-option').forEach(opt => {
+      opt.style.pointerEvents = 'none';
+      if (opt.dataset.value === correct) {
+        opt.classList.add('correct');
+      } else if (opt.dataset.value === selected && selected !== correct) {
+        opt.classList.add('incorrect');
+      }
+    });
+    
+    // Show feedback
+    if (selected === correct) {
+      feedback.className = 'quiz-feedback show correct-feedback';
+      feedback.innerHTML = '<strong>✅ 正确！</strong> ' + explanation.substring(0, 200) + (explanation.length > 200 ? '…' : '');
+    } else {
+      feedback.className = 'quiz-feedback show incorrect-feedback';
+      feedback.innerHTML = '<strong>❌ 错误。正确答案是 ' + correct + '。</strong> ' + explanation.substring(0, 200) + (explanation.length > 200 ? '…' : '');
+    }
+  });
+});
+
+</script>
+</body>
+</html>
